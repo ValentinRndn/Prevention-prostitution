@@ -16,21 +16,22 @@
           <div class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
             <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Gérer mes articles</h3>
            
-            <div v-for="article in articles" :key="article._id" :class="['post-field', { 'archived': article._archive }]" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
+            <div v-for="article in articles" :key="article._id" :class="['post-field', { 'archived': article.archive }]" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
               <div class="flex items-center">
-                <span v-if="article._epingle" class="text-purple mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="m15.113 3.21l.094.083l5.5 5.5a1 1 0 0 1-1.175 1.59l-3.172 3.171l-1.424 3.797a1 1 0 0 1-.158.277l-.07.08l-1.5 1.5a1 1 0 0 1-1.32.082l-.095-.083L9 16.415l-3.793 3.792a1 1 0 0 1-1.497-1.32l.083-.094L7.585 15l-2.792-2.793a1 1 0 0 1-.083-1.32l.083-.094l1.5-1.5a1 1 0 0 1 .258-.187l.098-.042l3.796-1.425l3.171-3.17a1 1 0 0 1 1.497-1.26z"/></svg>
+                <span v-if="article.pin" class="text-purple mr-2">
+                  <!-- SVG pour l'icône d'épinglage -->
                 </span>
-                <p>{{ article._titre }}</p>
+                <p>{{ article.title }}</p>
               </div>
               <div class="edit-post flex gap-4 font-poppins">
                 <p class="text-light-grey underline cursor-pointer" @click="toggleArchiveArticle(article)">
-                  {{ article._archive ? 'Désarchiver' : 'Archiver' }}
+                  {{ article.archive ? 'Désarchiver' : 'Archiver' }}
                 </p>
                 <p class="text-light-grey underline cursor-pointer" @click="openEditModal(article)">Modifier</p>
                 <p class="text-light-grey underline cursor-pointer" @click="deleteArticle(article._id)">Supprimer</p>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
@@ -40,24 +41,24 @@
         <h2 class="text-xl font-bold mb-4">{{ isEditing ? 'Modifier l\'article' : 'Créer un nouvel article' }}</h2>
         <form class="scrollable-form" @submit.prevent="isEditing ? updateArticle() : createArticle()">
           <div class="mb-4">
-            <label for="titre" class="block text-sm font-medium text-gray-700">Titre</label>
-            <input v-model="newArticle.titre" type="text" id="titre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+            <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
+            <input v-model="newArticle.title" type="text" id="title" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
           </div>
           <div class="mb-4">
             <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
             <input v-model="newArticle.date" type="date" id="date" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
           </div>
           <div class="mb-4">
-            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-            <Editor api-key='neuzqkwdvgbjt7scku3sa3pl9etohbwieqnb9dcu57sm7cnm' v-model="newArticle.description" :init="editorConfig"></Editor>
+            <label for="content" class="block text-sm font-medium text-gray-700">Contenu</label>
+            <Editor api-key='neuzqkwdvgbjt7scku3sa3pl9etohbwieqnb9dcu57sm7cnm' v-model="newArticle.content" :init="editorConfig"></Editor>
           </div>
           <div class="mb-4">
-            <label for="auteur" class="block text-sm font-medium text-gray-700">Auteur</label>
-            <input v-model="newArticle.auteur" type="text" id="auteur" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+            <label for="author" class="block text-sm font-medium text-gray-700">Auteur</label>
+            <input v-model="newArticle.author" type="text" id="author" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
           </div>
           <div class="mb-4">
-            <label for="epingle" class="block text-sm font-medium text-gray-700">Épinglé</label>
-            <input v-model="newArticle.epingle" type="checkbox" id="epingle">
+            <label for="pin" class="block text-sm font-medium text-gray-700">Épinglé</label>
+            <input v-model="newArticle.pin" type="checkbox" id="pin">
           </div>
           <div class="mb-4">
             <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
@@ -92,7 +93,7 @@ export default {
         apiKey: 'neuzqkwdvgbjt7scku3sa3pl9etohbwieqnb9dcu57sm7cnm',
         setup: (editor) => {
           editor.on('Change', (e) => {
-            this.newArticle.description = editor.getContent();
+            this.newArticle.content = editor.getContent();
           });
         }
       },
@@ -100,12 +101,12 @@ export default {
       isEditing: false,
       currentArticleId: null,
       newArticle: {
-        titre: '',
+        title: '',
         date: '',
-        description: '',
-        epingle: false,
+        content: '',
+        pin: false,
         archive: false,
-        auteur: '',
+        author: '',
       },
       image: null,
       articles: [],
@@ -119,19 +120,19 @@ export default {
       document.addEventListener('keydown', this.handleKeydown);
     },
     openEditModal(article) {
-      this.isModalVisible = true;
-      this.isEditing = true;
-      this.currentArticleId = article._id;
-      this.newArticle = {
-        titre: article._titre,
-        date: article._date,
-        description: article._description,
-        epingle: article._epingle,
-        archive: article._archive,
-        auteur: article._auteur,
-      };
-      document.addEventListener('keydown', this.handleKeydown);
-    },
+  this.isModalVisible = true;
+  this.isEditing = true;
+  this.currentArticleId = article._id; // Utilisation de _id au lieu de id
+  this.newArticle = {
+    title: article.title,
+    date: article.date,
+    content: article.content,
+    pin: article.pin,
+    archive: article.archive,
+    author: article.author,
+  };
+  document.addEventListener('keydown', this.handleKeydown);
+},
     closeModal() {
       this.isModalVisible = false;
       document.removeEventListener('keydown', this.handleKeydown);
@@ -147,33 +148,35 @@ export default {
       this.image = event.target.files[0];
     },
     async createArticle() {
-      try {
-        const formData = new FormData();
-        formData.append('titre', this.newArticle.titre);
-        formData.append('date', this.newArticle.date);
-        formData.append('description', this.newArticle.description);
-        formData.append('epingle', this.newArticle.epingle);
-        formData.append('auteur', this.newArticle.auteur);
-        if (this.image) {
-          formData.append('image', this.image);
-        }
+  try {
+    const formData = new FormData();
+    formData.append('title', this.newArticle.title);
+    formData.append('date', this.newArticle.date);
+    formData.append('content', this.newArticle.content);
+    formData.append('pin', this.newArticle.pin); // Assurez-vous que c'est un booléen
+    formData.append('archive', this.newArticle.archive); // Assurez-vous que c'est un booléen
+    formData.append('author', this.newArticle.author);
+    if (this.image) {
+      formData.append('image', this.image);
+    }
 
-        const response = await createBlog(formData);
-        console.log('Article created successfully', response);
-        this.closeModal();
-        this.refreshArticles();
-      } catch (error) {
-        console.error('Error creating article', error);
-      }
-    },
+    const response = await createBlog(formData);
+    console.log('Article created successfully', response);
+    this.closeModal();
+    this.refreshArticles();
+  } catch (error) {
+    console.error('Error creating article', error);
+  }
+},
+
     async updateArticle() {
       try {
         const formData = new FormData();
-        formData.append('titre', this.newArticle.titre);
+        formData.append('title', this.newArticle.title);
         formData.append('date', this.newArticle.date);
-        formData.append('description', this.newArticle.description);
-        formData.append('epingle', this.newArticle.epingle);
-        formData.append('auteur', this.newArticle.auteur);
+        formData.append('content', this.newArticle.content);
+        formData.append('pin', this.newArticle.pin);
+        formData.append('author', this.newArticle.author);
         if (this.image) {
           formData.append('image', this.image);
         }
@@ -188,31 +191,32 @@ export default {
       }
     },
     async deleteArticle(id) {
-      try {
-        await deleteBlog(id);
-        this.refreshArticles();
-      } catch (error) {
-        console.error('Error deleting article', error);
-      }
-    },
-    async toggleArchiveArticle(article) {
-      try {
-        article._archive = !article._archive;
-        const response = await archiveBlog(article._id, { archive: article._archive });
-        console.log('Article archive state toggled successfully', response);
-        this.refreshArticles();
-      } catch (error) {
-        console.error('Error archiving article', error);
-      }
-    },
+  try {
+    await deleteBlog(id); // Utilisation correcte de _id pour l'API
+    this.refreshArticles();
+  } catch (error) {
+    console.error('Error deleting article', error);
+  }
+},
+async toggleArchiveArticle(article) {
+  try {
+    article.archive = !article.archive;
+    const response = await archiveBlog(article._id, { archive: article.archive }); // Utilisation de _id
+    console.log('Article archive state toggled successfully', response);
+    this.refreshArticles();
+  } catch (error) {
+    console.error('Error archiving article', error);
+  }
+},
+
     resetArticleForm() {
       this.newArticle = {
-        titre: '',
+        title: '',
         date: '',
-        description: '',
-        epingle: false,
+        content: '',
+        pin: false,
         archive: false,
-        auteur: '',
+        author: '',
       };
       this.image = null;
     },
@@ -246,7 +250,7 @@ export default {
 
 
 .scrollable-form {
-  max-height: 80vh; /* Limitez la hauteur à 80% de la hauteur de la vue */
+  max-height: 80vh; /* Limitez la hauthor à 80% de la hauthor de la vue */
   overflow-y: auto; /* Activez le défilement vertical */
   padding: 2rem;
 }
