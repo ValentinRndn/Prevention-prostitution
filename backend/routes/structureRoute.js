@@ -3,7 +3,7 @@ const Structure = require('../models/Structure');
 const router = express.Router();
 
 // Route pour récupérer toutes les structures
-router.get('/', async (req, res) => {
+router.get('/getAllStructures', async (req, res) => {
   try {
     const structures = await Structure.find();
     res.json(structures);
@@ -21,6 +21,28 @@ router.get('/:categorie', async (req, res) => {
       return res.status(404).json({ message: 'Structure non trouvée' });
     }
     res.json(structures);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+//Route pour ajouter une structure
+router.post('/createStructure', async (req, res) => {
+  const { antenna, address, gps, department, phone, email, category } = req.body;
+  try {
+    const newStructure = new Structure({
+      antenna,
+      address,
+      gps,
+      department,
+      phone,
+      email,
+      category
+    });
+
+    const structure = await newStructure.save();
+    res.json(structure);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Erreur serveur');

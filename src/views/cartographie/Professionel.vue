@@ -64,11 +64,11 @@
       <transition name="slide">
         <div v-if="selectedStructure" class="structure-popup">
           <div class="popup-content flex flex-col gap-5 items-center justify-center font-cgothic">
-            <!-- button close -->
+            <!-- Button close -->
             <img @click="closePopup" class="absolute top-5 left-5 w-[20px] cursor-pointer" src="../../assets/map/close-popup.png" alt="hide_arrow">
-            <h2 class="text-3xl text-center font-bold mt-10 text-purple-fonce">{{ selectedStructure._antenne }}</h2>
-            <p class="text-2xl text-center font-semibold">{{ selectedStructure._adresse }}</p>
-            <p class="text-2xl text-purple-fonce font-bold">{{ selectedStructure._telephone }}</p>
+            <h2 class="text-3xl text-center font-bold mt-10 text-purple-fonce">{{ selectedStructure.antenna }}</h2>
+            <p class="text-2xl text-center font-semibold">{{ selectedStructure.address }}</p>
+            <p class="text-2xl text-purple-fonce font-bold">{{ selectedStructure.phone }}</p>
           </div>
         </div>
       </transition>
@@ -81,14 +81,9 @@
 <script>
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import NavigationBar from "../../components/NavigationBar.vue";
 import Footer from "../../components/Footer.vue";
 import { getAllStructures } from "../../services/StructuresService";
 import { iconColors, createIcon } from "../../services/IconMap";
-
-
-
-
 
 export default {
   data() {
@@ -103,80 +98,78 @@ export default {
     };
   },
   methods: {
-  initMap() {
-    this.map = L.map("map").setView([49.183333, -0.35], 13);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(this.map);
-  },
-  async showStructures() {
-    try {
-      const structures = await getAllStructures();
-      this.structures = structures;
-      this.addMarkers();
-    } catch (error) {
-      console.error('Error fetching structures:', error);
-    }
-  },
-  updateSelectedCategories() {
-    this.selectedCategories = [];
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        this.selectedCategories.push(checkbox.id);
+    initMap() {
+      this.map = L.map("map").setView([49.183333, -0.35], 13);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(this.map);
+    },
+    async showStructures() {
+      try {
+        const structures = await getAllStructures();
+        this.structures = structures;
+        this.addMarkers();
+      } catch (error) {
+        console.error('Error fetching structures:', error);
       }
-    });
-    this.removeMarkers();
-    this.addMarkers();
-  },
-  removeMarkers() {
-    this.markers.forEach(marker => {
-      this.map.removeLayer(marker);
-    });
-    this.markers = [];
-  },
-  addMarkers() {
-    this.structures.forEach(structure => {
-      if (structure._coos_gps && this.selectedCategories.includes(structure._categorie)) {
-        const [lat, lon] = structure._coos_gps.split(',').map(coord => parseFloat(coord));
-        if (!isNaN(lat) && !isNaN(lon)) {
-          const category = structure._categorie;
-          const color = iconColors[category];
-          const icon = createIcon(color);
-          const marker = L.marker([lat, lon], { icon: icon }).addTo(this.map);
-          marker.on('click', () => {
-            this.selectedStructure = structure;
-            this.updateMarkerStyles(marker);
-          });
-          this.markers.push(marker);
-        } else {
-          console.warn('Invalid coordinates for structure:', structure);
+    },
+    updateSelectedCategories() {
+      this.selectedCategories = [];
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          this.selectedCategories.push(checkbox.id);
         }
+      });
+      this.removeMarkers();
+      this.addMarkers();
+    },
+    removeMarkers() {
+      this.markers.forEach(marker => {
+        this.map.removeLayer(marker);
+      });
+      this.markers = [];
+    },
+    addMarkers() {
+      this.structures.forEach(structure => {
+        console.log('Structure:', structure); // Ajout pour débogage
+        if (structure.gps && this.selectedCategories.includes(structure.category)) {
+          const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord));
+          if (!isNaN(lat) && !isNaN(lon)) {
+            const category = structure.category;
+            const color = iconColors[category];
+            const icon = createIcon(color);
+            const marker = L.marker([lat, lon], { icon: icon }).addTo(this.map);
+            marker.on('click', () => {
+              this.selectedStructure = structure;
+              this.updateMarkerStyles(marker);
+            });
+            this.markers.push(marker);
+          } else {
+            console.warn('Invalid coordinates for structure:', structure);
+          }
+        }
+      });
+    },
+    updateMarkerStyles(clickedMarker) {
+      if (this.selectedMarker) {
+        L.DomUtil.removeClass(this.selectedMarker._icon, 'custom-icon-selected');
       }
-    });
-  },
-  updateMarkerStyles(clickedMarker) {
-    if (this.selectedMarker) {
-      // Réinitialise le style de l'ancien marqueur sélectionné
-      L.DomUtil.removeClass(this.selectedMarker._icon, 'custom-icon-selected');
+      L.DomUtil.addClass(clickedMarker._icon, 'custom-icon-selected');
+      this.selectedMarker = clickedMarker;
+    },
+    hidePopup() {
+      this.showPopup = false;
+    },
+    closePopup() {
+      this.selectedStructure = null;
+      if (this.selectedMarker) {
+        L.DomUtil.removeClass(this.selectedMarker._icon, 'custom-icon-selected');
+        this.selectedMarker = null;
+      }
     }
-    // Met à jour le style du marqueur sélectionné
-    L.DomUtil.addClass(clickedMarker._icon, 'custom-icon-selected');
-    this.selectedMarker = clickedMarker; // Mémorise le marqueur sélectionné
   },
-  hidePopup() {
-    this.showPopup = false;
-  },
-  closePopup() {
-    this.selectedStructure = null;
-    if (this.selectedMarker) {
-      L.DomUtil.removeClass(this.selectedMarker._icon, 'custom-icon-selected'); // Réinitialise l'icône
-      this.selectedMarker = null; // Réinitialise le marqueur sélectionné
-    }
-  }
-},
-
   mounted() {
     this.initMap();
     this.showStructures();
@@ -184,9 +177,9 @@ export default {
   },
   components: {
     Footer,
-    NavigationBar,
   },
 };
+
 </script>
 
 
