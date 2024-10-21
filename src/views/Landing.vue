@@ -137,10 +137,10 @@
 
 <!-- Derniers articles -->
 <div class=" font-cgothic my-12 mt-[200px]">
-  <h2 class="text-center text-2xl font-bold mb-8">Nos dernières actualités</h2>
+  <h2 class="text-center text-2xl font-bold mb-8">Nos articles épinglés</h2>
   <div class="header-content flex gap-12 justify-center items-center mx-auto mt-6">
-    <div v-for="article in epingleArticles.filter(article => !article.pin)" :key="article.id" class="card w-[300px] h-[375px] bg-white object-cover rounded-[25px] overflow-hidden p-4 shadow-xl border border-solid border-slate-300 relative">
-      <img :src="`api/${article.image}`" alt="article image" class="rounded-t-[25px] h-[180px] w-full object-cover" />
+    <div v-for="article in pinnedArticles" :key="article._id" class="card w-[300px] h-[375px] bg-white object-cover rounded-[25px] overflow-hidden p-4 shadow-xl border border-solid border-slate-300 relative">
+      <img :src="`../backend/${article.image}`" alt="article image" class="rounded-t-[25px] h-[180px] w-full object-cover" />
       <p class="text-3xl font-bold font-c-gothic text-post-grey">{{ article.title }}</p>
       <p class="text text-grey font-jost-sans absolute bottom-4">{{ formatDate(article.date) }}</p>
       <router-link :to="{ name: 'BlogDetail', params: { id: article._id } }" class="arrow text-xl text-grey absolute bottom-3 right-4 font-bold bg-light-beige p-2 px-3 rounded-full">
@@ -150,21 +150,19 @@
   </div>
 </div>
 
+
 </div>
 
 
   <!-- Pied de page -->
   <Footer />
 </template>
-
-
 <script>
 import Footer from "../components/Footer.vue";
 import NavigationBarMobile from "../components/NavigationBarMobile.vue";
 import { showAllBlogs } from "../services/BlogsService.js";
 import { showNumbers } from "../services/StatistiquesService.js";
 import { ref, onMounted, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -209,8 +207,9 @@ export default {
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     };
 
-    const epingleArticles = computed(() => {
-      return articles.value.filter((article) => article.archive);
+    // Computed property pour les articles épinglés
+    const pinnedArticles = computed(() => {
+      return articles.value.filter((article) => article.pin);
     });
 
     onMounted(() => {
@@ -226,13 +225,13 @@ export default {
       toggleDropdown,
       logout,
       formatDate,
-      epingleArticles,
+      pinnedArticles, 
     };
   },
 };
+
+
 </script>
-
-
 
 
 <style>

@@ -20,7 +20,7 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: 'http://localhost:5173', // L'origine de ton frontend Vue.js
-  methods: 'GET,POST,PUT,DELETE', // Méthodes HTTP autorisées
+  methods: 'GET,POST,PUT,DELETE,PATCH',  // Méthodes HTTP autorisées
   credentials: true // Si tu veux envoyer des cookies (optionnel)
 }));
 
