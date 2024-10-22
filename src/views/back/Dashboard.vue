@@ -82,7 +82,7 @@
 // Importation du composant SideBar
 import AdminBar from "../../components/backOffice/AdminBar.vue";
 import HorizontalBar from "../../components/backOffice/HorizontalBar.vue";
-import { getAllFiles} from "../../services/GuideService.js";
+import { getAllGuides} from "../../services/GuideService.js";
 import { showAllBlogs} from "../../services/BlogsService.js";
 
 
@@ -109,13 +109,13 @@ export default {
   },
   async created() {
     try {
-      const response = await getAllFiles();
+      const response = await getAllGuides();
       this.documents = response.map(doc => ({
         id: doc.id,
-        titre: doc.titre,
+        titre: doc.title,
         description: doc.description,
         image: doc.image,
-        categorie: doc.categorie,
+        categorie: doc.cateogory,
         pdf: doc.pdf
       }));
     } catch (error) {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const getAllFiles = () => {
-  return axios.get('http://localhost:3000/file/getAllFiles')
+export const getAllGuides = () => {
+  return axios.get('http://localhost:5000/api/guides/getAllGuides')
     .then(response => {
       return response.data;
     })
@@ -11,8 +11,8 @@ export const getAllFiles = () => {
 };
 
 
-export const getFileByCategory = (categorie) => {
-  return axios.get(`http://localhost:3000/file/getFileByCategory/${categorie}`)
+export const getGuideByCategory = (categorie) => {
+  return axios.get(`http://localhost:5000/api/guides/getFileByCategory/${categorie}`)
     .then(response => {
       return response.data;
     })
@@ -21,9 +21,9 @@ export const getFileByCategory = (categorie) => {
     });
 };
 
-export const createFile = async (formData) => {
+export const createGuide = async (formData) => {
   try {
-    const response = await axios.post('http://localhost:3000/file/createFile', formData, {
+    const response = await axios.post('http://localhost:5000/api/guides/createGuide', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -35,10 +35,24 @@ export const createFile = async (formData) => {
   }
 };
 
-
-export const deleteFile = async (id) => {
+export const updateGuide = async (id, formData) => {
   try {
-    const response = await axios.delete(`http://localhost:3000/file/deleteFile/${id}`);
+    const response = await axios.put(`http://localhost:5000/api/guides/updateGuide/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating file:', error);
+    throw error;
+  }
+}
+
+
+export const deleteGuide = async (id) => {
+  try {
+    const response = await axios.delete(`http://localhost:5000/api/guides/deleteGuide/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error deleting file:', error);

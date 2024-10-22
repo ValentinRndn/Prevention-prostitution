@@ -1,9 +1,30 @@
 const express = require('express');
 const Guide = require('../models/Guide');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+
+// Configuration de multer pour stocker les fichiers PDF et images
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Vérifiez si le fichier est un PDF ou une image pour le stocker dans le bon dossier
+    if (file.mimetype === 'application/pdf') {
+      cb(null, 'uploads/guides/pdf/');
+    } else if (file.mimetype.startsWith('image/')) {
+      cb(null, 'uploads/guides/Images/');
+    } else {
+      cb(new Error('Invalid file type'), false);
+    }
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  }
+});
+
+const upload = multer({ storage });
 
 // Route pour récupérer tous les guides
-router.get('/', async (req, res) => {
+router.get('/getAllGuides', async (req, res) => {
   try {
     const guides = await Guide.find();
     res.json(guides);
@@ -14,7 +35,7 @@ router.get('/', async (req, res) => {
 });
 
 // Route pour récupérer un guide par sa catégorie
-router.get('/:categorie', async (req, res) => {
+router.get('/getFileByCategory/:categorie', async (req, res) => {
   try {
     const guides = await Guide.find({ categorie: req.params.categorie });
     if (!guides) {
@@ -27,15 +48,19 @@ router.get('/:categorie', async (req, res) => {
   }
 });
 
-//Route pour ajouter un guide
-router.post('/', async (req, res) => {
+// Route pour ajouter un guide avec un fichier PDF et une image
+router.post('/createGuide', upload.fields([{ name: 'pdf', maxCount: 1 }, { name: 'image', maxCount: 1 }]), async (req, res) => {
   try {
-    const { title, description, category, pdf } = req.body;
+    const { title, description, category } = req.body;
+    const pdf = req.files['pdf'] ? req.files['pdf'][0].path : null;
+    const image = req.files['image'] ? req.files['image'][0].path : null;
+
     const guide = new Guide({
       title,
       description,
       category,
-      pdf
+      pdf,
+      image
     });
     await guide.save();
     res.json(guide);
@@ -45,15 +70,27 @@ router.post('/', async (req, res) => {
   }
 });
 
-//Route pour modifier un guide
-router.put('/:id', async (req, res) => {
+// Route pour modifier un guide avec un fichier PDF et une image
+router.put('/updateGuide/:id', upload.fields([{ name: 'pdf', maxCount: 1 }, { name: 'image', maxCount: 1 }]), async (req, res) => {
   try {
-    const { title, description, category, pdf } = req.body;
+    const { title, description, category } = req.body;
     const guide = await Guide.findById(req.params.id);
+    if (!guide) {
+      return res.status(404).json({ message: 'Guide non trouvé' });
+    }
+
     guide.title = title;
     guide.description = description;
     guide.category = category;
-    guide.pdf = pdf;
+
+    if (req.files['pdf']) {
+      guide.pdf = req.files['pdf'][0].path;
+    }
+
+    if (req.files['image']) {
+      guide.image = req.files['image'][0].path;
+    }
+
     await guide.save();
     res.json(guide);
   } catch (err) {
@@ -62,9 +99,15 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-//Route pour supprimer un guide
-router.delete('/:id', async (req, res) => {
+// Route pour supprimer un guide
+router.delete('/deleteGuide/:id', async (req, res) => {
   try {
+    const guide = await Guide.findById(req.params.id);
+    if (!guide) {
+      return res.status(404).json({ message: 'Guide non trouvé' });
+    }
+
+    // Supprimer le guide de la base de données
     await Guide.findByIdAndDelete(req.params.id);
     res.json({ message: 'Guide supprimé' });
   } catch (err) {

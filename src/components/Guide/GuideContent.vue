@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { getFileByCategory } from '../../services/GuideService.js';
+import { getGuideByCategory } from '../../services/GuideService.js';
 
 export default {
   name: 'GuideContent',
@@ -51,7 +51,7 @@ export default {
     async loadCategory(category) {
       this.selectedCategory = category;
       try {
-        const response = await getFileByCategory(category);
+        const response = await getGuideByCategory(category);
         this.documents = response.map(doc => ({
           id: doc.id,
           titre: doc.titre,
