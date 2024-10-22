@@ -49,4 +49,47 @@ router.post('/createStructure', async (req, res) => {
   }
 });
 
+// Route pour modifier une structure
+router.put('/updateStructure/:id', async (req, res) => {
+  const { antenna, address, gps, department, phone, email, category } = req.body;
+  try {
+    let structure = await Structure.findById(req.params.id);
+    if (!structure) {
+      return res.status(404).json({ message: 'Structure non trouvée' });
+    }
+
+    structure.antenna = antenna;
+    structure.address = address;
+    structure.gps = gps;
+    structure.department = department;
+    structure.phone = phone;
+    structure.email = email;
+    structure.category = category;
+
+    await structure.save();
+    res.json(structure);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+// Route pour supprimer une structure
+router.delete('/deleteStructure/:id', async (req, res) => {
+  try {
+    const structure = await Structure.findById(req.params.id);
+    if (!structure) {
+      return res.status(404).json({ message: 'Structure non trouvée' });
+    }
+
+    // Utilisation de findByIdAndDelete pour supprimer la structure
+    await Structure.findByIdAndDelete(req.params.id);
+
+    res.json({ message: 'Structure supprimée avec succès' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
 module.exports = router;
