@@ -35,7 +35,7 @@
               </div>
             </div>
 
-            <router-link to="/backOffice/users" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link>
+            <router-link to="/backoffice/users" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link>
 
           </div>
 
@@ -49,7 +49,7 @@
   <div class="edit-post flex gap-4 font-poppins">
   </div>
 </div>
-  <router-link to="/backOffice/documentation" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link>
+  <router-link to="/backoffice/documentation" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link>
 </div>
 
     <!-- tableau SEO-->
@@ -59,7 +59,7 @@
       <div class="edit-post flex gap-4 font-poppins">
     </div>
   </div>
-    <!-- <router-link to="/backOffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link> -->
+    <!-- <router-link to="/backoffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link> -->
   </div>
 
 
@@ -71,7 +71,7 @@
       <div class="edit-post flex gap-4 font-poppins">
     </div>
   </div>
-    <router-link to="/backOffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link>
+    <router-link to="/backoffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link>
   </div>
 
     </div>

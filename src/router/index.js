@@ -54,32 +54,32 @@ import StructureBack from '../views/back/Structure.vue';
             component: Login,
         },
         {
-            path: '/backOffice/dashboard',
+            path: '/backoffice/dashboard',
             name: 'Dashboard',
             component: Dashboard,
         },
         {
-            path: '/backOffice/blog',
+            path: '/backoffice/blog',
             name: 'BackBlog',
             component: BackBlog,
         },
         {
-            path: '/backOffice/landing',
+            path: '/backoffice/landing',
             name: 'Landing',
             component: Landing,
         },
         {
-            path: '/backOffice/users',
+            path: '/backoffice/users',
             name: 'Users',
             component: Users,
         },
         {
-            path: '/backOffice/documentation',
+            path: '/backoffice/documentation',
             name: 'DocumentationBack',
             component: DocumentationBack,
         },
         {
-            path: '/backOffice/structure',
+            path: '/backoffice/structure',
             name: 'StructureBack',
             component: StructureBack,
         },

@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <div v-if="!isLandingPage">
+    <div v-if="!shouldHideNavbar">
       <!-- Navbar pour les écrans larges -->
       <NavigationBar class="block md:hidden"></NavigationBar>
       <!-- NavbarMobile pour les écrans petits -->
@@ -20,10 +20,11 @@ import Footer from './components/Footer.vue';
 import HorizontalBar from './components/backOffice/HorizontalBar.vue';
 
 const route = useRoute();
-const isLandingPage = ref(false);
+const shouldHideNavbar = ref(false);
 
 const onRouteChanged = () => {
-  isLandingPage.value = route.name === 'LandingFront'; // Assurez-vous que le nom de la route est correct
+  // Vérifie si le chemin de la route est '/' ou commence par '/backoffice'
+  shouldHideNavbar.value = route.path === '/' || route.path.startsWith('/backoffice');
 };
 
 // Initial check on component mount

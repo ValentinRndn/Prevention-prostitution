@@ -2,34 +2,34 @@
   <aside :class="{ 'is-expanded': is_expanded }" class="flex flex-col w-[calc(2rem+32px)] min-h-[100vh] overflow-hidden p-4 bg-purple-fonce ease-out duration-200 mt-12">
 
     <div class="navigation my-0 -mx-4 z-10">
-      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backOffice/dashboard' }]" to="/backOffice/dashboard">
+      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/dashboard' }]" to="/backoffice/dashboard">
         <img src="../../assets/logo_dash.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
-        <span class="text" :class="{ 'text-purple': currentPage === '/backOffice/dashboard' }">Tableau de bord</span>
+        <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/dashboard' }">Tableau de bord</span>
       </router-link>
 
-      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backOffice/blog' }]" to="/backOffice/blog">
+      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/blog' }]" to="/backoffice/blog">
         <img src="../../assets/logo_blog.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
-        <span class="text" :class="{ 'text-purple': currentPage === '/backOffice/blog' }">Blog</span>
+        <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/blog' }">Blog</span>
       </router-link>
 
-      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backOffice/landing' }]" to="/backOffice/landing">
+      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/landing' }]" to="/backoffice/landing">
         <img src="../../assets/logo_accueil.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
-        <span class="text" :class="{ 'text-purple': currentPage === '/backOffice/landing' }">Accueil</span>
+        <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/landing' }">Accueil</span>
       </router-link>
 
-      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backOffice/users' }]" to="/backOffice/users">
+      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/users' }]" to="/backoffice/users">
         <img src="../../assets/logo_utilisateur.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
-        <span class="text" :class="{ 'text-purple': currentPage === '/backOffice/users' }">Utilisateur</span>
+        <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/users' }">Utilisateur</span>
       </router-link>
 
-      <router-link :class="['button border-y border-white', { 'text-purple bg-purple': currentPage === '/backOffice/documentation' }]" to="/backOffice/documentation">
+      <router-link :class="['button border-y border-white', { 'text-purple bg-purple': currentPage === '/backoffice/documentation' }]" to="/backoffice/documentation">
         <img src="../../assets/logo_doc.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
-        <span class="text" :class="{ 'text-purple': currentPage === '/backOffice/documentation' }">Documentation</span>
+        <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/documentation' }">Documentation</span>
       </router-link>
 
-      <router-link :class="['button border-y border-white', { 'text-purple bg-purple': currentPage === '/backOffice/structure' }]" to="/backOffice/structure">
+      <router-link :class="['button border-y border-white', { 'text-purple bg-purple': currentPage === '/backoffice/structure' }]" to="/backoffice/structure">
         <img src="../../assets/structure_logo.png" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
-        <span class="text" :class="{ 'text-purple': currentPage === '/backOffice/structure' }">Structure</span>
+        <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/structure' }">Structure</span>
       </router-link>
     </div>
 
