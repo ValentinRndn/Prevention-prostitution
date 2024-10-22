@@ -1,18 +1,10 @@
 const mongoose = require('mongoose');
 
 const StatisticSchema = new mongoose.Schema({
-    firstStats: {
-        type: Number, 
-        required: true, 
-    },
-    secondStats: {
-        type: Number, 
-        required: true, 
-    },
-    thirdStats: {
-        type: Number, 
-        required: true, 
-    },
+  firstStats: { type: Number},
+  secondStats: { type: Number},
+  thirdStats: { type: Number},
+  lastUpdate: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Statistic', StatisticSchema); // Correction de l'export
+module.exports = mongoose.model('Statistic', StatisticSchema);
