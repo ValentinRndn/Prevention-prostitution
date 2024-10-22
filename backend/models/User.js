@@ -4,13 +4,17 @@ const UserSchema = new mongoose.Schema({
   pseudo: {
     type: String,
     required: true,
-    unique: true, // Le pseudo doit être unique pour chaque utilisateur
+    unique: true
   },
   password: {
     type: String,
+    required: true
+  },
+  email: {
+    type: String,
     required: true,
+    unique: true // Email doit être unique
   },
 });
 
-// Mongoose génère automatiquement un champ `_id` pour chaque document
 module.exports = mongoose.model('User', UserSchema);
