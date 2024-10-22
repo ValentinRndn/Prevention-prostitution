@@ -31,31 +31,32 @@ export default {
     },
 
     methods: {
-    login() {
-        axios.post('http://localhost:5000/api/auth/login', {
-            pseudo: this.pseudo,
-            password: this.password
-        })
-        .then(response => {
-            // Vérifiez si la réponse contient un token ou un indicateur de réussite
-            if (response.status === 200) {
-                // Enregistrez le token dans le stockage local ou les cookies
-                localStorage.setItem('token', JSON.stringify(response.data.Token));
-                // Redirigez vers la page de l'administrateur
-                this.$router.push('/backoffice/dashboard');
-            } else {
-                // Afficher un message d'erreur si l'authentification a échoué
-                console.log(response.data);
-                this.error = "Email ou mot de passe incorrect";
-            }
-        })
-        .catch(error => {
-            // Afficher un message d'erreur si une erreur se produit lors de la requête
-            console.error('Erreur lors de la requête d\'authentification:', error);
-            console.log(error);
-            this.error = "Une erreur s'est produite lors de l'authentification";
-        });
-    }
+        login() {
+    axios.post('http://localhost:5000/api/auth/login', {
+        pseudo: this.pseudo,
+        password: this.password
+    })
+    .then(response => {
+        console.log('Response:', response);
+
+        // Vérifiez si la réponse contient un token
+        if (response.status === 200 && response.data.token) {
+            // Enregistrez le token dans le localStorage
+            localStorage.setItem('token', response.data.token); // Pas besoin de JSON.stringify ici, c'est déjà une chaîne
+            // Redirigez vers la page de l'administrateur
+            this.$router.push('/backoffice/dashboard');
+        } else {
+            // Afficher un message d'erreur si l'authentification a échoué
+            console.log(response.data);
+            this.error = "Pseudo ou mot de passe incorrect";
+        }
+    })
+    .catch(error => {
+        // Afficher un message d'erreur si une erreur se produit lors de la requête
+        console.error('Erreur lors de la requête d\'authentification:', error);
+        this.error = "Une erreur s'est produite lors de l'authentification";
+    });
 }
+    }
 };
 </script>

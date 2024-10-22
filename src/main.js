@@ -8,11 +8,7 @@ const app = createApp(App)
 
 app.use(router)
 
-// app.use(VueMatomo, {
-//   host: 'https://papspnetlifyapp.matomo.cloud/',
-//   siteId: 1,
-//   router: router, // Important: ajoutez le router ici si vous l'utilisez
-// })
+
 
 app.mount('#app')
 
