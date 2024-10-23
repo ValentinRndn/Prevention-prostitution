@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isVisible" class="cookie-banner fixed flex flex-col items-center gap-4 justify-center bottom-0 left-0 w-fit bg-lightpurple text-white p-6 z-50 max-w-[450px] rounded-lg">
+    <div v-if="isVisible" class="cookie-banner fixed flex flex-col items-center gap-4 justify-center bottom-0 left-0 w-fit bg-lightpurple text-white p-6 z-60 max-w-[450px] rounded-lg">
       <span class="text-center text-purple-fonce font-bold text-xl">POUVONS-NOUS UTILISER LES COOKIES ?</span>
       <p class="max-w-full text-center text-black text-lg font-semibold">
         Ce site utilise des cookies pour améliorer votre expérience de navigation. En continuant à utiliser ce site, vous acceptez notre utilisation des cookies conformément à notre politique de confidentialité.
@@ -17,8 +17,8 @@
         </div>
         <button @click="openSettings" class="text-purple-fonce text-center w-full underline font-semibold text-lg">Customiser</button>
       </div>
-      <div v-if="showSettings" class="mt-4 p-4 bg-white rounded-lg text-purple-fonce shadow-lg w-full">
-        <h3 class="font-bold text-xl mb-4">Gestion des cookies</h3>
+      <div v-if="showSettings" class="mt-4 p-4 rounded-lg text-purple-fonce  w-full">
+        <h3 class="font-bold text-xl text-center mb-4">Gestion des cookies</h3>
         <div class="flex flex-col gap-4">
           <div class="flex items-center gap-2">
             <input type="checkbox" id="necessary" disabled checked class="accent-purple-fonce" />
@@ -38,8 +38,7 @@
           </div>
         </div>
         <div class="flex justify-between gap-4 mt-4">
-          <button @click="saveSettings" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-200">Sauvegarder</button>
-          <button @click="rejectAll" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-200">Refuser tous</button>
+          <button @click="saveSettings" class="bg-purple-fonce text-white py-2 px-4 rounded-md  transition duration-200">Sauvegarder</button>
         </div>
       </div>
     </div>
