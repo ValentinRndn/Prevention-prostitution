@@ -80,9 +80,13 @@
     <div class="flex flex-col items-center bg-purple rounded-2xl p-10 relative">
       <h1 class="mb-2">LES NUMÉROS À CONTACTER</h1>
       <div class="numero flex gap-36 mb-10 mt-5 md:gap-10 md:text-4xl">
+        <a href="tel:3919">
         <p class="flex-grow text-center">3919</p>
+      </a>
         <div class="contact-mineur flex items-center justify-center gap-4 md:flex-col md:gap-0">
+          <a href="tel:119">
           <p class="flex-grow text-center">119</p>
+          </a>
           <p class="flex-grow text-center text-lg md:text-sm">
             Pour les mineurs
           </p>
@@ -98,46 +102,44 @@
   <div class="flex items-center justify-center -mt-8 font-helvetica">
     <div class="flex items-center bg-purple-fonce shadow-xl rounded-2xl gap-4 py-2 px-6 z-20 hover:scale-110 duration-200">
       <img class="w-[50px] bg-purple-fonce md:hidden" src="../assets/courriel-de-contact.png" />
+      <router-link to="/contact">
       <button class="text-white h-full font-bold text-xl md:text-lg md:p-4">
         NOUS CONTACTER
       </button>
+    </router-link>
     </div>
   </div>
 
 <!-- Conteneur de l'arrière-plan -->
 <div class="bg-alveoles h-auto z-0 bg-cover relative p-10">
 
-<!-- Chiffres clés -->
-<div class="relative top-32 w-full flex gap-12 justify-center items-center md:flex-col md:gap-6 md:text-xl md:top-16">
-  <div v-for="number in numbers" :key="number.id" class="information flex flex-col justify-center items-center">
-    <p class="chiffre text-6xl font-cgothic">{{ number.firstStats }}</p>
-    <div class="information flex flex-col justify-center items-center">
-      <p class="text font-jost-sans text-purple-fonce">Personnes rencontrées</p>
+  <!-- Key Figures Section -->
+  <div class="bg-alveoles h-auto z-0 bg-cover relative p-10">
+      <div class="relative top-32 w-full flex gap-12 justify-center items-center md:flex-col md:gap-6 md:text-xl md:top-16">
+        <div class="information flex flex-col justify-center items-center">
+          <p class="chiffre text-8xl font-cgothic">{{ numbers.firstStats }}</p>
+          <p class="text text-xl font-jost-sans text-purple-fonce">Personnes rencontrées</p>
+        </div>
+        <div class="separator">
+          <p class="text text-8xl text-yellow md:hidden">|</p>
+        </div>
+        <div class="information flex flex-col justify-center items-center">
+          <p class="chiffre text-8xl font-cgothic">{{ numbers.secondStats }}</p>
+          <p class="text text-xl  font-jost-sans text-purple-fonce">Maraudes effectuées</p>
+        </div>
+        <div class="separator">
+          <p class="text text-8xl text-yellow md:hidden">|</p>
+        </div>
+        <div class="information flex flex-col justify-center items-center">
+          <p class="chiffre text-8xl font-cgothic">{{ numbers.thirdStats }}</p>
+          <p class="text text-xl  font-jost-sans text-purple-fonce">Préservatifs distribués</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="separator">
-    <p class="text text-6xl text-yellow md:hidden">|</p>
-  </div>
-  <div v-for="number in numbers" :key="number.id" class="information flex flex-col justify-center items-center">
-    <p class="chiffre text-6xl font-cgothic">{{ number.secondStats }}</p>
-    <div class="information flex flex-col justify-center items-center">
-      <p class="text font-jost-sans text-purple-fonce">Maraudes effectuées</p>
-    </div>
-  </div>
-  <div class="separator">
-    <p class="text text-6xl text-yellow md:hidden">|</p>
-  </div>
-  <div v-for="number in numbers" :key="number.id" class="information flex flex-col justify-center items-center">
-    <p class="chiffre text-6xl font-cgothic">{{ number.thirdStats }}</p>
-    <div class="information flex flex-col justify-center items-center">
-      <p class="text font-jost-sans text-purple-fonce">Préservatifs distribués</p>
-    </div>
-  </div>
-</div>
 
 <!-- Derniers articles -->
-<div class=" font-cgothic my-12 mt-[200px]">
-  <h2 class="text-center text-2xl font-bold mb-8">Nos articles épinglés</h2>
+<div class=" font-cgothic my-12 mt-[300px]">
+  <h2 class="text-center text-4xl font-bold mb-8">Nos articles épinglés</h2>
   <div class="header-content flex gap-12 justify-center items-center mx-auto mt-6">
     <div v-for="article in pinnedArticles" :key="article._id" class="card w-[300px] h-[375px] bg-white object-cover rounded-[25px] overflow-hidden p-4 shadow-xl border border-solid border-slate-300 relative">
       <img :src="`../backend/${article.image}`" alt="article image" class="rounded-t-[25px] h-[180px] w-full object-cover" />

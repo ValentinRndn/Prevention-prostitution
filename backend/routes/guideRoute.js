@@ -35,9 +35,9 @@ router.get('/getAllGuides', async (req, res) => {
 });
 
 // Route pour récupérer un guide par sa catégorie
-router.get('/getFileByCategory/:categorie', async (req, res) => {
+router.get('/getFileByCategory/:category', async (req, res) => {
   try {
-    const guides = await Guide.find({ categorie: req.params.categorie });
+    const guides = await Guide.find({ category: req.params.category });
     if (!guides) {
       return res.status(404).json({ message: 'Guide non trouvé' });
     }

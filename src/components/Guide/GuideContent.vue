@@ -7,28 +7,28 @@
         @click="loadCategory(category)"
         :class="['button-prostitution border border-solid border-light-grey py-2 px-6 text-lg font-cgothic', { 'bg-purple text-white': selectedCategory === category }]"
       >
-        {{ category }}
+        {{ formatCategory(category) }}
       </button>
     </div>
 
     <div class="documents-container mt-14 mx-10 flex gap-5 flex-wrap">
       <div
         v-for="doc in documents"
-        :key="doc.id"
+        :key="doc._id"
         class="doc-container w-[300px] flex flex-col items-center justify-center text-center gap-3"
       >
-        <!-- Utilisez un lien pour ouvrir le PDF dans une nouvelle fenêtre -->
-        <a :href="`../api/${doc.pdf}`" target="_blank" rel="noopener noreferrer">
-          <img :src="`../api/${doc.image}`" class="w-full h-[400px] object-cover" :alt="doc.titre" />
+        <a :href="`/backend/${doc.pdf}`" target="_blank" rel="noopener noreferrer">
+          <img :src="`/backend/${doc.image}`" class="w-full h-[400px] object-cover" :alt="doc.title" />
         </a>
-        <a :href="doc.lien" target="_blank" rel="noopener noreferrer">
-          <h3 class="w-full font-semibold">{{ doc.titre }}</h3>
+        <a :href="doc.link" target="_blank" rel="noopener noreferrer">
+          <h3 class="w-full font-semibold">{{ doc.title }}</h3>
         </a>
         <p class="w-full">{{ doc.description }}</p>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import { getGuideByCategory } from '../../services/GuideService.js';
@@ -48,17 +48,20 @@ export default {
     };
   },
   methods: {
+    formatCategory(category) {
+    // Remplacer les tirets par des espaces et mettre la première lettre en majuscule
+    return category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+  },
     async loadCategory(category) {
       this.selectedCategory = category;
       try {
         const response = await getGuideByCategory(category);
         this.documents = response.map(doc => ({
-          id: doc.id,
-          titre: doc.titre,
+          id: doc._id,
+          title: doc.title,
           description: doc.description,
-          lien: doc.lien,
           image: doc.image,
-          categorie: doc.categorie,
+          category: doc.category,
           pdf: doc.pdf
         }));
       } catch (error) {
