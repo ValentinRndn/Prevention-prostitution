@@ -22,18 +22,13 @@ export const getUserById = (id) => {
 
 
 
-export const createUser = async (formData) => {
-    try {
-        const response = await axios.post('http://localhost:5000/api/users/createUser', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error creating file:', error);
-        throw error;
-    }
+export const createUser = async (userData) => {
+  try {
+    const response = await axios.post('http://localhost:5000/api/users/createUser', userData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 

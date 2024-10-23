@@ -102,7 +102,7 @@ export default {
       this.userForm = {
         pseudo: user.pseudo,
         email: user.email,
-        password: '' // Clear the password field for editing
+        password: '' 
       };
       this.confirmPassword = '';
     },
@@ -138,7 +138,7 @@ export default {
           email: this.userForm.email,
           password: this.userForm.password
         };
-
+        console.log(userData);
         const response = await createUser(userData);
         console.log('Utilisateur créé avec succès', response);
         this.closeModal();

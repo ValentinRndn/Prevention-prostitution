@@ -5,16 +5,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
 
-// Configuration de multer pour stocker les images (si nécessaire)
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Dossier où les images seront stockées
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
-});
-const upload = multer({ storage });
+
 
 // Route pour récupérer les informations de l'utilisateur connecté
 router.get('/me', auth, async (req, res) => {
