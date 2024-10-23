@@ -15,6 +15,7 @@ export default {
         'login-grey': "#424242",
         'back-grey': '#E4E4E4',
         'light-grey': '#999999',
+        'lightpurple' : '#CFC3FF',
         'light-beige': '#F4F0EC',
         'program-grey': '#4D5053',
         'contact-grey': '#333333',
