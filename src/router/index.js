@@ -16,7 +16,7 @@ import ProfessionalGuide from '../views/Guide/ProfessionalGuide.vue';
 import BlogDetail from '../components/Blog/BlogDetail.vue';
 import Login from '../views/back/Login.vue';
 import StructureBack from '../views/back/Structure.vue';
-
+import LegalNotices from '../views/LegalNotices.vue';
     const routes = [
         {
             path: '/',
@@ -102,6 +102,11 @@ import StructureBack from '../views/back/Structure.vue';
             path: '/guide/professionalguide',
             name: 'ProfessionalGuide',
             component: ProfessionalGuide,
+        },
+        {
+            path: '/legalNotices',
+            name: 'LegalNotices',
+            component: LegalNotices,
         }
     ];
 

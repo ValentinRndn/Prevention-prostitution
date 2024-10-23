@@ -81,7 +81,7 @@
     </div>
 </div>
 
-<Footer />
+
 
 </template>
 
@@ -91,15 +91,12 @@
 import L from 'leaflet';
 import "leaflet/dist/leaflet.css";
 import NavigationBar from "../components/NavigationBar.vue";
-import Footer from "../components/Footer.vue"
 import NavigationBarMobile from "../components/NavigationBarMobile.vue";
 
 
 export default {
-    // var Jawg_Dark = L.tileLayer('https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
 
   components: {
-      Footer, 
       NavigationBar,
       NavigationBarMobile
     },

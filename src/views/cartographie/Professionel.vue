@@ -60,11 +60,14 @@
         </div>
       </div>
     </div>
-    <div id="map" class="h-full w-full relative">
+    <div id="map-container" class="h-full w-full relative">
+      <div v-if="!cookieAccepted" class="cookie-message flex items-center justify-center h-full bg-gray-100">
+        <p>Veuillez accepter les cookies de fonctionnalité pour afficher la carte interactive.</p>
+      </div>
+      <div v-else id="map" class="h-full w-full"></div>
       <transition name="slide">
         <div v-if="selectedStructure" class="structure-popup">
           <div class="popup-content flex flex-col gap-5 items-center justify-center font-cgothic">
-            <!-- Button close -->
             <img @click="closePopup" class="absolute top-5 left-5 w-[20px] cursor-pointer" src="../../assets/map/close-popup.png" alt="hide_arrow">
             <h2 class="text-3xl text-center font-bold mt-10 text-purple-fonce">{{ selectedStructure.antenna }}</h2>
             <p class="text-2xl text-center font-semibold">{{ selectedStructure.address }}</p>
@@ -74,7 +77,6 @@
       </transition>
     </div>
   </div>
-  <Footer />
 </template>
 
 
@@ -95,15 +97,20 @@ export default {
       markers: [],
       selectedStructure: null,
       selectedMarker: null,
+      cookieAccepted: false,
     };
   },
   methods: {
     initMap() {
-      this.map = L.map("map").setView([49.183333, -0.35], 13);
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(this.map);
+      const mapContainer = document.getElementById("map");
+      if (mapContainer) {
+        this.map = L.map(mapContainer).setView([49.183333, -0.35], 13);
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(this.map);
+        this.showStructures(); // Appel de la fonction pour charger les structures après l'initialisation de la carte
+      }
     },
     async showStructures() {
       try {
@@ -133,7 +140,6 @@ export default {
     },
     addMarkers() {
       this.structures.forEach(structure => {
-        console.log('Structure:', structure); // Ajout pour débogage
         if (structure.gps && this.selectedCategories.includes(structure.category)) {
           const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord));
           if (!isNaN(lat) && !isNaN(lon)) {
@@ -168,22 +174,33 @@ export default {
         L.DomUtil.removeClass(this.selectedMarker._icon, 'custom-icon-selected');
         this.selectedMarker = null;
       }
-    }
+    },
+    checkCookieConsent() {
+      const consent = JSON.parse(localStorage.getItem('cookieConsent'));
+      if (consent && consent.functionality) {
+        this.cookieAccepted = true;
+        this.$nextTick(() => {
+          this.initMap(); // Initialise la carte après que le DOM est mis à jour
+        });
+      }
+    },
   },
   mounted() {
-    this.initMap();
-    this.showStructures();
+    this.checkCookieConsent();
     this.showPopup = true;
   },
   components: {
-    Footer,
   },
 };
-
 </script>
 
 
+
 <style>
+.cookie-message {
+  font-size: 1.2rem;
+}
+
 .page-container {
   position: relative;
   overflow: hidden; 

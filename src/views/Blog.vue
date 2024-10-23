@@ -74,12 +74,12 @@
 </template>
 
 <script>
-import Footer from "../components/Footer.vue";
+
 import { showAllBlogs, showLastBlog } from "../services/BlogsService";
 
 export default {
   components: {
-    Footer,
+
   },
   data() {
     return {

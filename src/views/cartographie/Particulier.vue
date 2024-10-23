@@ -71,14 +71,12 @@ une agression</label>
     </div>
     <div id="map" class="h-full  w-full"></div>
   </div>
-  <Footer />
 </template>
 
 <script>
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import NavigationBar from "../../components/NavigationBar.vue";
-import Footer from "../../components/Footer.vue";
 import NavigationBarMobile from "../../components/NavigationBarMobile.vue";
 
 export default {
@@ -94,7 +92,6 @@ export default {
     marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
   },
   components: {
-    Footer,
     NavigationBar,
   NavigationBarMobile,  },
 };

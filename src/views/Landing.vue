@@ -151,13 +151,7 @@
     </div>
   </div>
 </div>
-
-
 </div>
-
-
-  <!-- Pied de page -->
-  <Footer />
 </template>
 <script>
 import Footer from "../components/Footer.vue";
