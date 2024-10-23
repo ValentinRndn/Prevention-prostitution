@@ -7,7 +7,9 @@
       <NavigationBarMobile class="hidden md:block"></NavigationBarMobile>
     </div>
     <router-view @route-changed="onRouteChanged" />
-    <Footer @openCookieSettings="openCookieSettings" />
+    <div v-if="!shouldHideFooter">
+      <Footer @openCookieSettings="openCookieSettings" />
+    </div>
     <CookieBanner ref="cookieBanner" />
   </div>
 </template>
@@ -22,11 +24,13 @@ import CookieBanner from './components/CookieBanner.vue';
 
 const route = useRoute();
 const shouldHideNavbar = ref(false);
-const cookieBanner = ref(null); // Correct ref usage for CookieBanner
+const shouldHideFooter = ref(false);
+const cookieBanner = ref(null);
 
 const onRouteChanged = () => {
-  // Vérifie si le chemin de la route est '/' ou commence par '/backoffice'
+  // Cacher la navbar et le footer si la route est '/' ou commence par '/backoffice'
   shouldHideNavbar.value = route.path === '/' || route.path.startsWith('/backoffice');
+  shouldHideFooter.value = route.path.startsWith('/backoffice');
 };
 
 // Initial check on component mount

@@ -111,7 +111,7 @@
   </div>
 
 <!-- Conteneur de l'arrière-plan -->
-<div class="bg-alveoles h-auto z-0 bg-cover relative p-10">
+<div class="bg-alveoles h-auto z-0 bg-cover relative ">
 
   <!-- Key Figures Section -->
   <div class="bg-alveoles h-auto z-0 bg-cover relative p-10">
