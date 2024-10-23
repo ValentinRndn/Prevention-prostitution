@@ -11,7 +11,7 @@
             <button @click="openModal" class="add-button bg-purple-fonce text-white py-4 px-6 rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">AJOUTER UNE NOUVELLE STRUCTURE</button>
           </div>
 
-          <div class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
+          <div class="posts-keys flex flex-col gap-5 w-full  bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
             <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Gérer mes structures</h3>
 
             <div v-for="structure in paginatedStructures()" :key="structure.id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
@@ -132,7 +132,6 @@ export default {
     },
     async createStructure() {
       try {
-        // Utiliser un objet simple plutôt que FormData pour les données JSON
         const structureData = { ...this.newStructure };
         await createStructure(structureData);
         console.log('Structure created successfully');
@@ -185,13 +184,8 @@ export default {
   padding: 2rem;
 }
 
-.posts-keys {
-  max-height: 500px;
-  overflow-y: auto;
-}
 
 .scrollable-form {
-  max-height: 80vh;
   overflow-y: auto;
   padding-right: 1rem;
 }

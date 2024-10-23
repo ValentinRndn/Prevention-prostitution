@@ -14,13 +14,20 @@
           <div class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
             <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Gérer mes documents</h3>
 
-            <div v-for="doc in documents" :key="doc._id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
+            <div v-for="doc in paginatedDocuments()" :key="doc._id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
               <p>{{ doc.title }}</p>
               <div class="edit-post flex gap-4 font-poppins">
                 <p class="text-light-grey underline cursor-pointer" @click="openEditModal(doc)">Modifier</p>
                 <p class="text-light-grey underline cursor-pointer" @click="deleteGuide(doc._id)">Supprimer</p>
               </div>
             </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination mt-6 flex justify-center gap-3">
+            <button v-for="page in totalPages()" :key="page" @click="changePage(page)" class="bg-purple text-white px-3 py-1 rounded-md" :class="{ 'bg-opacity-50': currentPage === page }">
+              {{ page }}
+            </button>
           </div>
         </div>
       </div>
@@ -55,6 +62,7 @@
   </div>
 </template>
 
+
 <script>
 import AdminBar from "../../components/backOffice/AdminBar.vue";
 import HorizontalBar from "../../components/backOffice/HorizontalBar.vue";
@@ -80,6 +88,8 @@ export default {
       image: null,
       pdf: null,
       documents: [],
+      currentPage: 1,
+      documentsPerPage: 8, 
     };
   },
   methods: {
@@ -91,7 +101,7 @@ export default {
     openEditModal(doc) {
       this.isModalVisible = true;
       this.isEditing = true;
-      this.currentGuideId = doc._id; // Utilise _id de MongoDB
+      this.currentGuideId = doc._id;
       this.newGuide = {
         title: doc.title,
         description: doc.description,
@@ -133,7 +143,6 @@ export default {
         }
 
         await createGuide(formData);
-        console.log('Guide created successfully');
         this.closeModal();
         this.fetchDocuments();
       } catch (error) {
@@ -155,11 +164,8 @@ export default {
           }
 
           await updateGuide(this.currentGuideId, formData);
-          console.log('Guide updated successfully');
           this.closeModal();
           this.fetchDocuments();
-        } else {
-          console.error('No guide ID found for updating.');
         }
       } catch (error) {
         console.error('Error updating Guide', error);
@@ -167,12 +173,8 @@ export default {
     },
     async deleteGuide(id) {
       try {
-        if (id) {
-          await deleteGuide(id);
-          this.fetchDocuments();
-        } else {
-          console.error('No guide ID found for deletion.');
-        }
+        await deleteGuide(id);
+        this.fetchDocuments();
       } catch (error) {
         console.error('Error deleting Guide', error);
       }
@@ -181,7 +183,7 @@ export default {
       try {
         const response = await getAllGuides();
         this.documents = response.map(doc => ({
-          _id: doc._id, // Assurez-vous d'utiliser _id de MongoDB
+          _id: doc._id,
           title: doc.title,
           description: doc.description,
           image: doc.image,
@@ -192,12 +194,24 @@ export default {
         console.error("Error fetching documents:", error);
       }
     },
+    paginatedDocuments() {
+      const start = (this.currentPage - 1) * this.documentsPerPage;
+      const end = start + this.documentsPerPage;
+      return this.documents.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.documents.length / this.documentsPerPage);
+    },
+    changePage(page) {
+      this.currentPage = page;
+    }
   },
-  async created() {
+  created() {
     this.fetchDocuments();
   },
 };
 </script>
+
 
 <style>
 .dashboard-container {

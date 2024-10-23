@@ -1,7 +1,6 @@
 <template>
   <div class="dashboard flex bg-back-grey font-poppins">
     <div class="components">
-      <!-- Intégration de la barre latérale -->
       <HorizontalBar />
       <AdminBar />
     </div>
@@ -15,7 +14,7 @@
           <div class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
             <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Gérer mes articles</h3>
            
-            <div v-for="article in articles" :key="article._id" :class="['post-field', { 'archived': article.archive }]" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
+            <div v-for="article in paginatedArticles()" :key="article._id" :class="['post-field', { 'archived': article.archive }]" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
               <div class="flex items-center">
                 <span v-if="article.pin" class="text-purple mr-2">
                   <!-- SVG pour l'icône d'épinglage -->
@@ -30,12 +29,17 @@
                 <p class="text-light-grey underline cursor-pointer" @click="deleteArticle(article._id)">Supprimer</p>
               </div>
             </div>
-            
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination mt-6 flex justify-center gap-3">
+            <button v-for="page in totalPages()" :key="page" @click="changePage(page)" class="bg-purple text-white px-3 py-1 rounded-md" :class="{ 'bg-opacity-50': currentPage === page }">
+              {{ page }}
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Modal for creating or editing an article -->
       <ModalCreate :visible="isModalVisible" @close="closeModal">
         <h2 class="text-xl font-bold mb-4">{{ isEditing ? 'Modifier l\'article' : 'Créer un nouvel article' }}</h2>
         <form class="scrollable-form" @submit.prevent="isEditing ? updateArticle() : createArticle()">
@@ -109,6 +113,8 @@ export default {
       },
       image: null,
       articles: [],
+      currentPage: 1,
+      articlesPerPage: 8,
     };
   },
   methods: {
@@ -116,73 +122,41 @@ export default {
       this.isModalVisible = true;
       this.isEditing = false;
       this.resetArticleForm();
-      document.addEventListener('keydown', this.handleKeydown);
     },
     openEditModal(article) {
-  this.isModalVisible = true;
-  this.isEditing = true;
-  this.currentArticleId = article._id; // Utilisation de _id au lieu de id
-  this.newArticle = {
-    title: article.title,
-    date: article.date,
-    content: article.content,
-    pin: article.pin,
-    archive: article.archive,
-    author: article.author,
-  };
-  document.addEventListener('keydown', this.handleKeydown);
-},
+      this.isModalVisible = true;
+      this.isEditing = true;
+      this.currentArticleId = article._id;
+      this.newArticle = { ...article };
+    },
     closeModal() {
       this.isModalVisible = false;
-      document.removeEventListener('keydown', this.handleKeydown);
-    },
-    handleKeydown(event) {
-      if (event.key === 'Escape') {
-        this.closeModal();
-      } else if (event.key === 'Enter' && this.isModalVisible) {
-        this.isEditing ? this.updateArticle() : this.createArticle();
-      }
     },
     onFileChange(event) {
       this.image = event.target.files[0];
     },
     async createArticle() {
-  try {
-    const formData = new FormData();
-    formData.append('title', this.newArticle.title);
-    formData.append('date', this.newArticle.date);
-    formData.append('content', this.newArticle.content);
-    formData.append('pin', this.newArticle.pin); // Assurez-vous que c'est un booléen
-    formData.append('archive', this.newArticle.archive); // Assurez-vous que c'est un booléen
-    formData.append('author', this.newArticle.author);
-    if (this.image) {
-      formData.append('image', this.image);
-    }
-
-    const response = await createBlog(formData);
-    console.log('Article created successfully', response);
-    this.closeModal();
-    this.refreshArticles();
-  } catch (error) {
-    console.error('Error creating article', error);
-  }
-},
-
+      try {
+        const formData = new FormData();
+        for (const key in this.newArticle) {
+          formData.append(key, this.newArticle[key]);
+        }
+        if (this.image) formData.append('image', this.image);
+        await createBlog(formData);
+        this.closeModal();
+        this.refreshArticles();
+      } catch (error) {
+        console.error('Error creating article', error);
+      }
+    },
     async updateArticle() {
       try {
         const formData = new FormData();
-        formData.append('title', this.newArticle.title);
-        formData.append('date', this.newArticle.date);
-        formData.append('content', this.newArticle.content);
-        formData.append('pin', this.newArticle.pin);
-        formData.append('author', this.newArticle.author);
-        if (this.image) {
-          formData.append('image', this.image);
+        for (const key in this.newArticle) {
+          formData.append(key, this.newArticle[key]);
         }
-
-        const response = await updateBlog(this.currentArticleId, formData);
-        console.log(this.currentArticleId);
-        console.log('Article updated successfully', response);
+        if (this.image) formData.append('image', this.image);
+        await updateBlog(this.currentArticleId, formData);
         this.closeModal();
         this.refreshArticles();
       } catch (error) {
@@ -190,24 +164,33 @@ export default {
       }
     },
     async deleteArticle(id) {
-  try {
-    await deleteBlog(id); // Utilisation correcte de _id pour l'API
-    this.refreshArticles();
-  } catch (error) {
-    console.error('Error deleting article', error);
-  }
-},
-async toggleArchiveArticle(article) {
-  try {
-    article.archive = !article.archive;
-    const response = await archiveBlog(article._id, { archive: article.archive }); // Utilisation de _id
-    console.log('Article archive state toggled successfully', response);
-    this.refreshArticles();
-  } catch (error) {
-    console.error('Error archiving article', error);
-  }
-},
-
+      try {
+        await deleteBlog(id);
+        this.refreshArticles();
+      } catch (error) {
+        console.error('Error deleting article', error);
+      }
+    },
+    async toggleArchiveArticle(article) {
+      try {
+        article.archive = !article.archive;
+        await archiveBlog(article._id, { archive: article.archive });
+        this.refreshArticles();
+      } catch (error) {
+        console.error('Error archiving article', error);
+      }
+    },
+    paginatedArticles() {
+      const start = (this.currentPage - 1) * this.articlesPerPage;
+      const end = start + this.articlesPerPage;
+      return this.articles.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.articles.length / this.articlesPerPage);
+    },
+    changePage(page) {
+      this.currentPage = page;
+    },
     resetArticleForm() {
       this.newArticle = {
         title: '',
@@ -227,11 +210,12 @@ async toggleArchiveArticle(article) {
       }
     },
   },
-  async mounted() {
+  mounted() {
     this.refreshArticles();
   },
 };
 </script>
+
 
 
 

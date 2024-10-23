@@ -13,13 +13,12 @@
             </button>
           </div>
 
-          <div class="posts-keys flex flex-col gap-5 w-1/3 bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
+          <div class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
             <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Gestion des utilisateurs</h3>
 
             <div v-for="user in utilisateurs" :key="user._id" class="post-field flex w-full justify-between items-center border-b border-b-solid border-light-grey pb-5 md:flex-col">
               <div class="user flex gap-2 justify-center items-center">
                 <p>{{ user.pseudo }}</p>
-                <p>{{ user.email }}</p>
               </div>
               <div class="edit-post flex gap-4 font-poppins">
                 <p class="text-light-grey underline cursor-pointer" @click="openEditModal(user)">Modifier</p>

@@ -24,7 +24,7 @@
               <div class="edit-post flex gap-4 font-poppins">
               </div>
             </div>
-            <router-link to="/backoffice/users" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">En voir plus</router-link>
+            <router-link to="/backoffice/users" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
           </div>
 
 
@@ -36,7 +36,7 @@
               <div class="edit-post flex gap-4 font-poppins">
               </div>
             </div>
-            <router-link to="/backoffice/documentation" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">En voir plus</router-link>
+            <router-link to="/backoffice/documentation" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
           </div>
 
           <!-- tableau articles-->
@@ -47,7 +47,7 @@
           <div class="edit-post flex gap-4 font-poppins">
         </div>
       </div>
-        <router-link to="/backoffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">En voir plus</router-link>
+        <router-link to="/backoffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
       </div>
 
           <!-- tableau SEO-->
