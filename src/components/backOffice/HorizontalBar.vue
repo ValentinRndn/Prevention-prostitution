@@ -14,7 +14,7 @@
         <!-- Contenu droit -->
         <div class="flex items-center">
           <!-- Ajoutez ici le contenu de la partie droite de la barre horizontale -->
-            <span class="">Bonjour {{ user.pseudonyme }}</span>
+            <!-- <span class="">Bonjour {{ user.pseudo }}</span> -->
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       user: {
-        pseudonyme: ''
+        pseudo: ''
       }
     };
   },

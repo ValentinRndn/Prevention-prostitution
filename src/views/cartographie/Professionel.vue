@@ -5,7 +5,7 @@
       <div class="checkboxes flex flex-col gap-3 text-white text-xl">
         <div class="checkboxes flex flex-col gap-4 font-poppins relative">
           <div v-if="showPopup" class="popup">
-            <div class="popup-content text-black relative">
+            <div class="popup-content text-black relative p-8">
               <p class="md:mt-7">
                 La cartographie du programme de prévention & d’accompagnement des personnes en situation de prostitution vous permet de trouver un établissement adapté à vos besoins dans toute la région Normande
               </p>
@@ -64,9 +64,9 @@
       <div v-if="!cookieAccepted" class="cookie-message flex items-center justify-center h-full bg-gray-100">
         <p>Veuillez accepter les cookies de fonctionnalité pour afficher la carte interactive.</p>
       </div>
-      <div v-else id="map" class="h-full w-full"></div>
+      <div v-else id="map" class="h-full w-full z-10"></div>
       <transition name="slide">
-        <div v-if="selectedStructure" class="structure-popup">
+        <div v-if="selectedStructure" class="structure-popup z-50">
           <div class="popup-content flex flex-col gap-5 items-center justify-center font-cgothic">
             <img @click="closePopup" class="absolute top-5 left-5 w-[20px] cursor-pointer" src="../../assets/map/close-popup.png" alt="hide_arrow">
             <h2 class="text-3xl text-center font-bold mt-10 text-purple-fonce">{{ selectedStructure.antenna }}</h2>
@@ -214,7 +214,6 @@ export default {
   height: 100%;
   background-color: white;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-  z-index: 50;
   transform: translateX(0%);
   transition: transform 0.3s ease-in-out;
 }

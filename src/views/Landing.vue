@@ -20,10 +20,10 @@
         </li>
         <li v-if="isUserLoggedIn" class="relative">
           <button @click="toggleDropdown" class="menu">
-            <img src="../assets/profile.png" alt="profil" class="size-6 object-cover object-center z-70">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="z-70" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" stroke-width="2"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
           </button>
-          <ul v-if="dropdownVisible" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
-            <li class="menu-item p-2 hover:bg-gray-100">
+          <ul v-if="dropdownVisible" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border text-black border-gray-300 rounded-lg shadow-lg z-50">
+            <li class="menu-item p-2 hover:bg-gray-100 hover:rounded-lg">
               <router-link to="/backoffice/dashboard">Aller au back office</router-link>
             </li>
             <li class="menu-item p-2 hover:bg-gray-100 cursor-pointer" @click="logout">Se déconnecter</li>
@@ -114,7 +114,7 @@
 <div class="bg-alveoles h-auto z-0 bg-cover relative ">
 
   <!-- Key Figures Section -->
-  <div class="bg-alveoles h-auto z-0 bg-cover relative p-10">
+  <div class="bg-alveoles h-auto z-0 bg-cover relative">
       <div class="relative top-32 w-full flex gap-12 justify-center items-center md:flex-col md:gap-6 md:text-xl md:top-16">
         <div class="information flex flex-col justify-center items-center">
           <p class="chiffre text-8xl font-cgothic">{{ numbers.firstStats }}</p>

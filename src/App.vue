@@ -10,7 +10,7 @@
     <div v-if="!shouldHideFooter">
       <Footer @openCookieSettings="openCookieSettings" />
     </div>
-    <CookieBanner ref="cookieBanner" />
+    <CookieBanner ref="cookieBanner" class="z-100" />
   </div>
 </template>
 
