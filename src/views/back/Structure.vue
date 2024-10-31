@@ -11,7 +11,7 @@
             <button @click="openModal" class="add-button bg-purple-fonce text-white py-4 px-6 rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">AJOUTER UNE NOUVELLE STRUCTURE</button>
           </div>
 
-          <div class="posts-keys flex flex-col gap-5 w-full  bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
+          <div class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
             <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Gérer mes structures</h3>
 
             <div v-for="structure in paginatedStructures()" :key="structure.id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
@@ -35,10 +35,20 @@
       <ModalCreate :visible="isModalVisible" @close="closeModal">
         <h2 class="text-xl font-bold mb-4">{{ isEditing ? 'Modifier la structure' : 'Créer une nouvelle structure' }}</h2>
         <form @submit.prevent="isEditing ? updateStructure() : createStructure()" class="scrollable-form">
+          <!-- Boucle pour les champs du formulaire -->
           <div v-for="field in fields" :key="field.id" class="mb-4">
             <label :for="field.id" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
-            <input v-model="newStructure[field.model]" :type="field.type" :id="field.id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+            
+            <!-- Utiliser un select pour le champ category -->
+            <select v-if="field.id === 'category'" v-model="newStructure[field.model]" :id="field.id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+              <option disabled value="">Sélectionnez une catégorie</option>
+              <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
+            </select>
+
+            <!-- Utiliser un input pour les autres champs -->
+            <input v-else v-model="newStructure[field.model]" :type="field.type" :id="field.id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
           </div>
+
           <button type="submit" class="bg-purple text-white py-2 px-4 rounded-md">{{ isEditing ? 'Modifier' : 'Créer' }}</button>
         </form>
       </ModalCreate>
@@ -84,6 +94,18 @@ export default {
         { id: 'email', label: 'Email', type: 'email', model: 'email' },
         { id: 'category', label: 'Category', type: 'text', model: 'category' },
       ],
+      categories: [
+        'Category 1',
+        'Category 2',
+        'Category 3',
+        'Category 4',
+        'Category 5',
+        'Category 6',
+        'Category 7',
+        'Category 8',
+        'Category 9',
+        'Category 10',
+      ]
     };
   },
   methods: {
