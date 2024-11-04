@@ -27,10 +27,9 @@
       return {
         isVisible: false,
         emergencyNumbers: {
-          "Urgences générales": "112",
-          "Samu": "15",
-          "Police": "17",
-          "Pompiers": "18",
+          "Urgence immédiate": "17",
+          "Equipe de maraude": "06.29.59.26.37",
+          "Numéro d'écoute": "3919",
         }
       };
     },

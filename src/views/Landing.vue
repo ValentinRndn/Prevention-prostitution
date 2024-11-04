@@ -1,43 +1,10 @@
 <template>
-  <div class="bg-landing relative w-full h-screen bg-center z-10 mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden">
-    <!-- <aside class="flex items-center justify-between mb-8 sm:hidden mx-4 mt-8">
-      <img src="../assets/logo_typo_blanc.png" alt="logo" class="size-1/5" />
-      <ul class="navbar flex gap-10 text-lg font-cgothic font-bold text-white items-center">
-        <li class="menu underline">
-          <router-link to="/">ACCUEIL</router-link>
-        </li>
-        <li class="menu">
-          <router-link to="/map">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
-        </li>
-        <li class="menu">
-          <router-link to="/guide">JE CONSULTE LA DOCUMENTATION</router-link>
-        </li>
-        <li class="menu">
-          <router-link to="/contact">JE PRENDS CONTACT</router-link>
-        </li>
-        <li v-if="isUserLoggedIn" class="relative">
-          <button @click="toggleDropdown" class="menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="z-70" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" stroke-width="2"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
-          </button>
-          <ul v-if="dropdownVisible" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border text-black border-gray-300 rounded-lg shadow-lg z-50">
-            <li class="menu-item p-2 hover:bg-gray-100 hover:rounded-lg">
-              <router-link to="/backoffice/dashboard">Aller au back office</router-link>
-            </li>
-            <li class="menu-item p-2 hover:bg-gray-100 cursor-pointer" @click="logout">Se déconnecter</li>
-          </ul>
-        </li>
-      </ul>
-      <a class="text-white bg-purple text-lg font-bold p-4 " href="https://google.com">JE QUITTE VITE</a>
-
-    </aside> -->
+  <div class="bg-landing relative w-full h-screen bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden">
     <div class="header-content h-screen">
       <div class="text-header text-white text-xl font-bold flex flex-col items-center justify-center h-[50vh] md:w-full md:text-sm">
-        <div class="citation-header  text-center md:w-1/2">
-          <h1 class="citation bg-purple p-20 w-1/2 m-auto rounded-tr-[50%]  ">
+          <h1 class="citation bg-purple-fonce p-20 w-1/2 m-auto mt-[50vh] rounded-bl-[50%]  text-center ">
             Bienvenue sur le site Prévention Accompagnement Prostitution Normandie. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Il a pour objectif d’orienter vers les acteurs et dispositifs de prise en charge de droit commun afin de favoriser l’accès aux droits et aux soins et ainsi de contribuer à la réduction des risques
           </h1>
-        </div>
-
       </div>
       <div class="agrasc-image">
         <img src="../assets/welcome/logo_agrasc.jpg" alt="logo_agrasc" class="w-[200px] object-cover absolute bottom-0 right-20 md:w-[100px] md:right-5" />
@@ -46,7 +13,7 @@
   </div>
 
   <!-- Missions et photo stop  -->
-  <div class="container-presentation flex flex-wrap justify-center items-center w-full gap-8 md:text-center">
+  <!-- <div class="container-presentation flex flex-wrap justify-center items-center w-full gap-8 md:text-center">
     <div class="presentation max-w-[600px]">
       <h1 class="text-2xl text-black mx-10 mt-10 mb-4 font-bold font-cgothic">
         CETTE PLATEFORME VOUS PERMET DE :
@@ -68,10 +35,10 @@
     <div class="">
       <img src="../assets/stop.jpg" alt="stop" class="rounded-tr-[50%] w-[500px] h-[500px] object-cover md:mx-2 md:w-[400px]" />
     </div>
-  </div>
+  </div> -->
 
   <!-- Container numéros  -->
-  <div class="flex items-center justify-center font-c-gothic text-white font-bold text-5xl mt-20 relative md:text-xl">
+  <!-- <div class="flex items-center justify-center font-c-gothic text-white font-bold text-5xl mt-20 relative md:text-xl">
     <div class="flex flex-col items-center bg-purple rounded-2xl p-10 relative">
       <h1 class="mb-2">LES NUMÉROS À CONTACTER</h1>
       <div class="numero flex gap-36 mb-10 mt-5 md:gap-10 md:text-4xl">
@@ -91,10 +58,10 @@
       <img src="../assets/welcome/polygon.png" alt="forme1" class="absolute object-cover left-0 top-0 -ml-5 -mt-5 w-[70px] md:w-[50px]" />
       <img src="../assets/welcome/polygon.png" alt="forme1" class="absolute object-cover left-0 top-0 -ml-8 mt-14 w-[40px] md:w-[20px]" />
     </div>
-  </div>
+  </div> -->
 
   <!-- Bouton - Contact -->
-  <div class="flex items-center justify-center -mt-8 font-helvetica">
+  <!-- <div class="flex items-center justify-center -mt-8 font-helvetica">
     <div class="flex items-center bg-purple-fonce shadow-xl rounded-2xl gap-4 py-2 px-6 z-20 hover:scale-110 duration-200">
       <img class="w-[50px] bg-purple-fonce md:hidden" src="../assets/courriel-de-contact.png" />
       <router-link to="/contact">
@@ -103,13 +70,13 @@
       </button>
     </router-link>
     </div>
-  </div>
+  </div> -->
 
 <!-- Conteneur de l'arrière-plan -->
 <!-- <div class="bg-alveoles h-auto z-0 bg-cover relative  my-12 "> -->
 
   <!-- Key Figures Section -->
-  <div class=" z-0 bg-cover relative my-32 ">
+  <!-- <div class=" z-0 bg-cover relative my-32 ">
       <div class="relative  w-full flex gap-12 justify-center items-center md:flex-col md:gap-6 md:text-xl md:top-16">
         <div class="information flex flex-col justify-center items-center">
           <p class="chiffre text-8xl font-cgothic">{{ numbers.firstStats }}</p>
@@ -130,7 +97,7 @@
           <p class="text text-xl  font-jost-sans text-purple-fonce">Préservatifs distribués</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
 <!-- Derniers articles -->
 <!-- <div class=" font-cgothic "> -->

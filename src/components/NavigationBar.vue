@@ -1,8 +1,8 @@
 <template>
-  <aside class="flex items-center justify-between gap-5 my-4 mx-12 sm:hidden">
+  <aside class="flex items-center justify-between text-xl gap-5 my-4 mx-12 sm:hidden 2xl:text-sm ">
     <img src="../assets/logo_typo.png" alt="logo" class="size-1/5 " />
 
-    <ul class="navbar flex gap-10 text-xl  font-cgothic font-bold text-grey">
+    <ul class="navbar flex gap-10 h-full font-cgothic font-bold text-grey 2xl:gap-8">
       <li class="menu" :class="{ 'selectedMenu': currentPage === '/' }">
         <router-link to="/">ACCUEIL</router-link>
       </li>      
@@ -30,7 +30,7 @@
         </ul>
       </li>
     </ul>
-    <a class="text-white bg-purple-fonce text-lg font-bold p-4 " href="https://google.com">JE QUITTE VITE</a>
+    <a class="text-white bg-purple-fonce text-lg font-bold p-4 2xl:text-sm" href="https://google.com">JE QUITTE VITE</a>
 
   </aside>
 </template>
