@@ -1,22 +1,19 @@
 <template>
   <div class="bg-landing relative w-full h-screen bg-center z-10 mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden">
-    <aside class="flex items-center justify-center gap-5 mb-8 sm:hidden">
-      <img src="../assets/logo_typo_blanc.png" alt="logo" class="size-1/4 mt-8" />
-      <ul class="navbar flex gap-10 text-xl mt-10 font-cgothic font-bold text-white">
+    <!-- <aside class="flex items-center justify-between mb-8 sm:hidden mx-4 mt-8">
+      <img src="../assets/logo_typo_blanc.png" alt="logo" class="size-1/5" />
+      <ul class="navbar flex gap-10 text-lg font-cgothic font-bold text-white items-center">
         <li class="menu underline">
           <router-link to="/">ACCUEIL</router-link>
         </li>
         <li class="menu">
-          <router-link to="/map">CARTOGRAPHIE</router-link>
+          <router-link to="/map">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
         </li>
         <li class="menu">
-          <router-link to="/guide">GUIDE</router-link>
+          <router-link to="/guide">JE CONSULTE LA DOCUMENTATION</router-link>
         </li>
         <li class="menu">
-          <router-link to="/blog">BLOG</router-link>
-        </li>
-        <li class="menu">
-          <router-link to="/contact">CONTACT</router-link>
+          <router-link to="/contact">JE PRENDS CONTACT</router-link>
         </li>
         <li v-if="isUserLoggedIn" class="relative">
           <button @click="toggleDropdown" class="menu">
@@ -30,19 +27,17 @@
           </ul>
         </li>
       </ul>
-    </aside>
+      <a class="text-white bg-purple text-lg font-bold p-4 " href="https://google.com">JE QUITTE VITE</a>
+
+    </aside> -->
     <div class="header-content h-screen">
       <div class="text-header text-white text-xl font-bold flex flex-col items-center justify-center h-[50vh] md:w-full md:text-sm">
-        <div class="citation-header w-[28vw] text-center md:w-1/2">
-          <h1 class="citation bg-purple p-6 w-full -ml-[7.5vw]">
-            INSERER UNE CITATION
+        <div class="citation-header  text-center md:w-1/2">
+          <h1 class="citation bg-purple p-20 w-1/2 m-auto rounded-tr-[50%]  ">
+            Bienvenue sur le site Prévention Accompagnement Prostitution Normandie. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Il a pour objectif d’orienter vers les acteurs et dispositifs de prise en charge de droit commun afin de favoriser l’accès aux droits et aux soins et ainsi de contribuer à la réduction des risques
           </h1>
         </div>
-        <div class="sentance-header w-[28vw] text-center md:w-1/2">
-          <h1 class="citation bg-purple-fonce p-6 w-full ml-[7.5vw]">
-            CHOISIR ENSEMBLE MERCREDI
-          </h1>
-        </div>
+
       </div>
       <div class="agrasc-image">
         <img src="../assets/welcome/logo_agrasc.jpg" alt="logo_agrasc" class="w-[200px] object-cover absolute bottom-0 right-20 md:w-[100px] md:right-5" />
@@ -111,24 +106,24 @@
   </div>
 
 <!-- Conteneur de l'arrière-plan -->
-<div class="bg-alveoles h-auto z-0 bg-cover relative ">
+<!-- <div class="bg-alveoles h-auto z-0 bg-cover relative  my-12 "> -->
 
   <!-- Key Figures Section -->
-  <div class="bg-alveoles h-auto z-0 bg-cover relative">
-      <div class="relative top-32 w-full flex gap-12 justify-center items-center md:flex-col md:gap-6 md:text-xl md:top-16">
+  <div class=" z-0 bg-cover relative my-32 ">
+      <div class="relative  w-full flex gap-12 justify-center items-center md:flex-col md:gap-6 md:text-xl md:top-16">
         <div class="information flex flex-col justify-center items-center">
           <p class="chiffre text-8xl font-cgothic">{{ numbers.firstStats }}</p>
           <p class="text text-xl font-jost-sans text-purple-fonce">Personnes rencontrées</p>
         </div>
         <div class="separator">
-          <p class="text text-8xl text-yellow md:hidden">|</p>
+          <p class="text text-8xl text-purple md:hidden">|</p>
         </div>
         <div class="information flex flex-col justify-center items-center">
           <p class="chiffre text-8xl font-cgothic">{{ numbers.secondStats }}</p>
           <p class="text text-xl  font-jost-sans text-purple-fonce">Maraudes effectuées</p>
         </div>
         <div class="separator">
-          <p class="text text-8xl text-yellow md:hidden">|</p>
+          <p class="text text-8xl text-purple md:hidden">|</p>
         </div>
         <div class="information flex flex-col justify-center items-center">
           <p class="chiffre text-8xl font-cgothic">{{ numbers.thirdStats }}</p>
@@ -138,8 +133,8 @@
     </div>
 
 <!-- Derniers articles -->
-<div class=" font-cgothic my-12 mt-[300px]">
-  <h2 class="text-center text-4xl font-bold mb-8">Nos articles épinglés</h2>
+<!-- <div class=" font-cgothic "> -->
+  <!-- <h2 class="text-center text-4xl font-bold mb-8">Nos articles épinglés</h2>
   <div class="header-content flex gap-12 justify-center items-center mx-auto mt-6">
     <div v-for="article in pinnedArticles" :key="article._id" class="card w-[300px] h-[375px] bg-white object-cover rounded-[25px] overflow-hidden p-4 shadow-xl border border-solid border-slate-300 relative">
       <img :src="`../backend/${article.image}`" alt="article image" class="rounded-t-[25px] h-[180px] w-full object-cover" />
@@ -148,15 +143,14 @@
       <router-link :to="{ name: 'BlogDetail', params: { id: article._id } }" class="arrow text-xl text-grey absolute bottom-3 right-4 font-bold bg-light-beige p-2 px-3 rounded-full">
         >
       </router-link>
-    </div>
-  </div>
-</div>
-</div>
+    </div> -->
+  <!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
 </template>
 <script>
 import Footer from "../components/Footer.vue";
 import NavigationBarMobile from "../components/NavigationBarMobile.vue";
-import { showAllBlogs } from "../services/BlogsService.js";
 import { showNumbers } from "../services/StatistiquesService.js";
 import { ref, onMounted, computed } from 'vue';
 
@@ -189,14 +183,7 @@ export default {
       }
     };
 
-    const fetchAllBlogs = async () => {
-      try {
-        const response = await showAllBlogs();
-        articles.value = response;
-      } catch (error) {
-        console.error("Erreur lors de la récupération des articles :", error);
-      }
-    };
+
 
     const formatDate = (dateString) => {
       const date = new Date(dateString);
@@ -210,18 +197,15 @@ export default {
 
     onMounted(() => {
       fetchNumbers();
-      fetchAllBlogs();
     });
 
     return {
       isUserLoggedIn,
       dropdownVisible,
       numbers,
-      articles,
       toggleDropdown,
       logout,
       formatDate,
-      pinnedArticles, 
     };
   },
 };

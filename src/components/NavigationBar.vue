@@ -1,23 +1,23 @@
 <template>
-  <aside class="flex items-center justify-center gap-5 mb-8 sm:hidden">
-    <img src="../assets/logo_typo.png" alt="logo" class="size-1/4 mt-8" />
+  <aside class="flex items-center justify-between gap-5 my-4 mx-12 sm:hidden">
+    <img src="../assets/logo_typo.png" alt="logo" class="size-1/5 " />
 
-    <ul class="navbar flex gap-10 text-xl mt-10 font-cgothic font-bold text-grey">
-      <li class="menu" :class="{ 'underline': currentPage === '/' }">
+    <ul class="navbar flex gap-10 text-xl  font-cgothic font-bold text-grey">
+      <li class="menu" :class="{ 'selectedMenu': currentPage === '/' }">
         <router-link to="/">ACCUEIL</router-link>
       </li>      
-      <li class="menu" :class="{ 'underline': currentPage === '/map' }">
-        <router-link to="/map">CARTOGRAPHIE</router-link>
+      <li class="menu" :class="{ 'selectedMenu': currentPage === '/map' }">
+        <router-link to="/map">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
       </li>
-      <li class="menu" :class="{ 'underline': currentPage === '/guide' }">
-        <router-link to="/guide">GUIDE</router-link>
+      <li class="menu" :class="{ 'selectedMenu': currentPage === '/guide' }">
+        <router-link to="/guide">JE CONSULTE LA DOCUMENTATION</router-link>
       </li>
-      <li class="menu" :class="{ 'underline': currentPage === '/blog' }">
-        <router-link to="/blog">BLOG</router-link>
+      <li class="menu" :class="{ 'selectedMenu': currentPage === '/contact' }">
+        <router-link to="/contact">JE PRENDS CONTACT</router-link>
       </li>
-      <li class="menu" :class="{ 'underline': currentPage === '/contact' }">
-        <router-link to="/contact">CONTACT</router-link>
-      </li>
+
+
+      
       <li v-if="isUserLoggedIn" class="relative">
         <button @click="toggleDropdown" class="menu">
           <img src="../assets/profile.png" alt="profil" class="size-6 object-cover object-center">
@@ -30,6 +30,8 @@
         </ul>
       </li>
     </ul>
+    <a class="text-white bg-purple-fonce text-lg font-bold p-4 " href="https://google.com">JE QUITTE VITE</a>
+
   </aside>
 </template>
 
@@ -76,9 +78,21 @@ const logout = () => {
 </script>
 
 <style scoped>
-.underline {
-  text-decoration: underline;
+.selectedMenu {
+  color: #f1b04c;
+  position: relative;
 }
+
+.selectedMenu::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: -4px; /* Ajuste la valeur pour descendre la ligne */
+  height: 4px; /* Épaisseur de la ligne */
+  background-color: #f1b04c;
+}
+
 .menu-item {
   cursor: pointer;
 }

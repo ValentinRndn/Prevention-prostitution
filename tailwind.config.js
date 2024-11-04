@@ -7,11 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'purple': '#7C70B0',
+        'purple': '#f5c77e',
         'grey': '#3E3E3E',
         'login-input': '#BDBDBD',
         'login-text': '#616161',
-        'purple-fonce': '#443972',
+        'purple-fonce': '#f1b04c',
         'login-grey': "#424242",
         'back-grey': '#E4E4E4',
         'light-grey': '#999999',

@@ -11,6 +11,7 @@
       <Footer @openCookieSettings="openCookieSettings" />
     </div>
     <CookieBanner ref="cookieBanner" class="z-100" />
+    <contactPopup class="z-100" />
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import NavigationBar from './components/NavigationBar.vue';
 import NavigationBarMobile from './components/NavigationBarMobile.vue';
 import Footer from './components/Footer.vue';
 import CookieBanner from './components/CookieBanner.vue';
+import contactPopup from './components/contactPopup.vue';
 
 const route = useRoute();
 const shouldHideNavbar = ref(false);
@@ -29,7 +31,7 @@ const cookieBanner = ref(null);
 
 const onRouteChanged = () => {
   // Cacher la navbar et le footer si la route est '/' ou commence par '/backoffice'
-  shouldHideNavbar.value = route.path === '/' || route.path.startsWith('/backoffice');
+  shouldHideNavbar.value = route.path.startsWith('/backoffice');
   shouldHideFooter.value = route.path.startsWith('/backoffice');
 };
 
