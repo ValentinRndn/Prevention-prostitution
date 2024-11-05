@@ -12,15 +12,15 @@
       </div>
 
 <!-- Formulaire de contact -->
-<div class="contact-container flex flex-wrap justify-center items-center gap-10 mt-20 font-jost sm:mt-10 md:mb-8">
-    <div class="info-contact font-jost-sans flex flex-col bg-purple-fonce p-10 rounded-xl text-white gap-4 sm:hidden">
+<div class="contact-container flex flex-wrap justify-center items-center gap-10 mt-20 font-jost sm:mt-10 mb-8">
+    <div class="info-contact font-jost-sans flex flex-col bg-purple-fonce p-10 rounded-xl text-white gap-4">
         <div class="mail-container flex items-center gap-2">
             <img src="../assets/mail_icon.png" alt="mail-icon" class="size-10">
-            <a href="mailto:maraudeinnormandie@gmail.fr" class="mail">maraudeinnormandie@gmail.fr</a>
+            <a href="mailto:maraudeinnormandie@gmail.fr" class="mail font-semibold">maraudeinnormandie@gmail.fr</a>
         </div>
         <div class="phone-container flex items-center gap-2">
             <img src="../assets/phone_icon.png" alt="phone-icon" class="size-10">
-            <a href="tel:0626592637" class="phone">06.26.59.26.37</a>
+            <a href="tel:0626592637" class="phone font-semibold">06.26.59.26.37</a>
         </div>
     </div>
     

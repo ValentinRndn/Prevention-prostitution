@@ -1,7 +1,7 @@
 <template>
   <div class="page-container flex h-[700px] items-center sm:flex-col sm:h-[1400px]">
-    <div class="categories-container bg-purple-fonce w-[1/3] h-full px-6 flex flex-col justify-center">
-      <h1 class="text-white text-2xl font-bold mb-6 font-cgothic">PAPSP VOUS ORIENTE :</h1>
+    <div class="categories-container bg-grey w-[1/3] h-full px-6 flex flex-col justify-center">
+      <h1 class="text-white text-2xl font-bold mb-6 font-cgothic">JE SOUHAITE :</h1>
       <div class="checkboxes flex flex-col gap-3 text-white text-xl">
 
         <div class="checkboxes flex flex-col gap-4 font-poppins">
