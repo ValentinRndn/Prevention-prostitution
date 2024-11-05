@@ -1,17 +1,16 @@
 <template>
-  <div class="bg-landing relative w-full h-[70vh] bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden xl:h-[90vh]">
+  <div class="bg-landing relative w-full h-[70vh] bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden xl:h-[90vh] md:mb-4">
     <div class="header-content flex flex-col justify-center h-full">
       <div class="text-header text-white font-semibold w-1/2 m-48 md:w-full md:m-0">
-      <h1 class="text-6xl  lg:text-4xl w-full mb-6 textShadow xl:text-3xl xl:text-center">
+      <h1 class="text-6xl  lg:text-4xl w-full mb-6 textShadow xl:text-4xl xl:text-center">
         Prévention Accompagnement Prostitution Normandie
       </h1>
       <p class="w-full text-2xl mb-6 textShadow xl:text-md xl:text-center">Bienvenue sur le site Prévention Accompagnement Prostitution Normandie. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Il a pour objectif d’orienter vers les acteurs et dispositifs de prise en charge de droit commun afin de favoriser l’accès aux droits et aux soins et ainsi de contribuer à la réduction des risques.</p>
-      <button class="text-white bg-purple-fonce p-4 rounded-md text-xl drop-shadow-xl xl:m-auto ">
-        <router-link to="/contact">JE ME RENSEIGNE</router-link> </button>
+      <button class="text-white bg-purple-fonce p-4 rounded-md text-xl drop-shadow-xl xl:m-auto sm:mx-auto sm:block">
+          <router-link to="/contact">JE ME RENSEIGNE</router-link>
+        </button>
     </div>
-      <div class="agrasc-image">
-        <img src="../assets/welcome/logo_agrasc.jpg" alt="logo_agrasc" class="w-[200px] object-cover absolute bottom-0 right-20 md:w-[100px] md:right-5 " />
-      </div>
+
     </div>
   </div>
 
@@ -121,8 +120,6 @@
 <script>
 import Footer from "../components/Footer.vue";
 import NavigationBarMobile from "../components/NavigationBarMobile.vue";
-import { showNumbers } from "../services/StatistiquesService.js";
-import { ref, onMounted, computed } from 'vue';
 
 export default {
   components: {
@@ -135,27 +132,7 @@ export default {
 
 
 <style>
-.logo-container {
-  height: 250px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.logo-content {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  animation: scroll 80s linear infinite;
-}
-
-.logo-content img {
-  height: 120px; 
-  width: auto; 
-  margin: 0 25px; 
-}
 
 .dropdown-menu {
   z-index: 50;

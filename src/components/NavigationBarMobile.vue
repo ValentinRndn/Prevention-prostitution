@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <div class="icon-burger flex w-full items-center justify-evenly z-30" :class="{'bg-purple text-white transition-transform duration-300 ease-in-out transform': menuOpen}">
+    <div class="icon-burger flex w-full items-center justify-evenly z-30" :class="{'bg-purple-fonce text-white transition-transform duration-300 ease-in-out transform': menuOpen}">
       <img v-if="!menuOpen" src="../assets/logo_typo.png" alt="logo" class="object-cover w-[300px]">
       <img v-else src="../assets/logo_typo_blanc.png" alt="close icon" @click="toggleMenu" class="object-cover w-[300px]">
   
@@ -8,7 +8,7 @@
           <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h22M5 16h22M5 24h22"/>
         </svg>
     </div>
-    <ul :class="['navbar w-full flex flex-col gap-10 text-xl font-cgothic font-semibold justify-center items-center bg-purple fixed text-white py-5 transition-transform duration-300 ease-in-out transform', { 'opacity-0': !menuOpen, 'opacity-100 z-20': menuOpen }]">
+    <ul :class="['navbar w-full flex flex-col gap-10 text-xl font-cgothic font-semibold justify-center items-center bg-purple-fonce fixed text-white py-5 transition-transform duration-300 ease-in-out transform', { 'opacity-0': !menuOpen, 'opacity-100 z-20': menuOpen }]">
       <li class="menu">
         <router-link to="/">ACCUEIL</router-link>
       </li>      
@@ -18,9 +18,6 @@
       <li class="menu">
         <router-link to="/guide">GUIDE</router-link>
       </li>
-      <li class="menu">
-        <router-link to="/blog">BLOG</router-link>
-      </li> 
       <li class="menu">
         <router-link to="/contact">CONTACT</router-link>
       </li>

@@ -12,7 +12,7 @@
       </div>
 
 <!-- Formulaire de contact -->
-<div class="contact-container flex flex-wrap justify-center items-center gap-10 mt-20 font-jost sm:mt-10 ">
+<div class="contact-container flex flex-wrap justify-center items-center gap-10 mt-20 font-jost sm:mt-10 md:mb-8">
     <div class="info-contact font-jost-sans flex flex-col bg-purple-fonce p-10 rounded-xl text-white gap-4 sm:hidden">
         <div class="mail-container flex items-center gap-2">
             <img src="../assets/mail_icon.png" alt="mail-icon" class="size-10">
@@ -100,17 +100,6 @@ export default {
       NavigationBar,
       NavigationBarMobile
     },
-    mounted() {
-        var map = L.map('map').setView([49.183333, -0.35], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
 
-var marker = L.marker([49.183333, -0.35]).addTo(map);
-marker.bindPopup("<b>EPSM CAEN</b><br>15 ter Rue Saint-Ouen").openPopup();
-
-
-    }
 };
 </script>
