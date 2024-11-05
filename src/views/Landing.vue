@@ -1,17 +1,19 @@
 <template>
-<div class="bg-landing relative w-full h-screen bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden">
-  <div class="header-content flex flex-col items-center justify-center h-full text-center">
-    <div class="text-header w-11/12 md:w-3/4 lg:w-2/3 p-8 bg-gradient-to-r from-purple-700 via-purple-500 to-purple-700 text-white font-semibold rounded-xl shadow-lg backdrop-blur-md mt-32">
-      <h1 class="text-2xl md:text-3xl lg:text-4xl leading-relaxed">
-        Bienvenue sur le site <span class="underline">Prévention Accompagnement Prostitution Normandie</span>. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Elle vise à orienter vers les acteurs et dispositifs de prise en charge de droit commun, favorisant ainsi l’accès aux droits et aux soins et contribuant à la réduction des risques.
+  <div class="bg-landing relative w-full h-[70vh] bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden xl:h-[90vh]">
+    <div class="header-content flex flex-col justify-center h-full">
+      <div class="text-header text-white font-semibold w-1/2 m-48 md:w-full md:m-0">
+      <h1 class="text-6xl  lg:text-4xl w-full mb-6 textShadow xl:text-3xl xl:text-center">
+        Prévention Accompagnement Prostitution Normandie
       </h1>
+      <p class="w-full text-2xl mb-6 textShadow xl:text-md xl:text-center">Bienvenue sur le site Prévention Accompagnement Prostitution Normandie. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Il a pour objectif d’orienter vers les acteurs et dispositifs de prise en charge de droit commun afin de favoriser l’accès aux droits et aux soins et ainsi de contribuer à la réduction des risques.</p>
+      <button class="text-white bg-purple-fonce p-4 rounded-md text-xl drop-shadow-xl xl:m-auto ">
+        <router-link to="/contact">JE ME RENSEIGNE</router-link> </button>
     </div>
-    <div class="agrasc-image mt-10">
-      <img src="../assets/welcome/logo_agrasc.jpg" alt="logo_agrasc" class="w-[150px] md:w-[100px] lg:w-[120px] object-contain" />
+      <div class="agrasc-image">
+        <img src="../assets/welcome/logo_agrasc.jpg" alt="logo_agrasc" class="w-[200px] object-cover absolute bottom-0 right-20 md:w-[100px] md:right-5 " />
+      </div>
     </div>
   </div>
-</div>
-
 
   <!-- Missions et photo stop  -->
   <!-- <div class="container-presentation flex flex-wrap justify-center items-center w-full gap-8 md:text-center">
@@ -126,58 +128,8 @@ export default {
   components: {
     Footer,
     NavigationBarMobile,
-  },
-  setup() {
-    const isUserLoggedIn = ref(localStorage.getItem('token') !== null);
-    const dropdownVisible = ref(false);
-    const numbers = ref([]);
-    const articles = ref([]);
-
-    const toggleDropdown = () => {
-      dropdownVisible.value = !dropdownVisible.value;
-    };
-
-    const logout = () => {
-      localStorage.removeItem("token");
-      isUserLoggedIn.value = false;
-    };
-
-    const fetchNumbers = async () => {
-      try {
-        const response = await showNumbers();
-        numbers.value = response;
-      } catch (error) {
-        console.error("Erreur lors de la récupération des statistiques :", error);
-      }
-    };
-
-
-
-    const formatDate = (dateString) => {
-      const date = new Date(dateString);
-      return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-    };
-
-    // Computed property pour les articles épinglés
-    const pinnedArticles = computed(() => {
-      return articles.value.filter((article) => article.pin);
-    });
-
-    onMounted(() => {
-      fetchNumbers();
-    });
-
-    return {
-      isUserLoggedIn,
-      dropdownVisible,
-      numbers,
-      toggleDropdown,
-      logout,
-      formatDate,
-    };
-  },
+  }
 };
-
 
 </script>
 
@@ -207,6 +159,10 @@ export default {
 
 .dropdown-menu {
   z-index: 50;
+}
+
+.textShadow {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes scroll {

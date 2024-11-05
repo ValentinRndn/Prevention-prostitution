@@ -16,11 +16,11 @@
     <div class="info-contact font-jost-sans flex flex-col bg-purple-fonce p-10 rounded-xl text-white gap-4 sm:hidden">
         <div class="mail-container flex items-center gap-2">
             <img src="../assets/mail_icon.png" alt="mail-icon" class="size-10">
-            <p class="mail">info@youdomain.com</p>
+            <a href="mailto:maraudeinnormandie@gmail.fr" class="mail">maraudeinnormandie@gmail.fr</a>
         </div>
         <div class="phone-container flex items-center gap-2">
             <img src="../assets/phone_icon.png" alt="phone-icon" class="size-10">
-            <p class="phone">+33 65 77 45 65</p>
+            <a href="tel:0626592637" class="phone">06.26.59.26.37</a>
         </div>
     </div>
     
@@ -48,7 +48,7 @@
 
 
 
-<!-- Réseaux sociaux -->
+<!-- Réseaux sociaux
 <div class="bg-alveoles h-[700px] z-0 bg-cover relative sm:w-full sm:h-full shadow-xl pb-10">
     <div class="mx-28 sm:mx-4"> 
         <div class="text-socials relative mt-24">
@@ -76,10 +76,10 @@
 
 
 
-    <div class="map-container relative mx-auto z-20 h-[300px] w-1/2 mt-20 rounded-3xl overflow-hidden sm:w-[80vw] sm:mt-10 "> <!-- Ajout de la classe `sm:mx-4` pour ajouter une marge sur les petits écrans -->
+    <div class="map-container relative mx-auto z-20 h-[300px] w-1/2 mt-20 rounded-3xl overflow-hidden sm:w-[80vw] sm:mt-10 "> 
         <div id="map" class="h-full"></div>
     </div>
-</div>
+</div> -->
 
 
 

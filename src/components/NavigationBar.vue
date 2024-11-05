@@ -30,7 +30,7 @@
         </ul>
       </li>
     </ul>
-    <a class="text-white bg-purple-fonce text-lg font-bold p-4 2xl:text-sm" href="https://google.com">JE QUITTE VITE</a>
+    <a class="text-white bg-purple-fonce text-xl font-bold rounded-md p-4 2xl:text-sm" href="https://google.com">SORTIE RAPIDE</a>
 
   </aside>
 </template>
