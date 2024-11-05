@@ -32,7 +32,7 @@
 </div>
 
 </div>
-<p class="ont-semibold fixed bottom-0 left-1/2 transform -translate-x-1/2">© 2024 AGRASC – Tous droits réservés</p>
+<p class="ont-semibold absolute bottom-0 left-1/2 transform -translate-x-1/2">© 2024 AGRASC – Tous droits réservés</p>
   </footer>
 </template>
 
