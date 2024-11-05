@@ -39,7 +39,7 @@
             <router-link to="/backoffice/documentation" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
           </div>
 
-          <!-- tableau articles-->
+          <!-- tableau articles
         <div class="posts-keys flex flex-col gap-5 w-[25%] h-[350px] bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
           <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Mes derniers articles</h3>
           <div v-for="(article) in lastThreeArticles" :key="article._id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
@@ -48,7 +48,7 @@
         </div>
       </div>
         <router-link to="/backoffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
-      </div>
+      </div> -->
 
           <!-- tableau SEO-->
           <div class="posts-keys flex flex-col gap-5 w-[25%] h-[350px] bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">

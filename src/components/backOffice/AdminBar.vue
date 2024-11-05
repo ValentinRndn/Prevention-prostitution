@@ -7,15 +7,15 @@
         <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/dashboard' }">Tableau de bord</span>
       </router-link>
 
-      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/blog' }]" to="/backoffice/blog">
+      <!-- <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/blog' }]" to="/backoffice/blog">
         <img src="../../assets/logo_blog.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
         <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/blog' }">Blog</span>
-      </router-link>
+      </router-link> -->
 
-      <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/landing' }]" to="/backoffice/landing">
+      <!-- <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/landing' }]" to="/backoffice/landing">
         <img src="../../assets/logo_accueil.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
         <span class="text" :class="{ 'text-purple': currentPage === '/backoffice/landing' }">Accueil</span>
-      </router-link>
+      </router-link> -->
 
       <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/users' }]" to="/backoffice/users">
         <img src="../../assets/logo_utilisateur.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
@@ -89,7 +89,7 @@ currentPage.value = route.path;
 }
 
 .button:hover {
-  background-color: #7c70b0;
+  background-color: #f5c77e;
 }
 
 .menu .button {

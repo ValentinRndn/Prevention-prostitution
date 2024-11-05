@@ -1,14 +1,19 @@
 <template>
-  <div class="bg-landing relative w-full h-[70vh] bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden xl:h-[90vh] md:mb-4">
+  <div class="bg-landing relative w-full h-[70vh] bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden xl:h-[90vh] ">
     <div class="header-content flex flex-col justify-center h-full">
       <div class="text-header text-white font-semibold w-1/2 m-48 md:w-full md:m-0">
       <h1 class="text-6xl  lg:text-4xl w-full mb-6 textShadow xl:text-4xl xl:text-center">
         Prévention Accompagnement Prostitution Normandie
       </h1>
       <p class="w-full text-2xl mb-6 textShadow xl:text-md xl:text-center">Bienvenue sur le site Prévention Accompagnement Prostitution Normandie. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Il a pour objectif d’orienter vers les acteurs et dispositifs de prise en charge de droit commun afin de favoriser l’accès aux droits et aux soins et ainsi de contribuer à la réduction des risques.</p>
-      <button class="text-white bg-purple-fonce p-4 rounded-md text-xl drop-shadow-xl xl:m-auto sm:mx-auto sm:block">
-          <router-link to="/contact">JE ME RENSEIGNE</router-link>
-        </button>
+      <button class="bg-purple-fonce text-white flex items-center drop-shadow-lg border-2 border-grey justify-center gap-2 font-jost-sans font-semibold text-xl py-3 rounded-md px-6 hover:bg-purple transition-colors duration-300 group">
+    <router-link to="/guide">
+        JE ME RENSEIGNE
+      </router-link>
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"  viewBox="0 0 24 24" class="transition-transform duration-300 transform group-hover:translate-x-2">
+      <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
+    </svg>
+  </button>
     </div>
 
     </div>

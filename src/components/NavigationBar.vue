@@ -1,6 +1,6 @@
 <template>
   <aside class="flex items-center justify-between text-xl gap-5 my-4 mx-12 sm:hidden 2xl:text-sm ">
-    <img src="../assets/logo_typo.png" alt="logo" class="size-1/5 " />
+    <img src="../assets/logo_orange.png" alt="logo" class="size-1/6 " />
 
     <ul class="navbar flex gap-10 h-full font-cgothic font-bold text-grey 2xl:gap-8">
       <li class="menu" :class="{ 'selectedMenu': currentPage === '/' }">
@@ -30,7 +30,8 @@
         </ul>
       </li>
     </ul>
-    <a class="text-white bg-purple-fonce text-xl font-bold rounded-md p-4 2xl:text-sm" href="https://google.com">SORTIE RAPIDE</a>
+    <a class="text-white bg-purple-fonce text-xl drop-shadow-lg font-bold rounded-md p-4 2xl:text-sm hover:bg-purple transition-colors duration-300" href="https://google.com">SORTIE RAPIDE</a>
+
 
   </aside>
 </template>

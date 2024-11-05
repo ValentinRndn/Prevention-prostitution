@@ -38,10 +38,14 @@
                 <textarea placeholder="Votre message" class="border-b border-purple-fonce text-xl w-full"></textarea>
             </div>
             <div class="submit flex justify-end w-full sm:justify-center">
-                <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-3 rounded-md px-6 transition-transform duration-300 hover:scale-105">Envoyer
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/></svg>
-                </button>
-            </div>
+  <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-3 rounded-md px-6 hover:bg-purple transition-colors duration-300 group">
+    Envoyer
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="transition-transform duration-300 transform group-hover:translate-x-2">
+      <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
+    </svg>
+  </button>
+</div>
+
         </form>   
     </div>
 </div>
