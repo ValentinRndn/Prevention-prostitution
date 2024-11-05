@@ -1,16 +1,17 @@
 <template>
-  <div class="bg-landing relative w-full h-screen bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden">
-    <div class="header-content h-screen">
-      <div class="text-header text-white text-xl font-bold flex flex-col items-center justify-center h-[50vh] md:w-full md:text-sm">
-          <h1 class="citation bg-purple-fonce p-20 w-1/2 m-auto mt-[50vh] rounded-bl-[50%]  text-center ">
-            Bienvenue sur le site Prévention Accompagnement Prostitution Normandie. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Il a pour objectif d’orienter vers les acteurs et dispositifs de prise en charge de droit commun afin de favoriser l’accès aux droits et aux soins et ainsi de contribuer à la réduction des risques
-          </h1>
-      </div>
-      <div class="agrasc-image">
-        <img src="../assets/welcome/logo_agrasc.jpg" alt="logo_agrasc" class="w-[200px] object-cover absolute bottom-0 right-20 md:w-[100px] md:right-5" />
-      </div>
+<div class="bg-landing relative w-full h-screen bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden">
+  <div class="header-content flex flex-col items-center justify-center h-full text-center">
+    <div class="text-header w-11/12 md:w-3/4 lg:w-2/3 p-8 bg-gradient-to-r from-purple-700 via-purple-500 to-purple-700 text-white font-semibold rounded-xl shadow-lg backdrop-blur-md mt-32">
+      <h1 class="text-2xl md:text-3xl lg:text-4xl leading-relaxed">
+        Bienvenue sur le site <span class="underline">Prévention Accompagnement Prostitution Normandie</span>. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Elle vise à orienter vers les acteurs et dispositifs de prise en charge de droit commun, favorisant ainsi l’accès aux droits et aux soins et contribuant à la réduction des risques.
+      </h1>
+    </div>
+    <div class="agrasc-image mt-10">
+      <img src="../assets/welcome/logo_agrasc.jpg" alt="logo_agrasc" class="w-[150px] md:w-[100px] lg:w-[120px] object-contain" />
     </div>
   </div>
+</div>
+
 
   <!-- Missions et photo stop  -->
   <!-- <div class="container-presentation flex flex-wrap justify-center items-center w-full gap-8 md:text-center">
