@@ -57,31 +57,49 @@ import LegalNotices from '../views/LegalNotices.vue';
             path: '/backoffice/dashboard',
             name: 'Dashboard',
             component: Dashboard,
+            meta: {
+                requiresAuth: true // Route protégée
+              }
         },
         {
             path: '/backoffice/blog',
             name: 'BackBlog',
             component: BackBlog,
+            meta: {
+                requiresAuth: true // Route protégée
+              }
         },
         {
             path: '/backoffice/landing',
             name: 'Landing',
             component: Landing,
+            meta: {
+                requiresAuth: true // Route protégée
+              }
         },
         {
             path: '/backoffice/users',
             name: 'Users',
             component: Users,
+            meta: {
+                requiresAuth: true // Route protégée
+              }
         },
         {
             path: '/backoffice/documentation',
             name: 'DocumentationBack',
             component: DocumentationBack,
+            meta: {
+                requiresAuth: true // Route protégée
+              }
         },
         {
             path: '/backoffice/structure',
             name: 'StructureBack',
             component: StructureBack,
+            meta: {
+                requiresAuth: true // Route protégée
+              }
         },
         {
             path: '/cartographie/particulier',
@@ -121,5 +139,21 @@ import LegalNotices from '../views/LegalNotices.vue';
               }
             }
           });
+
+
+          // Middleware global pour vérifier l'authentification avant d'accéder aux routes protégées
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      const token = localStorage.getItem('token');
+    
+      if (!token) {
+        next({ name: 'auth' }); // Rediriger vers la page de connexion si pas de token
+      } else {
+        next(); // Continuer si l'utilisateur est authentifié
+      }
+    } else {
+      next(); // Continuer si la route n'est pas protégée
+    }
+  });
 
 export default router;

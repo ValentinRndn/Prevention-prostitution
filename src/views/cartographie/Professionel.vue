@@ -83,7 +83,6 @@
 <script>
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import Footer from "../../components/Footer.vue";
 import { getAllStructures } from "../../services/StructuresService";
 import { iconColors, createIcon } from "../../services/IconMap";
 

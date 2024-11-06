@@ -21,7 +21,7 @@
           </button>
         </div>
       </div>
-      <button @click="toggleVisibility" class="text-white textShadow text-center w-full underline font-semibold text-xl mt-4">Fermer</button>
+      <button @click="toggleVisibility" class="text-white  text-center w-full underline font-semibold text-xl mt-4">Fermer</button>
     </div>
   </div>
 </template>

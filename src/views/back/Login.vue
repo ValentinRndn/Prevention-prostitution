@@ -42,7 +42,7 @@ export default {
         // Vérifiez si la réponse contient un token
         if (response.status === 200 && response.data.token) {
             // Enregistrez le token dans le localStorage
-            localStorage.setItem('token', response.data.token); // Pas besoin de JSON.stringify ici, c'est déjà une chaîne
+            localStorage.setItem('token', response.data.token); 
             // Redirigez vers la page de l'administrateur
             this.$router.push('/backoffice/dashboard');
         } else {

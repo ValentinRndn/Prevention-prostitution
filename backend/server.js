@@ -19,12 +19,12 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // L'origine de ton frontend Vue.js
-  methods: 'GET,POST,PUT,DELETE,PATCH',  // Méthodes HTTP autorisées
-  credentials: true // Si tu veux envoyer des cookies (optionnel)
+  origin: 'http://localhost:5173', 
+  methods: 'GET,POST,PUT,DELETE,PATCH',  
+  credentials: true 
 }));
 
-app.use(express.json()); // Middleware pour traiter les JSON
+app.use(express.json()); 
 
 // Routes
 app.use('/api/auth', require('./routes/authRoute'));
@@ -39,7 +39,7 @@ app.use('/uploads', express.static('uploads'));
 // Création du serveur HTTP
 const server = http.createServer(app);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
