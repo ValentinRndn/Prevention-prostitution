@@ -2,4 +2,117 @@
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
 
- 
+  .cookie-message {
+    font-size: 1.2rem;
+  }
+  
+  .page-container {
+    position: relative;
+    overflow: hidden; 
+  }
+  
+  .structure-popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateX(0%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .structure-popup .popup-content {
+    padding: 20px;
+  }
+  
+  .structure-popup .close-btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .slide-enter, 
+  .slide-leave-to {
+    transform: translateX(100%); /* La popup glisse depuis et vers la droite */
+  }
+  
+  .slide-enter-to {
+    transform: translateX(0); /* La popup reste visible au-dessus de la carte */
+  }
+  
+  .slide-leave-to {
+    transform: translateX(100%); /* La popup disparaît vers la droite */
+  }
+  
+  
+  /* Styles pour la popup initiale */
+  .popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .popup button {
+    margin-top: 10px;
+  }
+  
+  input[type="checkbox"] {
+    transform: scale(1.5);
+  }
+  
+  /* Couleurs des cases à cocher */
+  #medecine-generale { accent-color: grey; }
+  #depistage { accent-color: red; }
+  #sante-sexuelle { accent-color: orange; }
+  #soutien { accent-color: green; }
+  #accompagnement-psychologique { accent-color: aqua; }
+  #sortie-prostitution { accent-color: blue; }
+  #preservatif { accent-color: purple; }
+  #plainte { accent-color: fuchsia; }
+  #droit-sante { accent-color: orchid; }
+  
+  /* Styles pour les icônes personnalisées */
+  .custom-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .custom-icon div {
+    width: 25px;
+    height: 25px;
+    border-radius: 20%;
+  }
+  
+  .custom-icon-selected {
+    border: 3px solid ;
+    border-radius: 100%; 
+  }
+
+  .rotatedIcon {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+  }

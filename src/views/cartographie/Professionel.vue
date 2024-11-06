@@ -89,6 +89,20 @@ import { iconColors, createIcon } from "../../services/IconMap";
 export default {
   data() {
     return {
+      categoryVisible: false,
+      windowWidth: window.innerWidth,
+      categories: [
+        "Trouver des préservatifs ou du lubrifiant",
+        "Me faire dépister",
+        "Accéder à un traitement d’urgence",
+        "Accéder à la PReP",
+        "Voir un médecin",
+        "Interrompre une grossesse",
+        "Trouver du matériel de drogue à moindre risque",
+        "Trouver un soutien communautaire",
+        "Porter plainte",
+        "Parler à quelqu’un après une agression"
+      ],
       map: null,
       structures: [],
       showPopup: false,
@@ -101,16 +115,21 @@ export default {
   },
   methods: {
     initMap() {
-      const mapContainer = document.getElementById("map");
-      if (mapContainer) {
-        this.map = L.map(mapContainer).setView([49.183333, -0.35], 13);
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(this.map);
-        this.showStructures(); // Appel de la fonction pour charger les structures après l'initialisation de la carte
-      }
-    },
+  const mapContainer = document.getElementById("map");
+  if (mapContainer) {
+    this.map = L.map(mapContainer).setView([49.183333, -0.35], 13);
+
+    // Changez ici l'URL pour le style CartoDB
+    L.tileLayer("https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a> &mdash; ' +
+        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+
+    this.showStructures(); 
+  }
+},
+
     async showStructures() {
       try {
         const structures = await getAllStructures();
@@ -196,113 +215,5 @@ export default {
 
 
 <style>
-.cookie-message {
-  font-size: 1.2rem;
-}
 
-.page-container {
-  position: relative;
-  overflow: hidden; 
-}
-
-.structure-popup {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-  background-color: white;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-  transform: translateX(0%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.structure-popup .popup-content {
-  padding: 20px;
-}
-
-.structure-popup .close-btn {
-  margin-top: 20px;
-  padding: 10px 15px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.3s ease-in-out;
-}
-
-.slide-enter, 
-.slide-leave-to {
-  transform: translateX(100%); /* La popup glisse depuis et vers la droite */
-}
-
-.slide-enter-to {
-  transform: translateX(0); /* La popup reste visible au-dessus de la carte */
-}
-
-.slide-leave-to {
-  transform: translateX(100%); /* La popup disparaît vers la droite */
-}
-
-
-/* Styles pour la popup initiale */
-.popup {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.popup-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-}
-
-.popup button {
-  margin-top: 10px;
-}
-
-input[type="checkbox"] {
-  transform: scale(1.5);
-}
-
-/* Couleurs des cases à cocher */
-#medecine-generale { accent-color: grey; }
-#depistage { accent-color: red; }
-#sante-sexuelle { accent-color: orange; }
-#soutien { accent-color: green; }
-#accompagnement-psychologique { accent-color: aqua; }
-#sortie-prostitution { accent-color: blue; }
-#preservatif { accent-color: purple; }
-#plainte { accent-color: fuchsia; }
-#droit-sante { accent-color: orchid; }
-
-/* Styles pour les icônes personnalisées */
-.custom-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.custom-icon div {
-  width: 25px;
-  height: 25px;
-  border-radius: 20%;
-}
-
-.custom-icon-selected {
-  border: 3px solid ;
-  border-radius: 100%; 
-}
 </style>

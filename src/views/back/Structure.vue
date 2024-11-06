@@ -35,6 +35,15 @@
       <ModalCreate :visible="isModalVisible" @close="closeModal">
         <h2 class="text-xl font-bold mb-4">{{ isEditing ? 'Modifier la structure' : 'Créer une nouvelle structure' }}</h2>
         <form @submit.prevent="isEditing ? updateStructure() : createStructure()" class="scrollable-form">
+          <!-- Dropdown pour le type principal -->
+          <div class="mb-4">
+            <label for="mainCategory" class="block text-sm font-medium text-gray-700">Type de Structure</label>
+            <select v-model="selectedMainCategory" id="mainCategory" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" @change="updateCategories">
+              <option disabled value="">Sélectionnez un type</option>
+              <option v-for="type in mainCategories" :key="type" :value="type">{{ type }}</option>
+            </select>
+          </div>
+
           <!-- Boucle pour les champs du formulaire -->
           <div v-for="field in fields" :key="field.id" class="mb-4">
             <label :for="field.id" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
@@ -42,7 +51,7 @@
             <!-- Utiliser un select pour le champ category -->
             <select v-if="field.id === 'category'" v-model="newStructure[field.model]" :id="field.id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
               <option disabled value="">Sélectionnez une catégorie</option>
-              <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
+              <option v-for="category in categories" :key="category.key" :value="category.key">{{ category.label }}</option>
             </select>
 
             <!-- Utiliser un input pour les autres champs -->
@@ -80,11 +89,13 @@ export default {
         department: '',
         phone: '',
         email: '',
-        category: ''
+        category: '' // Stockera la clé de la catégorie sélectionnée
       },
       structures: [],
       currentPage: 1,
       structuresPerPage: 8,
+      mainCategories: ['Professionnel', 'Personne en situation de prostitution'], // Options principales
+      selectedMainCategory: '', // Stocke la sélection de la liste principale
       fields: [
         { id: 'antenna', label: 'Antenna', type: 'text', model: 'antenna' },
         { id: 'address', label: 'Address', type: 'text', model: 'address' },
@@ -94,18 +105,33 @@ export default {
         { id: 'email', label: 'Email', type: 'email', model: 'email' },
         { id: 'category', label: 'Category', type: 'text', model: 'category' },
       ],
-      categories: [
-        'Category 1',
-        'Category 2',
-        'Category 3',
-        'Category 4',
-        'Category 5',
-        'Category 6',
-        'Category 7',
-        'Category 8',
-        'Category 9',
-        'Category 10',
-      ]
+      categories: [], // Catégories dépendant du choix dans selectedMainCategory
+      allCategories: {
+        'Professionnel': [
+          { key: 'category-0', label: 'Médecine générale' },
+          { key: 'category-1', label: 'Me faire dépister' },
+          { key: 'category-2', label: 'Santé sexuelle' },
+          { key: 'category-3', label: 'Soutien' },
+          { key: 'category-4', label: 'Accompagnement psychologique' },
+          { key: 'category-5', label: 'Accueil de jour - Parcours sortie de prostitution' },
+          { key: 'category-6', label: 'Distribution préservatifs - Accompagnement - Soutien' },
+          { key: 'category-7', label: 'Dépôt de plainte' },
+          { key: 'category-8', label: 'Accès aux droits de santé' },
+          { key: 'category-9', label: 'Parler à quelqu’un après une agression' }
+        ],
+        'Personne en situation de prostitution': [
+          { key: 'category-0', label: 'Trouver des préservatifs ou lubrifiants' },
+          { key: 'category-1', label: 'Me faire dépister' },
+          { key: 'category-2', label: 'Accéder à un traitement d’urgence' },
+          { key: 'category-3', label: 'Accéder à la PrEP' },
+          { key: 'category-4', label: 'Voir un médecin' },
+          { key: 'category-5', label: 'Interrompre une grossesse' },
+          { key: 'category-6', label: 'Trouver du matériel de drogue à moindre risque' },
+          { key: 'category-7', label: 'Trouver un soutien communautaire' },
+          { key: 'category-8', label: 'Porter plainte' },
+          { key: 'category-9', label: 'Parler à quelqu’un après une agression' }
+        ]
+      }
     };
   },
   methods: {
@@ -192,6 +218,10 @@ export default {
     },
     totalPages() {
       return Math.ceil(this.structures.length / this.structuresPerPage);
+    },
+    updateCategories() {
+      // Met à jour les catégories en fonction de la sélection dans mainCategory
+      this.categories = this.allCategories[this.selectedMainCategory] || [];
     }
   },
   created() {
@@ -199,22 +229,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.dashboard-container {
-  flex: 1 1 0;
-  padding: 2rem;
-}
-
-
-.scrollable-form {
-  overflow-y: auto;
-  padding-right: 1rem;
-}
-
-@media(max-width: 768px) {
-  .dashboard-container {
-    padding-left: 6rem;
-  }
-}
-</style>
