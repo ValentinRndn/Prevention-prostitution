@@ -190,7 +190,6 @@ export default {
           }
         }
       });
-      console.log("Markers after addition:", this.markers); // Debugging
     },
     closePopup() {
       this.selectedStructure = null;
