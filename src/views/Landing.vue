@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-landing relative w-full h-[70vh] bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden xl:h-[90vh] ">
+  <div class="bg-landing relative w-full h-[70vh] 2xl:h-[90vh] bg-center mb-24 rounded-bl-[25%] bg-cover bg-no-repeat md:h-[50vh] md:mb-0 overflow-hidden xl:h-[90vh] ">
     <div class="header-content flex flex-col justify-center h-full">
       <div class="text-header text-white font-semibold w-1/2 m-48 md:w-full md:m-0">
       <h1 class="text-6xl  lg:text-4xl w-full mb-6 textShadow xl:text-4xl xl:text-center">

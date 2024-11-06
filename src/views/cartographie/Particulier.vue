@@ -1,6 +1,6 @@
 <template>
   <div class="page-container flex h-[700px] items-center md:flex-col ">
-    <div class="categories-container bg-grey md:w-[1/3] h-full px-6 flex flex-col justify-center md:h-fit md:w-full md:bg-white md:text-black">
+    <div class="categories-container bg-grey h-full px-6 flex flex-col justify-center md:h-fit md:w-full md:bg-white md:text-black">
       <h1 class="text-white text-2xl font-bold mb-6 font-cgothic md:hidden">JE SOUHAITE :</h1>
       
       <!-- Bouton pour afficher/masquer les catégories sur mobile -->
@@ -13,9 +13,9 @@
 
       <!-- Liste des catégories -->
       <div v-if="categoryVisible || windowWidth > 768" class="checkboxes flex flex-col gap-4 font-poppins text-white text-xl md:text-black ">
-        <div class="checkbox flex gap-3 items-center" v-for="(label, index) in categories" :key="index">
-          <input :id="`category-${index}`" type="checkbox" @change="updateSelectedCategories" />
-          <label :for="`category-${index}`">{{ label }}</label>
+        <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
+          <input :id="`category-${index}`" type="checkbox" @change="updateSelectedCategories(category.id)" />
+          <label :for="`category-${index}`">{{ category.label }}</label>
         </div>
       </div>
     </div>
@@ -41,7 +41,61 @@ import "leaflet/dist/leaflet.css";
 import NavigationBar from "../../components/NavigationBar.vue";
 import NavigationBarMobile from "../../components/NavigationBarMobile.vue";
 import { getAllStructures } from "../../services/StructuresService";
-import { iconColors, createIcon } from "../../services/IconMap";
+
+// Couleurs pour chaque catégorie
+const iconColors = {
+  "preservatif": "grey",
+  "depistage": "red",
+  "urgence": "orange",
+  "prep": "green",
+  "medecin": "aqua",
+  "grossesse": "blue",
+  "drogue": "purple",
+  "soutien": "fuchsia",
+  "plainte": "orchid",
+  "agression": "yellowgreen"
+};
+
+function createIcon(color) {
+  return L.divIcon({
+    className: "custom-marker",
+    html: `
+      <div style="
+        position: relative; 
+        width: 30px; 
+        height: 30px; 
+        background-color: ${color}; 
+        border: 2px solid white;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ">
+        <span style="
+          width: 10px; 
+          height: 10px; 
+          background-color: white; 
+          border-radius: 50%;
+        "></span>
+      </div>
+      <div style="
+        position: absolute; 
+        bottom: -8px; 
+        left: 50%; 
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid ${color}; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        transform: translateX(-50%);
+      "></div>
+    `,
+    iconSize: [30, 42], // Adjusting size for "pin" shape
+    iconAnchor: [15, 42], // Position anchor at the bottom point of the pin
+  });
+}
+
 
 export default {
   data() {
@@ -50,18 +104,18 @@ export default {
       categoryVisible: false,
       windowWidth: window.innerWidth,
       categories: [
-        "Trouver des préservatifs ou du lubrifiant",
-        "Me faire dépister",
-        "Accéder à un traitement d’urgence",
-        "Accéder à la PReP",
-        "Voir un médecin",
-        "Interrompre une grossesse",
-        "Trouver du matériel de drogue à moindre risque",
-        "Trouver un soutien communautaire",
-        "Porter plainte",
-        "Parler à quelqu’un après une agression"
+        { id: "preservatif", label: "Trouver des préservatifs ou du lubrifiant" },
+        { id: "depistage", label: "Me faire dépister" },
+        { id: "urgence", label: "Accéder à un traitement d’urgence" },
+        { id: "prep", label: "Accéder à la PReP" },
+        { id: "medecin", label: "Voir un médecin" },
+        { id: "grossesse", label: "Interrompre une grossesse" },
+        { id: "drogue", label: "Trouver du matériel de drogue à moindre risque" },
+        { id: "soutien", label: "Trouver un soutien communautaire" },
+        { id: "plainte", label: "Porter plainte" },
+        { id: "agression", label: "Parler à quelqu’un après une agression" }
       ],
-      selectedCategories: [],
+      selectedCategories: [], // Catégories sélectionnées
       structures: [],
       markers: [],
       selectedMarker: null,
@@ -96,19 +150,19 @@ export default {
       try {
         const structures = await getAllStructures();
         this.structures = structures;
+        console.log("Fetched structures:", structures); // Debugging
         this.addMarkers();
       } catch (error) {
         console.error('Error fetching structures:', error);
       }
     },
-    updateSelectedCategories() {
-      this.selectedCategories = [];
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-          this.selectedCategories.push(checkbox.id);
-        }
-      });
+    updateSelectedCategories(categoryId) {
+      if (this.selectedCategories.includes(categoryId)) {
+        this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId);
+      } else {
+        this.selectedCategories.push(categoryId);
+      }
+      console.log("Selected categories:", this.selectedCategories); // Debugging
       this.removeMarkers();
       this.addMarkers();
     },
@@ -124,25 +178,19 @@ export default {
           const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord));
           if (!isNaN(lat) && !isNaN(lon)) {
             const color = iconColors[structure.category];
-            const icon = createIcon(color); 
+            const icon = createIcon(color);
             const marker = L.marker([lat, lon], { icon }).addTo(this.map);
             marker.on('click', () => {
               this.selectedStructure = structure;
-              this.updateMarkerStyles(marker);
             });
             this.markers.push(marker);
+            console.log(`Added marker for category "${structure.category}" at coordinates [${lat}, ${lon}]`); // Debugging
           } else {
             console.warn('Invalid coordinates for structure:', structure);
           }
         }
       });
-    },
-    updateMarkerStyles(clickedMarker) {
-      if (this.selectedMarker) {
-        L.DomUtil.removeClass(this.selectedMarker._icon, 'custom-icon-selected');
-      }
-      L.DomUtil.addClass(clickedMarker._icon, 'custom-icon-selected');
-      this.selectedMarker = clickedMarker;
+      console.log("Markers after addition:", this.markers); // Debugging
     },
     closePopup() {
       this.selectedStructure = null;
@@ -171,6 +219,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
   .map-container {
     position: relative;
@@ -185,14 +234,12 @@ export default {
     background-color: white;
     border-left: 2px solid #ddd;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
-    transform: translateX(100%);
+    transform: translateX(0);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
   }
 
-  /* Animation de glissement pour la popup */
-  .slide-in-enter-active,
-  .slide-in-leave-active {
+  .slide-in-enter-active {
     transition: transform 0.3s ease-in-out;
   }
 
@@ -204,25 +251,23 @@ export default {
     transform: translateX(0);
   }
 
-  .slide-in-leave-from {
-    transform: translateX(0);
-  }
-
-  .slide-in-leave-to {
-    transform: translateX(100%);
-  }
-
-  /* Style du contenu de la popup */
   .popup-content {
     position: relative;
     padding: 20px;
     z-index: 1001;
   }
 
-  .popup-content img {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
+  
+
+  /* Couleurs des cases à cocher */
+  #category-0 { accent-color: grey; }
+  #category-1 { accent-color: red; }
+  #category-2 { accent-color: orange; }
+  #category-3 { accent-color: green; }
+  #category-4 { accent-color: aqua; }
+  #category-5 { accent-color: blue; }
+  #category-6 { accent-color: purple; }
+  #category-7 { accent-color: fuchsia; }
+  #category-8 { accent-color: orchid; }
 </style>
+ 
