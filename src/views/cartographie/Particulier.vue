@@ -14,8 +14,8 @@
       <!-- Liste des catégories -->
       <div v-if="categoryVisible || windowWidth > 768" class="checkboxes flex flex-col gap-4 font-poppins text-white text-xl md:text-black ">
         <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
-          <input :id="`category-${index}`" type="checkbox" @change="updateSelectedCategories(category.id)" />
-          <label :for="`category-${index}`">{{ category.label }}</label>
+          <input :id="category.key" type="checkbox" @change="updateSelectedCategories(category.key)" />
+          <label :for="category.key">{{ category.label }}</label>
         </div>
       </div>
     </div>
@@ -44,16 +44,16 @@ import { getAllStructures } from "../../services/StructuresService";
 
 // Couleurs pour chaque catégorie
 const iconColors = {
-  "preservatif": "grey",
-  "depistage": "red",
-  "urgence": "orange",
-  "prep": "green",
-  "medecin": "aqua",
-  "grossesse": "blue",
-  "drogue": "purple",
-  "soutien": "fuchsia",
-  "plainte": "orchid",
-  "agression": "yellowgreen"
+  "category-0": "grey",
+  "category-1": "red",
+  "category-2": "orange",
+  "category-3": "green",
+  "category-4": "aqua",
+  "category-5": "blue",
+  "category-6": "purple",
+  "category-7": "fuchsia",
+  "category-8": "orchid",
+  "category-9": "yellowgreen"
 };
 
 function createIcon(color) {
@@ -91,11 +91,10 @@ function createIcon(color) {
         transform: translateX(-50%);
       "></div>
     `,
-    iconSize: [30, 42], // Adjusting size for "pin" shape
-    iconAnchor: [15, 42], // Position anchor at the bottom point of the pin
+    iconSize: [30, 42],
+    iconAnchor: [15, 42],
   });
 }
-
 
 export default {
   data() {
@@ -104,18 +103,18 @@ export default {
       categoryVisible: false,
       windowWidth: window.innerWidth,
       categories: [
-        { id: "preservatif", label: "Trouver des préservatifs ou du lubrifiant" },
-        { id: "depistage", label: "Me faire dépister" },
-        { id: "urgence", label: "Accéder à un traitement d’urgence" },
-        { id: "prep", label: "Accéder à la PReP" },
-        { id: "medecin", label: "Voir un médecin" },
-        { id: "grossesse", label: "Interrompre une grossesse" },
-        { id: "drogue", label: "Trouver du matériel de drogue à moindre risque" },
-        { id: "soutien", label: "Trouver un soutien communautaire" },
-        { id: "plainte", label: "Porter plainte" },
-        { id: "agression", label: "Parler à quelqu’un après une agression" }
+        { key: "category-0", label: "Trouver des préservatifs ou lubrifiants" },
+        { key: "category-1", label: "Me faire dépister" },
+        { key: "category-2", label: "Accéder à un traitement d’urgence" },
+        { key: "category-3", label: "Accéder à la PrEP" },
+        { key: "category-4", label: "Voir un médecin" },
+        { key: "category-5", label: "Interrompre une grossesse" },
+        { key: "category-6", label: "Trouver du matériel de drogue à moindre risque" },
+        { key: "category-7", label: "Trouver un soutien communautaire" },
+        { key: "category-8", label: "Porter plainte" },
+        { key: "category-9", label: "Parler à quelqu’un après une agression" }
       ],
-      selectedCategories: [], // Catégories sélectionnées
+      selectedCategories: [],
       structures: [],
       markers: [],
       selectedMarker: null,
@@ -150,19 +149,17 @@ export default {
       try {
         const structures = await getAllStructures();
         this.structures = structures;
-        console.log("Fetched structures:", structures); // Debugging
         this.addMarkers();
       } catch (error) {
         console.error('Error fetching structures:', error);
       }
     },
-    updateSelectedCategories(categoryId) {
-      if (this.selectedCategories.includes(categoryId)) {
-        this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId);
+    updateSelectedCategories(categoryKey) {
+      if (this.selectedCategories.includes(categoryKey)) {
+        this.selectedCategories = this.selectedCategories.filter(id => id !== categoryKey);
       } else {
-        this.selectedCategories.push(categoryId);
+        this.selectedCategories.push(categoryKey);
       }
-      console.log("Selected categories:", this.selectedCategories); // Debugging
       this.removeMarkers();
       this.addMarkers();
     },
@@ -184,9 +181,6 @@ export default {
               this.selectedStructure = structure;
             });
             this.markers.push(marker);
-            console.log(`Added marker for category "${structure.category}" at coordinates [${lat}, ${lon}]`); // Debugging
-          } else {
-            console.warn('Invalid coordinates for structure:', structure);
           }
         }
       });
@@ -194,7 +188,6 @@ export default {
     closePopup() {
       this.selectedStructure = null;
       if (this.selectedMarker) {
-        L.DomUtil.removeClass(this.selectedMarker._icon, 'custom-icon-selected');
         this.selectedMarker = null;
       }
     },
@@ -256,8 +249,6 @@ export default {
     z-index: 1001;
   }
 
-  
-
   /* Couleurs des cases à cocher */
   #category-0 { accent-color: grey; }
   #category-1 { accent-color: red; }
@@ -268,5 +259,5 @@ export default {
   #category-6 { accent-color: purple; }
   #category-7 { accent-color: fuchsia; }
   #category-8 { accent-color: orchid; }
+  #category-9 { accent-color: yellowgreen; }
 </style>
- 

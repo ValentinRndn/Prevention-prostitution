@@ -89,13 +89,13 @@ export default {
         department: '',
         phone: '',
         email: '',
-        category: '' // Stockera la clé de la catégorie sélectionnée
+        category: ''
       },
       structures: [],
       currentPage: 1,
       structuresPerPage: 8,
-      mainCategories: ['Professionnel', 'Personne en situation de prostitution'], // Options principales
-      selectedMainCategory: '', // Stocke la sélection de la liste principale
+      mainCategories: ['Professionnel', 'Personne en situation de prostitution'], 
+      selectedMainCategory: '', 
       fields: [
         { id: 'antenna', label: 'Antenna', type: 'text', model: 'antenna' },
         { id: 'address', label: 'Address', type: 'text', model: 'address' },
@@ -105,19 +105,19 @@ export default {
         { id: 'email', label: 'Email', type: 'email', model: 'email' },
         { id: 'category', label: 'Category', type: 'text', model: 'category' },
       ],
-      categories: [], // Catégories dépendant du choix dans selectedMainCategory
+      categories: [], 
       allCategories: {
         'Professionnel': [
-          { key: 'category-0', label: 'Médecine générale' },
-          { key: 'category-1', label: 'Me faire dépister' },
-          { key: 'category-2', label: 'Santé sexuelle' },
-          { key: 'category-3', label: 'Soutien' },
-          { key: 'category-4', label: 'Accompagnement psychologique' },
-          { key: 'category-5', label: 'Accueil de jour - Parcours sortie de prostitution' },
-          { key: 'category-6', label: 'Distribution préservatifs - Accompagnement - Soutien' },
-          { key: 'category-7', label: 'Dépôt de plainte' },
-          { key: 'category-8', label: 'Accès aux droits de santé' },
-          { key: 'category-9', label: 'Parler à quelqu’un après une agression' }
+          { key: 'category-10', label: 'Médecine générale' },
+          { key: 'category-11', label: 'Me faire dépister' },
+          { key: 'category-12', label: 'Santé sexuelle' },
+          { key: 'category-13', label: 'Soutien' },
+          { key: 'category-14', label: 'Accompagnement psychologique' },
+          { key: 'category-15', label: 'Accueil de jour - Parcours sortie de prostitution' },
+          { key: 'category-16', label: 'Distribution préservatifs - Accompagnement - Soutien' },
+          { key: 'category-17', label: 'Dépôt de plainte' },
+          { key: 'category-18', label: 'Accès aux droits de santé' },
+          { key: 'category-19', label: 'Parler à quelqu’un après une agression' }
         ],
         'Personne en situation de prostitution': [
           { key: 'category-0', label: 'Trouver des préservatifs ou lubrifiants' },
