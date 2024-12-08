@@ -44,6 +44,17 @@
             </select>
           </div>
 
+          <div class="mb-4">
+            <label for="address" class="block text-sm font-medium text-gray-700">Adresse</label>
+            <input 
+              type="text"
+              ref="autocompleteInput"
+              placeholder="Entrez une adresse"
+              class="form-control"
+            />
+
+          </div>
+
           <!-- Boucle pour les champs du formulaire -->
           <div v-for="field in fields" :key="field.id" class="mb-4">
             <label :for="field.id" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
@@ -81,6 +92,7 @@ export default {
     return {
       isModalVisible: false,
       isEditing: false,
+      isVisible: true,
       currentStructureId: null,
       newStructure: {
         antenna: '',
@@ -222,10 +234,77 @@ export default {
     updateCategories() {
       // Met à jour les catégories en fonction de la sélection dans mainCategory
       this.categories = this.allCategories[this.selectedMainCategory] || [];
-    }
+    },
+
+    initAutocomplete() {
+      // Vérifie si Google Maps API est disponible
+      if (!window.google || !window.google.maps || !window.google.maps.places) {
+        console.error('Google Maps API n’est pas chargé');
+        return;
+      }
+
+      // Vérifie si l'élément input est prêt
+      const input = this.$refs.autocompleteInput;
+
+      if (!input) {
+        console.error('Référence au champ d’entrée introuvable');
+        return;
+      }
+
+      try {
+        this.autocomplete = new google.maps.places.Autocomplete(input, {
+          types: ['address'], // Restreindre aux adresses uniquement
+          componentRestrictions: { country: 'fr' }, // Restreindre à la France
+        });
+
+        // Ajoute un listener pour traiter les données de l’adresse sélectionnée
+        this.autocomplete.addListener('place_changed', this.fillAddressData);
+        console.log('Autocomplete initialisé avec succès');
+      } catch (error) {
+        console.error('Erreur lors de l’initialisation de l’Autocomplete :', error);
+      }
+    },
+
+    fillAddressData() {
+      const place = this.autocomplete.getPlace();
+
+      if (!place.geometry) {
+        console.error('Aucune géométrie disponible pour le lieu sélectionné');
+        return;
+      }
+
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      const address = place.formatted_address || place.name;
+
+      // Mettre à jour les champs de l'adresse et des coordonnées GPS
+      this.newStructure.address = address;
+      this.newStructure.gps = `${lat}, ${lng}`;
+
+      console.log('Adresse sélectionnée :', {
+        fullAddress: address,
+        latitude: lat,
+        longitude: lng,
+      });
+    },
+
+},
+watch: {
+    isModalVisible(newVal) {
+      if (newVal) {
+        // Initialisez l'Autocomplete seulement lorsque la modale est visible
+        this.$nextTick(() => {
+          this.initAutocomplete();
+        });
+      }
+    },
   },
-  created() {
-    this.fetchStructures();
+
+  mounted() {
+    this.$nextTick(() => {
+      this.fetchStructures(); // Charge les données de la structure
+    });
   },
 };
+
 </script>

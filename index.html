@@ -10,6 +10,12 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9C8g63HQiLm-GcbDP-MliFvMoexnNPy4&libraries=places&callback=initMap" async defer></script>
+    <script>
+      function initMap() {
+        console.log('Google Maps API loaded successfully');
+      }
+    </script>
 
   </body>
 </html>
