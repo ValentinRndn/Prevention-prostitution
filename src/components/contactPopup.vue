@@ -32,9 +32,13 @@ export default {
     return {
       isVisible: false,
       emergencyNumbers: {
-        "Urgence immédiate": "17",
-        "Equipe de maraude": "06.29.59.26.37",
-        "Numéro d'écoute": "3919",
+        "Intervention d'une équipe médicale": "15",
+        "Intervention des services de police": "17",
+        "En cas d'accident grave": "18",
+        "Dans tous les cas": "112",
+        "Femmes victimes de violences": "3919",
+        "Mineurs victimes de violences": "119",
+        "Maraud'in Normandie": "06.29.59.26.37",
       }
     };
   },

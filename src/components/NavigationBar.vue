@@ -1,18 +1,18 @@
 <template>
-  <aside class="flex items-center justify-between text-xl gap-5 my-4 mx-12 sm:hidden 2xl:text-sm ">
+  <aside class="flex items-center justify-around text-xl gap-5 my-4 mx-12 sm:hidden 2xl:text-sm ">
     <img src="../assets/logo_orange.png" alt="logo" class="size-1/6 " />
 
-    <ul class="navbar flex gap-10 h-full font-cgothic font-bold text-grey 2xl:gap-8">
-      <li class="menu" :class="{ 'selectedMenu': currentPage === '/' }">
+    <ul class="navbar flex items-center gap-10 h-full font-cgothic font-bold text-grey 2xl:gap-8">
+      <li class="menu w-fit text-center" :class="{ 'selectedMenu': currentPage === '/' }">
         <router-link to="/">ACCUEIL</router-link>
       </li>      
-      <li class="menu" :class="{ 'selectedMenu': currentPage === '/map' }">
+      <li class="menu w-fit text-center" :class="{ 'selectedMenu': currentPage === '/map' }">
         <router-link to="/map">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
       </li>
-      <li class="menu" :class="{ 'selectedMenu': currentPage === '/guide' }">
+      <li class="menu w-fit text-center" :class="{ 'selectedMenu ': currentPage === '/guide' }">
         <router-link to="/guide">JE CONSULTE LA DOCUMENTATION</router-link>
       </li>
-      <li class="menu" :class="{ 'selectedMenu': currentPage === '/contact' }">
+      <li class="menu w-fit text-center" :class="{ 'selectedMenu': currentPage === '/contact' }">
         <router-link to="/contact">JE PRENDS CONTACT</router-link>
       </li>
 
@@ -30,7 +30,7 @@
         </ul>
       </li>
     </ul>
-    <a class="text-white bg-purple-fonce text-xl drop-shadow-lg font-bold rounded-md p-4 2xl:text-sm hover:bg-purple transition-colors duration-300" href="https://google.com">SORTIE RAPIDE</a>
+    <a class="text-white text-center bg-purple-fonce text-xl drop-shadow-lg font-bold rounded-md p-4 2xl:text-sm hover:bg-purple transition-colors duration-300" href="https://google.com">SORTIE RAPIDE</a>
 
 
   </aside>
