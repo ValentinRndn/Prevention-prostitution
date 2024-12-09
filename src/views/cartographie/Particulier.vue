@@ -47,13 +47,15 @@ const iconColors = {
   "category-0": "grey",
   "category-1": "red",
   "category-2": "orange",
-  "category-3": "green",
+  "category-3": "green", 
   "category-4": "aqua",
   "category-5": "blue",
   "category-6": "purple",
   "category-7": "fuchsia",
   "category-8": "orchid",
-  "category-9": "yellowgreen"
+  "category-9": "yellowgreen",
+  "category-10": "gold",
+  "category-11": "teal"
 };
 
 function createIcon(color) {
@@ -103,16 +105,19 @@ export default {
       categoryVisible: false,
       windowWidth: window.innerWidth,
       categories: [
-        { key: "category-0", label: "Trouver des préservatifs ou lubrifiants" },
-        { key: "category-1", label: "Me faire dépister" },
-        { key: "category-2", label: "Accéder à un traitement d’urgence" },
-        { key: "category-3", label: "Accéder à la PrEP" },
-        { key: "category-4", label: "Voir un médecin" },
-        { key: "category-5", label: "Interrompre une grossesse" },
-        { key: "category-6", label: "Trouver du matériel de drogue à moindre risque" },
-        { key: "category-7", label: "Trouver un soutien communautaire" },
-        { key: "category-8", label: "Porter plainte" },
-        { key: "category-9", label: "Parler à quelqu’un après une agression" }
+        { key: "category-0", label: "Rencontrer un médecin" },
+        { key: "category-1", label: "Accéder aux droits de santé" },
+        { key: "category-2", label: "Me faire dépister" },
+        { key: "category-3", label: "Trouver un service d'urgence" },
+        { key: "category-4", label: "Trouver une écoute" },
+        { key: "category-5", label: "Rencontrer un médecin gynécologue ou une sage-femme" },
+        { key: "category-6", label: "Trouver un soutien communautaire" },
+        { key: "category-7", label: "Rencontrer un psychologue" },
+        { key: "category-8", label: "Sortir d'un réseau d'exploitation sexuelle" },
+        { key: "category-9", label: "Trouver des préservatifs" },
+        { key: "category-10", label: "Trouver du matériel de consommation de drogue à moindre risque" },
+        { key: "category-11", label: "Déposer plainte" }
+
       ],
       selectedCategories: [],
       structures: [],
@@ -260,4 +265,7 @@ export default {
   #category-7 { accent-color: fuchsia; }
   #category-8 { accent-color: orchid; }
   #category-9 { accent-color: yellowgreen; }
+  #category-10 { accent-color: gold; }
+  #category-11 { accent-color: teal; }
+
 </style>
