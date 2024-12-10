@@ -1,7 +1,7 @@
 <template>
   <div class="page-container flex h-[700px] items-center md:flex-col ">
     <div class="categories-container bg-grey h-full px-6 flex flex-col justify-center md:h-fit md:w-full md:bg-white md:text-black">
-      <h1 class="text-white text-2xl font-bold mb-6 font-cgothic md:hidden">JE SOUHAITE :</h1>
+      <h1 class="text-white text-2xl font-bold mb-6 font-cgothic md:hidden">JE RECHERCHE :</h1>
       
       <!-- Bouton pour afficher/masquer les catégories sur mobile -->
       <span class="hidden md:flex md:items-center text-black cursor-pointer mb-4 md:w-fit font-semibold text-xl " @click="toggleVisibility">
@@ -12,7 +12,18 @@
       </span>
 
       <!-- Liste des catégories -->
-      <div v-if="categoryVisible || windowWidth > 768" class="checkboxes flex flex-col gap-4 font-poppins text-white text-xl md:text-black ">
+      <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black ">
+
+        <div v-if="showPopup" class="popup">
+            <div class="popup-content text-black relative p-8">
+              <p class="md:mt-7">
+                La cartographie du programme de prévention & d’accompagnement des personnes en situation de prostitution vous permet de trouver un établissement adapté à vos besoins dans toute la région Normande
+              </p>
+              <img @click="hidePopup" class="absolute top-5 right-5 w-[20px] cursor-pointer" src="../../assets/map/close-popup.png" alt="hide_arrow">
+            </div>
+          </div>
+
+
         <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
           <input :id="category.key" type="checkbox" @change="updateSelectedCategories(category.key)" />
           <label :for="category.key">{{ category.label }}</label>
@@ -124,6 +135,7 @@ export default {
       markers: [],
       selectedMarker: null,
       selectedStructure: null,
+      showPopup: false,
     };
   },
   components: {
@@ -190,6 +202,9 @@ export default {
         }
       });
     },
+    hidePopup() {
+      this.showPopup = false;
+    },
     closePopup() {
       this.selectedStructure = null;
       if (this.selectedMarker) {
@@ -207,6 +222,7 @@ export default {
     },
   },
   mounted() {
+    this.showPopup = true;
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     this.checkCookieConsent();

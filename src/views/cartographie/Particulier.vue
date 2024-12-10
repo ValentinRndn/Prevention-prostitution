@@ -12,7 +12,17 @@
       </span>
 
       <!-- Liste des catégories -->
-      <div v-if="categoryVisible || windowWidth > 768" class="checkboxes flex flex-col gap-4 font-poppins text-white text-xl md:text-black ">
+      <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black ">
+
+        <div v-if="showPopup" class="popup">
+            <div class="popup-content text-black relative p-8">
+              <p class="md:mt-7 max-w-[90%]">
+                La cartographie du programme de prévention & d’accompagnement des personnes en situation de prostitution vous permet de trouver un établissement adapté à vos besoins dans toute la région Normande
+              </p>
+              <img @click="hidePopup" class="absolute top-5 right-5 w-[20px] cursor-pointer" src="../../assets/map/close-popup.png" alt="hide_arrow">
+            </div>
+          </div>
+
         <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
           <input :id="category.key" type="checkbox" @change="updateSelectedCategories(category.key)" />
           <label :for="category.key">{{ category.label }}</label>
@@ -124,6 +134,8 @@ export default {
       markers: [],
       selectedMarker: null,
       selectedStructure: null,
+      showPopup: false,
+
     };
   },
   components: {
@@ -190,6 +202,9 @@ export default {
         }
       });
     },
+    hidePopup() {
+      this.showPopup = false;
+    },
     closePopup() {
       this.selectedStructure = null;
       if (this.selectedMarker) {
@@ -207,6 +222,7 @@ export default {
     },
   },
   mounted() {
+    this.showPopup = true;
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     this.checkCookieConsent();

@@ -24,7 +24,7 @@
         </button>
         <ul v-if="dropdownVisible" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
           <li class="menu-item p-2 hover:bg-gray-100">
-            <router-link to="/backoffice/dashboard">Aller au back office</router-link>
+            <router-link to="/backoffice/dashboard">Back office</router-link>
           </li>
           <li class="menu-item p-2 hover:bg-gray-100 cursor-pointer" @click="logout">Se déconnecter</li>
         </ul>

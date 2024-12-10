@@ -45,12 +45,12 @@
           </div>
 
           <div class="mb-4">
-            <label for="address" class="block text-sm font-medium text-gray-700">Adresse</label>
+            <label for="address" class="block text-sm font-medium text-gray-700 w-full">Adresse</label>
             <input 
               type="text"
               ref="autocompleteInput"
               placeholder="Entrez une adresse"
-              class="form-control"
+              class="form-control w-full"
             />
 
           </div>
