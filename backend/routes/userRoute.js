@@ -4,6 +4,9 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
+const jwt = require('jsonwebtoken'); 
+
+const  sendConfirmationEmail  = require('../services/mailer');
 
 
 
@@ -33,10 +36,13 @@ router.get('/getAllUsers', async (req, res) => {
 router.post('/createUser', async (req, res) => {
   const { pseudo, password, email } = req.body;
 
+  console.log('Tentative de création d\'un utilisateur avec les données :', { pseudo, email });
+
   try {
     // Vérifier si l'utilisateur existe déjà par pseudo ou email
     let user = await User.findOne({ $or: [{ pseudo }, { email }] });
     if (user) {
+      console.log('L\'utilisateur existe déjà.');
       return res.status(400).json({ msg: 'Le pseudo ou l\'email existe déjà' });
     }
 
@@ -53,13 +59,25 @@ router.post('/createUser', async (req, res) => {
 
     // Sauvegarder l'utilisateur
     await user.save();
+    console.log('Utilisateur créé avec succès dans la base de données.');
 
-    res.json({ msg: 'Utilisateur créé avec succès', user });
+    // Créer un token JWT pour la confirmation
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_MAIL_SECRET, {
+      expiresIn: process.env.JWT_EXPIRATION,
+    });
+
+    // Envoyer l'email de confirmation
+    console.log('Tentative d\'envoi d\'email à :', email);
+    await sendConfirmationEmail(email, token);
+    console.log('Email envoyé avec succès à :', email);
+
+    res.json({ msg: 'Utilisateur créé avec succès, veuillez regarder vos mails pour confirmer la création du compte', user });
   } catch (err) {
-    console.error(err.message);
+    console.error('Erreur lors de la création de l\'utilisateur :', err.message);
     res.status(500).send('Erreur serveur');
   }
 });
+
 
 // Route pour mettre à jour un utilisateur
 router.put('/updateUser/:id', auth, async (req, res) => {
@@ -115,6 +133,10 @@ router.delete('/deleteUser/:id', auth, async (req, res) => {
     res.status(500).send('Erreur serveur');
   }
 });
+
+
+
+
 
 
 module.exports = router;

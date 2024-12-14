@@ -3,8 +3,8 @@
         <div class="w-[50vw] flex justify-center items-center">
             <div class="flex flex-col w-[400px] h-[200px] justify-center font-cgothic   ">
                 <h1 class="form-control font-cgothic font-bold text-login-grey text-3xl ">Connexion </h1>
-                <label for="username" class="bg-gray-200 mt-4 rounded-t-md text-login-txt pl-3 pt-2 text-login-grey">pseudo</label>
-                <input type="text" id="username" v-model="pseudo" class="form-control bg-gray-200 rounded-b-md px-2 pb-5 outline-none focus:ring-0 text-login-grey" required>
+                <label for="username" class="bg-gray-200 mt-4 rounded-t-md text-login-txt pl-3 pt-2 text-login-grey">EMAIL</label>
+                <input type="text" id="username" v-model="email" class="form-control bg-gray-200 rounded-b-md px-2 pb-5 outline-none focus:ring-0 text-login-grey" required>
                 <label for="password" class="bg-gray-200 mt-6 rounded-t-md text-login-txt pl-3 pt-2 text-login-grey">PASSWORD</label>
                 <input type="password" id="password" v-model="password" class="form-control bg-gray-200 rounded-b-md px-2 pb-5 outline-none focus:ring-0 text-login-grey " required>
                 <button type="submit" @click="login" class="bg-purple-fonce text-white px-4 py-2 w-full  rounded-md mt-6 text-md font-bold ">CONTINUER</button>
@@ -24,7 +24,7 @@
 export default {
     data() {
         return {
-            pseudo: '',
+            email: '',
             password: '', 
             error: null
         };
@@ -33,7 +33,7 @@ export default {
     methods: {
         login() {
     axios.post('http://localhost:5000/api/auth/login', {
-        pseudo: this.pseudo,
+        email: this.email,
         password: this.password
     })
     .then(response => {
@@ -48,7 +48,7 @@ export default {
         } else {
             // Afficher un message d'erreur si l'authentification a échoué
             console.log(response.data);
-            this.error = "Pseudo ou mot de passe incorrect";
+            this.error = "email ou mot de passe incorrect";
         }
     })
     .catch(error => {
