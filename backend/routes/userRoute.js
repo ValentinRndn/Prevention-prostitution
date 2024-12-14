@@ -68,7 +68,7 @@ router.post('/createUser', async (req, res) => {
 
     // Envoyer l'email de confirmation
     console.log('Tentative d\'envoi d\'email à :', email);
-    await sendConfirmationEmail(email, token);
+    await sendConfirmationEmail(email, pseudo, token);
     console.log('Email envoyé avec succès à :', email);
 
     res.json({ msg: 'Utilisateur créé avec succès, veuillez regarder vos mails pour confirmer la création du compte', user });

@@ -1,7 +1,8 @@
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getAllGuides = () => {
-  return axios.get('http://localhost:5000/api/guides/getAllGuides')
+  return axios.get(`${apiUrl}/api/guides/getAllGuides`)
     .then(response => {
       return response.data;
     })
@@ -12,7 +13,7 @@ export const getAllGuides = () => {
 
 
 export const getGuideByCategory = (categorie) => {
-  return axios.get(`http://localhost:5000/api/guides/getFileByCategory/${categorie}`)
+  return axios.get(`${apiUrl}/api/guides/getFileByCategory/${categorie}`)
     .then(response => {
       return response.data;
     })
@@ -23,7 +24,7 @@ export const getGuideByCategory = (categorie) => {
 
 export const createGuide = async (formData) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/guides/createGuide', formData, {
+    const response = await axios.post(`${apiUrl}/api/guides/createGuide`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -37,7 +38,7 @@ export const createGuide = async (formData) => {
 
 export const updateGuide = async (id, formData) => {
   try {
-    const response = await axios.put(`http://localhost:5000/api/guides/updateGuide/${id}`, formData, {
+    const response = await axios.put(`${apiUrl}/api/guides/updateGuide/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -52,7 +53,7 @@ export const updateGuide = async (id, formData) => {
 
 export const deleteGuide = async (id) => {
   try {
-    const response = await axios.delete(`http://localhost:5000/api/guides/deleteGuide/${id}`);
+    const response = await axios.delete(`${apiUrl}/api/guides/deleteGuide/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error deleting file:', error);

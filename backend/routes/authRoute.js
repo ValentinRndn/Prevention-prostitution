@@ -52,9 +52,6 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
-    console.log('email envoyé:', email); // Vérifie que l'email est reçu
-    console.log('Mot de passe envoyé:', password); // Vérifie que le mot de passe est reçu
-
   try {
     // Vérifier si l'utilisateur existe dans la base de données
     let user = await User.findOne({ email });

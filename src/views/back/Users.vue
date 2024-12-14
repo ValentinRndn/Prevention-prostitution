@@ -53,6 +53,18 @@
           <button type="submit" :disabled="passwordMismatch" class="bg-purple text-white py-2 px-4 rounded-md">{{ isEditing ? 'Modifier' : 'Créer' }}</button>
         </form>
       </ModalCreate>
+
+
+      <NotificationPopup
+        :visible="showNotificationPopup"
+        message="L'élément a été créé avec succès !"
+        :autoClose="true"
+        :autoCloseDuration="3000"
+        @close="showNotificationPopup = false"
+      />
+
+    
+    
     </div>
   </div>
 </template>
@@ -62,12 +74,14 @@ import AdminBar from "../../components/backOffice/AdminBar.vue";
 import HorizontalBar from "../../components/backOffice/HorizontalBar.vue";
 import { getAllUsers, createUser, updateUser, deleteUser } from "../../services/UsersService.js";
 import ModalCreate from "../../components/backOffice/blog/ModalCreate.vue";
+import NotificationPopup from "../../components/backOffice/NotificationPopup.vue";
 
 export default {
   components: {
     AdminBar,
     HorizontalBar,
-    ModalCreate
+    ModalCreate,
+    NotificationPopup
   },
   data() {
     return {
@@ -80,7 +94,8 @@ export default {
         password: ''
       },
       confirmPassword: '',
-      utilisateurs: []
+      utilisateurs: [],
+      showNotificationPopup: false,
     };
   },
   computed: {
@@ -89,6 +104,8 @@ export default {
     }
   },
   methods: {
+
+
     openModal() {
       this.isModalVisible = true;
       this.isEditing = false;
@@ -126,26 +143,39 @@ export default {
       }
     },
     async createUser() {
-      try {
-        if (this.passwordMismatch) {
-          console.error('Les mots de passe ne correspondent pas');
-          return;
-        }
+  try {
+    if (this.passwordMismatch) {
+      console.error('Les mots de passe ne correspondent pas');
+      return;
+    }
 
-        const userData = {
-          pseudo: this.userForm.pseudo,
-          email: this.userForm.email,
-          password: this.userForm.password
-        };
-        console.log(userData);
-        const response = await createUser(userData);
-        console.log('Utilisateur créé avec succès', response);
-        this.closeModal();
-        this.showUsers();
-      } catch (error) {
-        console.error('Erreur lors de la création de l\'utilisateur', error);
-      }
-    },
+    const userData = {
+      pseudo: this.userForm.pseudo,
+      email: this.userForm.email,
+      password: this.userForm.password
+    };
+
+    const response = await createUser(userData);
+    console.log('Utilisateur créé avec succès', response);
+
+    // Afficher la notification
+    this.showNotificationPopup = true;
+
+    // Fermer la modal
+    this.closeModal();
+
+    // Mettre à jour les utilisateurs
+    this.showUsers();
+
+    // Fermer la notification après un délai
+    setTimeout(() => {
+      this.showNotificationPopup = false;
+    }, 3000);  // Délai de 5 secondes (5000 ms)
+  } catch (error) {
+    console.error('Erreur lors de la création de l\'utilisateur', error);
+  }
+},
+
     async updateUser() {
       try {
         if (this.passwordMismatch) {
