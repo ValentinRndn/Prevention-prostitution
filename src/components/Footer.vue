@@ -5,7 +5,7 @@
       <!-- Bandeau blanc avec les logos -->
       <div class="bg-white py-10 w-full flex justify-center items-center gap-24 shadow-md md:flex-col">
         <img src="../assets/welcome/logo_agrasc.jpg" alt="Logo AGRASC" class="h-28 object-cover" />
-        <img src="../assets/logo_calvados.png" alt="Logo Préfecture de Région" class="h-28  object-cover" />
+        <img src="../assets/prefecture-de-region-normandie_logo.png" alt="Logo Préfecture de Normandie" class="h-28  object-cover" />
         <img src="../assets/welcome/logo-region-normandie.png" alt="Logo Consortium" class="h-28  object-cover" />
       </div>
 

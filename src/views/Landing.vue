@@ -6,7 +6,7 @@
         Prévention Accompagnement Prostitution Normandie
       </h1>
       <p class="w-full text-2xl mb-6 textShadow xl:text-md xl:text-center">Bienvenue sur le site Prévention Accompagnement Prostitution Normandie. Cette plateforme s’adresse aux Personnes en Situation de Prostitution (PSP), aux personnes qui en sont témoins, aux collectivités locales et aux professionnels de la protection, du droit, de la santé et de l’aide sociale. Il a pour objectif d’orienter vers les acteurs et dispositifs de prise en charge de droit commun afin de favoriser l’accès aux droits et aux soins et ainsi de contribuer à la réduction des risques.</p>
-      <button class="bg-purple-fonce text-white flex items-center drop-shadow-lg border border-grey justify-center gap-2 font-jost-sans font-semibold text-xl py-3 md:mx-auto rounded-md px-6 hover:bg-purple transition-colors duration-300 group">
+      <button class="bg-purple-fonce text-white flex items-center drop-shadow-lg justify-center gap-2 font-jost-sans font-semibold text-xl py-3 md:mx-auto rounded-md px-6 hover:bg-purple transition-colors duration-300 group">
     <router-link to="/guide">
         JE ME RENSEIGNE
       </router-link>

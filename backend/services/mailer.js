@@ -57,4 +57,26 @@ const sendConfirmationEmail = async (email, pseudo, token) => {
   }
 };
 
-module.exports = sendConfirmationEmail;
+
+// Fonction pour envoyer un email lié au formulaire
+const sendFormEmail = async (email, subject, message) => {
+  const mailOptions = {
+    from: process.env.MAIL_USER,  // Utilisation de l'email de l'expéditeur défini dans les variables d'environnement
+    to: process.env.MAIL_USER,    // L'email destinataire (celui qui reçoit le formulaire)
+    subject: subject,             // Sujet de l'email
+    html: message,                // Le contenu HTML du message
+    replyTo: email,               // Permet de répondre à l'email de l'utilisateur
+  };
+
+  try {
+    console.log('Tentative d\'envoi de l\'email du formulaire...');
+    await transporter.sendMail(mailOptions);
+    console.log('Email envoyé à', email);
+  } catch (error) {
+    console.error('Erreur lors de l\'envoi de l\'email du formulaire:', error);
+    throw new Error('Erreur lors de l\'envoi de l\'email du formulaire');
+  }
+};
+
+
+module.exports = { sendConfirmationEmail, sendFormEmail };

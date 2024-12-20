@@ -19,7 +19,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5174', 
+  origin: 'http://localhost:5173', 
   methods: 'GET,POST,PUT,DELETE,PATCH',  
   credentials: true 
 }));
@@ -33,6 +33,7 @@ app.use('/api/blogs', require('./routes/blogRoute')); // Route des articles
 app.use('/api/guides', require('./routes/guideRoute')); // Route des guides
 app.use('/api/statistics', require('./routes/statisticRoute')); // Route des statistiques
 app.use('/api/structures', require('./routes/structureRoute')); // Route des structures
+app.use('/api/form', require('./routes/formRoutes'));
 
 app.use('/uploads', express.static('uploads'));
 
