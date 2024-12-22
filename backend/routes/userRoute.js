@@ -36,7 +36,6 @@ router.get('/getAllUsers', async (req, res) => {
 router.post('/createUser', async (req, res) => {
   const { pseudo, password, email } = req.body;
 
-  console.log('Tentative de création d\'un utilisateur avec les données :', { pseudo, email });
 
   try {
     // Vérifier si l'utilisateur existe déjà par pseudo ou email

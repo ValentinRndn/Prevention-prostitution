@@ -19,10 +19,10 @@ const sendConfirmationEmail = async (email, pseudo, token) => {
     subject: 'Confirmez votre email',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
-        <h2 style="text-align: center; color: #333;">Bienvenue sur notre site 🎉</h2>
+        <h2 style="text-align: center; color: #333;">Bienvenue sur le site de Prévention prostitution</h2>
         <p style="font-size: 16px; color: #555;">
           Bonjour <strong>${pseudo}</strong>,<br><br>
-          Merci de vous être inscrit sur notre plateforme ! Pour finaliser la création de votre compte, nous avons besoin que vous confirmiez votre email.
+          Vous avez été inscrit sur le site de prévention prostitution. Pour finaliser la création de votre compte, nous avons besoin que vous confirmiez votre email.
         </p>
         <p style="font-size: 16px; color: #555;">
           Cliquez sur le lien ci-dessous pour confirmer votre compte. Ce lien est valable pendant <strong>${process.env.JWT_EXPIRATION}</strong> :

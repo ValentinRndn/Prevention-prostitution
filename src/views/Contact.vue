@@ -81,7 +81,7 @@ export default {
 
 methods: {
   async sendForm() {
-    if (!this.form.name || !this.form.email || !this.form.message) {
+    if (!this.form.name || !this.form.email || !this.form.message || !this.form.subject || !this.form.phone) {
       alert('Veuillez remplir tous les champs obligatoires.');
       return;
     }

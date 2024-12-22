@@ -4,14 +4,6 @@ const cors = require('cors'); // Import du middleware cors
 const dotenv = require('dotenv');
 const connectDB = require('./config/db'); // Connexion à MongoDB
 
-// Import des modèles
-const User = require('./models/User');
-const Blog = require('./models/Blog');
-const Guide = require('./models/Guide');
-const Statistic = require('./models/Statistic');
-const Structure = require('./models/Structure');
-
-
 dotenv.config();
 connectDB(); // Connexion à MongoDB
 
