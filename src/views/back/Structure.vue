@@ -72,6 +72,15 @@
           <button type="submit" class="bg-purple text-white py-2 px-4 rounded-md">{{ isEditing ? 'Modifier' : 'Créer' }}</button>
         </form>
       </ModalCreate>
+
+      <NotificationPopup
+        :visible="showNotificationPopup"
+        message="La structure a été ajoutée avec succès !"
+        :autoClose="true"
+        :autoCloseDuration="3000"
+        @close="showNotificationPopup = false"
+      />
+
     </div>
   </div>
 </template>
@@ -81,12 +90,14 @@ import AdminBar from "../../components/backOffice/AdminBar.vue";
 import HorizontalBar from "../../components/backOffice/HorizontalBar.vue";
 import { getAllStructures, createStructure, updateStructure, deleteStructure } from "../../services/StructuresService.js";
 import ModalCreate from "../../components/backOffice/blog/ModalCreate.vue";
+import NotificationPopup from "../../components/backOffice/NotificationPopup.vue";
 
 export default {
   components: {
     AdminBar,
     HorizontalBar,
     ModalCreate,
+    NotificationPopup
   },
   data() {
     return {
@@ -147,7 +158,8 @@ export default {
         { key: "category-10", label: "Trouver du matériel de consommation de drogue à moindre risque" },
         { key: "category-11", label: "Déposer plainte" }
         ]
-      }
+      },
+      showNotificationPopup: false,
     };
   },
   methods: {
@@ -200,7 +212,12 @@ export default {
         await createStructure(structureData);
         console.log('Structure created successfully');
         this.closeModal();
+        this.showNotificationPopup = true;
         this.fetchStructures();
+        setTimeout(() => {
+          this.showNotificationPopup = false;
+        }, 3000);
+
       } catch (error) {
         console.error('Error creating structure', error.response?.data || error.message);
       }

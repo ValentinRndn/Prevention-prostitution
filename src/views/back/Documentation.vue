@@ -58,6 +58,16 @@
           <button type="submit" class="bg-purple text-white py-2 px-4 rounded-md">{{ isEditing ? 'Modifier' : 'Créer' }}</button>
         </form>
       </ModalCreate>
+
+      
+      <NotificationPopup
+        :visible="showNotificationPopup"
+        message="L'utilisateur a été créé avec succès !"
+        :autoClose="true"
+        :autoCloseDuration="3000"
+        @close="showNotificationPopup = false"
+      />
+
     </div>
   </div>
 </template>
@@ -68,12 +78,15 @@ import AdminBar from "../../components/backOffice/AdminBar.vue";
 import HorizontalBar from "../../components/backOffice/HorizontalBar.vue";
 import { getAllGuides, createGuide, deleteGuide, updateGuide } from "../../services/GuideService.js";
 import ModalCreate from "../../components/backOffice/blog/ModalCreate.vue";
+import NotificationPopup from "../../components/backOffice/NotificationPopup.vue";
+
 
 export default {
   components: {
     AdminBar,
     HorizontalBar,
     ModalCreate,
+    NotificationPopup
   },
   data() {
     return {
@@ -90,6 +103,8 @@ export default {
       documents: [],
       currentPage: 1,
       documentsPerPage: 8, 
+      showNotificationPopup: false,
+
     };
   },
   methods: {
@@ -144,7 +159,12 @@ export default {
 
         await createGuide(formData);
         this.closeModal();
+        this.showNotificationPopup = true;
+        
         this.fetchDocuments();
+        setTimeout(() => {
+      this.showNotificationPopup = false;
+    }, 3000); 
       } catch (error) {
         console.error('Error creating Guide', error);
       }
