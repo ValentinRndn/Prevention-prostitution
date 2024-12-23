@@ -1,9 +1,10 @@
 <template>
   <aside>
-    <div class="icon-burger flex w-full items-center justify-evenly z-100" :class="{'bg-purple-fonce text-white transition-transform duration-300 ease-in-out transform': menuOpen}">
-      <img v-if="!menuOpen" src="../assets/logo_orange.png" alt="logo" class="object-cover w-[300px]">
-      <img v-else src="../assets/logo_orange.png" alt="close icon" @click="toggleMenu" class="object-cover w-[300px]">
-  
+    <div class="icon-burger flex w-full items-center justify-evenly z-100 p-4" :class="{'bg-purple-fonce text-white transition-transform duration-300 ease-in-out transform': menuOpen}">
+      <router-link to="/">
+        <img v-if="!menuOpen" src="../assets/logo_black.png" alt="Logo blanc" class="object-cover w-[200px]">
+        <img v-else src="../assets/logo_white.png" alt="close icon" @click="toggleMenu" class="object-cover w-[200px]">
+      </router-link>  
       <svg xmlns="http://www.w3.org/2000/svg" class="text-2xl font-bold cursor-pointer" width="32" height="32" viewBox="0 0 32 32" @click="toggleMenu">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h22M5 16h22M5 24h22"/>
       </svg>
@@ -12,9 +13,6 @@
     <!-- Menu mobile avec effet de défilement -->
     <transition name="slide-down">
       <ul v-show="menuOpen" class="navbar w-full flex flex-col gap-5 text-xl font-cgothic font-semibold justify-center absolute items-center bg-purple-fonce  text-white py-5 transition-transform duration-300 ease-in-out transform opacity-100 z-20">
-        <li class="menu">
-          <router-link to="/" @click="toggleMenu">ACCUEIL</router-link>
-        </li>      
         <li class="menu">
           <router-link to="/map" @click="toggleMenu">CARTOGRAPHIE</router-link>
         </li>
