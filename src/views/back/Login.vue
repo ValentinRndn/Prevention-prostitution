@@ -32,7 +32,8 @@ export default {
 
     methods: {
         login() {
-    axios.post('http://localhost:5000/api/auth/login', {
+	const apiUrl = import.meta.env.VITE_API_URL;
+    axios.post(`${apiUrl}/api/auth/login`, {
         email: this.email,
         password: this.password
     })
