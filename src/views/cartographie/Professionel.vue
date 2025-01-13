@@ -291,18 +291,18 @@ input[type="checkbox"] {
   }
 
   /* Couleurs des cases à cocher */
-  #category-10 { accent-color: grey; }
-  #category-11 { accent-color: red; }
-  #category-12 { accent-color: orange; }
-  #category-13 { accent-color: green; }
-  #category-14 { accent-color: aqua; }
-  #category-15 { accent-color: blue; }
-  #category-16 { accent-color: purple; }
-  #category-17 { accent-color: fuchsia; }
-  #category-18 { accent-color: orchid; }
-  #category-19 { accent-color: yellowgreen; }
-  #category-20 { accent-color: gold; }
-  #category-21 { accent-color: teal; }
+  #category-12 { accent-color: grey; }
+  #category-13 { accent-color: red; }
+  #category-14 { accent-color: orange; }
+  #category-15 { accent-color: green; }
+  #category-16 { accent-color: aqua; }
+  #category-17 { accent-color: blue; }
+  #category-18 { accent-color: purple; }
+  #category-19 { accent-color: fuchsia; }
+  #category-20 { accent-color: orchid; }
+  #category-21 { accent-color: yellowgreen; }
+  #category-22 { accent-color: gold; }
+  #category-23 { accent-color: teal; }
 
   @media (max-width: 768px) {
   .structure-popup {
