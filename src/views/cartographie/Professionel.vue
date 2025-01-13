@@ -3,46 +3,44 @@
     <div class="categories-container bg-grey h-full px-6 flex flex-col justify-center md:h-fit md:w-full md:bg-white md:text-black">
       <h1 class="text-white text-2xl font-bold mb-6 font-cgothic md:hidden">JE RECHERCHE :</h1>
       
-      <!-- Bouton pour afficher/masquer les catégories sur mobile -->
-      <span class="hidden md:flex md:items-center text-black cursor-pointer mb-4 md:w-fit font-semibold text-xl " @click="toggleVisibility">
-        Catégories 
-        <svg xmlns="http://www.w3.org/2000/svg" :class="{rotatedIcon : categoryVisible}" class="transition duration-200" width="24" height="24" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M12 15.5l-6-6l1.41-1.41L12 12.67l4.59-4.58L18 9.5z"/>
-        </svg>
-      </span>
+    <!-- Bouton pour afficher/masquer les catégories sur mobile -->
+    <span 
+      class="hidden md:flex md:items-center text-black cursor-pointer mb-4 md:w-fit font-semibold text-xl"
+      @click="toggleVisibility"
+    >
+      {{ selectedCategories.length ? `${selectedCategories.length} catégories sélectionnées` : 'Catégories' }}
+      <svg xmlns="http://www.w3.org/2000/svg" :class="{rotatedIcon: categoryVisible}" class="transition duration-200" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 15.5l-6-6l1.41-1.41L12 12.67l4.59-4.58L18 9.5z"/>
+      </svg>
+    </span>
 
-      <!-- Liste des catégories -->
-      <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black ">
-
-        <div v-if="showPopup" class="popup">
-            <div class="popup-content text-black relative p-8">
-              <p class="md:mt-7">
-                La cartographie du programme de prévention & d’accompagnement des personnes en situation de prostitution vous permet de trouver un établissement adapté à vos besoins dans toute la région Normande
-              </p>
-              <img @click="hidePopup" class="absolute top-5 right-5 w-[20px] cursor-pointer" src="../../assets/map/close-popup.png" alt="hide_arrow">
-            </div>
-          </div>
-
-
-        <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
-          <input :id="category.key" type="checkbox" @change="updateSelectedCategories(category.key)" />
-          <label :for="category.key">{{ category.label }}</label>
-        </div>
+    <!-- Liste des catégories -->
+    <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black">
+      <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
+        <input 
+          :id="category.key" 
+          type="checkbox" 
+          :checked="selectedCategories.includes(category.key)" 
+          @change="updateSelectedCategories(category.key)" 
+        />
+        <label :for="category.key">{{ category.label }}</label>
       </div>
     </div>
-    <div id="map" class="h-full w-full md:h-[80vh]"></div>
+    </div>
+    <div id="map" class="h-full w-full md:h-[80vh]">
 
     <!-- Transition et popup pour afficher la structure sélectionnée -->
     <transition name="slide-in">
       <div v-if="selectedStructure" class="structure-popup">
         <div class="popup-content flex flex-col gap-5 items-center justify-center font-cgothic">
           <img @click="closePopup" class="absolute top-5 left-5 w-[20px] cursor-pointer" src="../../assets/map/close-popup.png" alt="hide_arrow">
-          <h2 class="text-3xl text-center font-bold mt-10 text-purple-fonce">{{ selectedStructure.antenna }}</h2>
-          <p class="text-2xl text-center font-semibold">{{ selectedStructure.address }}</p>
-          <p class="text-2xl text-purple-fonce font-bold">{{ selectedStructure.phone }}</p>
+          <h2 class="text-3xl text-center font-bold mt-10 text-purple-fonce md:text-xl">{{ selectedStructure.antenna }}</h2>
+          <p class="text-2xl text-center font-semibold md:text-xl">{{ selectedStructure.address }}</p>
+          <p class="text-2xl text-purple-fonce font-bold md:text-xl">{{ selectedStructure.phone }}</p>
         </div>
       </div>
     </transition>
+  </div>
   </div>
 </template>
 
@@ -238,6 +236,27 @@ export default {
     position: relative;
   }
 
+  .checkbox {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+/* Pointer cursor sur les labels des checkboxes */
+.checkbox label {
+  cursor: pointer;
+}
+
+
+/* Ajout du curseur pointer pour l'input également */
+input[type="checkbox"] {
+  cursor: pointer;
+}
+.checkbox:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+
   .structure-popup {
     position: absolute;
     top: 0;
@@ -249,7 +268,8 @@ export default {
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
     transform: translateX(0);
     transition: transform 0.3s ease-in-out;
-    z-index: 1000;
+    z-index: 600;
+
   }
 
   .slide-in-enter-active {
@@ -283,4 +303,10 @@ export default {
   #category-19 { accent-color: yellowgreen; }
   #category-20 { accent-color: gold; }
   #category-21 { accent-color: teal; }
+
+  @media (max-width: 768px) {
+  .structure-popup {
+    width: 200px;
+  } 
+}
 </style>

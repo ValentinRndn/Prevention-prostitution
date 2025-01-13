@@ -20,7 +20,7 @@
         <button @click="toggleDropdown" class="menu">
           <img src="../assets/profile.png" alt="profil" class="size-6 object-cover object-center">
         </button>
-        <ul v-if="dropdownVisible" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+        <ul v-if="dropdownVisible" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg">
           <li class="menu-item p-2 hover:bg-gray-100">
             <router-link to="/backoffice/dashboard">Back office</router-link>
           </li>
@@ -96,6 +96,6 @@ const logout = () => {
   cursor: pointer;
 }
 .dropdown-menu {
-  z-index: 50;
+  z-index: 1000;
 }
 </style>

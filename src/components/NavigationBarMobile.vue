@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <div class="icon-burger flex w-full items-center justify-evenly z-100 p-4" :class="{'bg-purple-fonce text-white transition-transform duration-300 ease-in-out transform': menuOpen}">
+    <div class="icon-burger flex w-full items-center justify-evenly  p-4" :class="{'bg-purple-fonce text-white transition-transform duration-300 ease-in-out transform': menuOpen}">
       <router-link to="/">
         <img v-if="!menuOpen" src="../assets/logo_black.png" alt="Logo blanc" class="object-cover w-[200px]">
         <img v-else src="../assets/logo_white.png" alt="close icon" @click="toggleMenu" class="object-cover w-[200px]">
@@ -11,8 +11,8 @@
     </div>
     
     <!-- Menu mobile avec effet de défilement -->
-    <transition name="slide-down">
-      <ul v-show="menuOpen" class="navbar w-full flex flex-col gap-5 text-xl font-cgothic font-semibold justify-center absolute items-center bg-purple-fonce  text-white py-5 transition-transform duration-300 ease-in-out transform opacity-100 z-20">
+    <transition name="slide-down" >
+      <ul v-show="menuOpen" class="navbar w-full flex flex-col gap-5 text-xl font-cgothic font-semibold justify-center absolute items-center bg-purple-fonce  text-white py-5 transition-transform duration-300 ease-in-out transform opacity-100 ">
         <li class="menu">
           <router-link to="/map" @click="toggleMenu">CARTOGRAPHIE</router-link>
         </li>
@@ -23,7 +23,7 @@
           <router-link to="/contact" @click="toggleMenu">CONTACT</router-link>
         </li>
         <li class="menu">
-          <router-link to="/backoffice" @click="toggleMenu">BACKOFFICE</router-link>
+          <router-link to="/backoffice/dashboard" @click="toggleMenu">BACKOFFICE</router-link>
         </li>
         <li class="menu">
           <button @click="logout" class=" text-white px-4 py-2 rounded-md">SE DÉCONNECTER</button>
@@ -59,6 +59,9 @@ export default {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.navbar  {
+  z-index: 1000;
+}
 .menu {
   padding: 0.5rem 1rem;
 }

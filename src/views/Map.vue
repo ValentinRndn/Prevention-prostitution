@@ -2,7 +2,7 @@
     <div class="bg-back-carto flex h-[80vh] bg-cover bg-no-repeat">
         <div class="w-[50vw] flex justify-center items-center md:w-full md:bg-back-carto-left md:bg-cover">
             <div class="flex flex-col w-[400px] h-[200px] justify-center font-cgothic gap-4  ">
-                <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md  hover:bg-purple transition-colors duration-300 group">
+                <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md  hover:bg-purple transition-colors duration-300 group">
                 <router-link to="/cartographie/Particulier">
                     Je suis en situation de prostitution
                 </router-link>
@@ -11,7 +11,7 @@
                 </svg>
                 </button>
 
-                <button class="bg-purple text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md hover:bg-purple-fonce transition-colors duration-300 group">
+                <button class="bg-purple text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md  hover:bg-purple-fonce transition-colors duration-300 group">
                     <router-link to="/cartographie/Professionel">
                         Je suis professionnel ou témoin
                     </router-link>
