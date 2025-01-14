@@ -11,8 +11,23 @@ const app = express();
 
 const allowedOrigins = [
   'https://preventionprostitutionnormandie.com',
-  'https://www.prevention.prostitution.normandie.com'
+  'https://www.preventionprostitutionnormandie.com',
+  'http://preventionprostitutionnormandie.com',
+  'http://www.preventionprostitutionnormandie.com'
 ];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); 
+    } else {
+      callback(new Error('Not allowed by CORS')); 
+    }
+  },
+  methods: 'GET,POST,PUT,DELETE,PATCH',
+  credentials: true
+}));
+
 
 app.use(cors({
   origin: (origin, callback) => {
