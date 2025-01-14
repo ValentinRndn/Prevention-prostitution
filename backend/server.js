@@ -9,12 +9,23 @@ connectDB(); // Connexion à MongoDB
 
 const app = express();
 
-// Middleware
+const allowedOrigins = [
+  'https://preventionprostitutionnormandie.com',
+  'https://www.prevention.prostitution.normandie.com'
+];
+
 app.use(cors({
-  origin: 'https://preventionprostitutionnormandie.com', 
-  methods: 'GET,POST,PUT,DELETE,PATCH',  
-  credentials: true 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); 
+    } else {
+      callback(new Error('Not allowed by CORS')); 
+    }
+  },
+  methods: 'GET,POST,PUT,DELETE,PATCH',
+  credentials: true
 }));
+
 
 app.use(express.json()); 
 
