@@ -2,7 +2,7 @@
   <div class="relative bg-landing w-full h-[80vh] 2xl:h-[90vh] bg-center bg-cover bg-no-repeat mb-24 rounded-bl-[25%] overflow-hidden md:h-[60vh] md:mb-12 xl:h-[90vh]">
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 z-1"></div>
 
-    <div class="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center md:px-12 py-4 ">
+    <div class="relative z-1  0 flex flex-col items-center justify-center h-full px-6 text-center md:px-12 py-4 ">
       <h1 class="text-white font-cgothic yfont-bold text-5xl md:text-2xl lg:text-2xl xl:text-5xl drop-shadow-md mb-4">
         Prévention Accompagnement Prostitution Normandie
       </h1>

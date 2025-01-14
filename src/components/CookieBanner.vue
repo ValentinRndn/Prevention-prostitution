@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isVisible" class="cookie-banner fixed flex flex-col items-center gap-4 justify-center bottom-0 left-0 w-fit bg-purple-fonce text-white p-6 z-100 max-w-[450px] rounded-lg">
+    <div v-if="isVisible" class="cookie-banner fixed flex flex-col items-center gap-4 justify-center bottom-0 left-0 w-fit bg-purple-fonce text-white p-6 z-20 max-w-[450px] rounded-lg">
       <span class="text-center text-white textShadow   font-bold text-xl">POUVONS-NOUS UTILISER LES COOKIES ?</span>
       <p class="max-w-full text-center text-grey text-lg font-semibold">
         Ce site utilise des cookies pour améliorer votre expérience de navigation. En continuant à utiliser ce site, vous acceptez notre utilisation des cookies conformément à notre politique de confidentialité.
