@@ -5,8 +5,8 @@ const StructureSchema = new mongoose.Schema({
   address: { type: String, required: true },
   gps: { type: String, required: true },
   department: { type: String, required: true },
-  phone: { type: String, required: true },
-  email: { type: String, required: true },
+  phone: { type: String, required: false },
+  email: { type: String, required: false },
   category: { type: String, required: true }
 });
 
