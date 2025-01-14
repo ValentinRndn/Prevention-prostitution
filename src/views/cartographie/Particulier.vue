@@ -147,8 +147,11 @@ export default {
       this.categoryVisible = !this.categoryVisible;
     },
     handleResize() {
+      // Mettre à jour la largeur de la fenêtre
       this.windowWidth = window.innerWidth;
+      // Ajuster la visibilité des catégories en fonction de la largeur
       this.categoryVisible = this.windowWidth > 768;
+      console.log("Window resized: ", this.windowWidth);
     },
     initMap() {
       const mapContainer = document.getElementById("map");
@@ -224,6 +227,7 @@ export default {
   mounted() {
     this.showPopup = true;
     this.handleResize();
+    
     window.addEventListener("resize", this.handleResize);
     this.checkCookieConsent();
   },
