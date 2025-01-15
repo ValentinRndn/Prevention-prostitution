@@ -62,7 +62,7 @@
       
       <NotificationPopup
         :visible="showNotificationPopup"
-        message="L'utilisateur a été créé avec succès !"
+        message="Le guide a été créé avec succès !"
         :autoClose="true"
         :autoCloseDuration="3000"
         @close="showNotificationPopup = false"
