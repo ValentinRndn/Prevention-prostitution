@@ -20,7 +20,7 @@
         </div>
 
         <div class="update-field flex w-full border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
-          <p>Seconde statistique</p>  
+          <p>Seconde statistique</p>
           <input v-model="secondStats" class="border border-solid border-light-grey ml-auto shadow-lg w-[100px] text-center rounded-md md:mr-auto" type="number" name="updateNumber" id="second" maxlength="10">
         </div>
 

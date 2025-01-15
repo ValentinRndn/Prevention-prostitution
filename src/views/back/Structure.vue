@@ -66,7 +66,7 @@
             </select>
 
             <!-- Utiliser un input pour les autres champs -->
-            <input v-else v-model="newStructure[field.model]" :type="field.type" :id="field.id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+            <input v-else v-model="newStructure[field.model]" :type="field.type" :id="field.id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
           </div>
 
           <button type="submit" class="bg-purple text-white py-2 px-4 rounded-md">{{ isEditing ? 'Modifier' : 'Créer' }}</button>
@@ -214,7 +214,7 @@ export default {
         this.closeModal();
         this.showNotificationPopup = true;
         this.fetchStructures();
-        setTimeout(() => {
+                setTimeout(() => {
           this.showNotificationPopup = false;
         }, 3000);
 
