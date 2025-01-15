@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     if (file.mimetype === 'application/pdf') {
       cb(null, 'uploads/guides/pdf/');
     } else if (file.mimetype.startsWith('image/')) {
-      cb(null, 'uploads/guides/Images/');
+      cb(null, 'uploads/guides/images/');
     } else {
       cb(new Error('Invalid file type'), false);
     }
