@@ -17,9 +17,9 @@
         :key="doc._id"
         class="doc-container w-[300px] flex flex-col items-center justify-center text-center gap-3"
       >
-        <a :href="`/backend/${doc.pdf}`" target="_blank" rel="noopener noreferrer">
-          <img :src="`/backend/${doc.image}`" class="w-full h-[400px] object-cover" :alt="doc.title" />
-        </a>
+      <a :href="`${process.env.VUE_APP_API_URL}${doc.pdf}`" target="_blank" rel="noopener noreferrer">
+        <img :src="`${process.env.VUE_APP_API_URL}${doc.image}`" class="w-full h-[400px] object-cover" :alt="doc.title" />
+      </a>
         <a :href="doc.link" target="_blank" rel="noopener noreferrer">
           <h3 class="w-full font-semibold">{{ doc.title }}</h3>
         </a>
