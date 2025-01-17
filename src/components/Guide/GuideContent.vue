@@ -17,10 +17,10 @@
         :key="doc._id"
         class="doc-container w-[300px] flex flex-col items-center justify-center text-center gap-3"
       >
-      <a :href="`${process.env.VUE_APP_API_URL}${doc.pdf}`" target="_blank" rel="noopener noreferrer">
-        <img :src="`${process.env.VUE_APP_API_URL}${doc.image}`" class="w-full h-[400px] object-cover" :alt="doc.title" />
-      </a>
-        <a :href="doc.link" target="_blank" rel="noopener noreferrer">
+        <a :href="`/backend/${doc.pdf}`" target="_blank" rel="noopener noreferrer">
+          <img :src="`/backend/${doc.image}`" class="w-full h-[400px] object-cover" :alt="doc.title"  />
+        </a>
+          <a :href="doc.link" target="_blank" rel="noopener noreferrer">
           <h3 class="w-full font-semibold">{{ doc.title }}</h3>
         </a>
         <p class="w-full">{{ doc.description }}</p>
@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     formatCategory(category) {
-    // Remplacer les tirets par des espaces et mettre la première lettre en majuscule
     return category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
   },
     async loadCategory(category) {
@@ -70,18 +69,18 @@ export default {
     }
   },
   mounted() {
-    // Charger la première catégorie par défaut
     if (this.categories.length > 0) {
       this.loadCategory(this.categories[0]);
     }
+    console.log('Mounted documents:', this.documents.map(doc => ({ pdf: doc.pdf, image: doc.image })));
   }
 };
 </script>
 
 <style>
-
+  
 .button-prostitution.bg-blue-500 {
-  background-color: #4299e1; /* Couleur bleue par défaut */
+  background-color: #4299e1; 
 }
 .button-prostitution.text-white {
   color: white;
