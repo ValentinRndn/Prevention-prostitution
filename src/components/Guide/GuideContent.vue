@@ -11,16 +11,21 @@
       </button>
     </div>
 
-    <div class="documents-container mt-14 mx-10 flex gap-5 flex-wrap">
+    <div class="documents-container mt-14 mx-10 grid gap-5 grid-cols-3 
+      sm:grid-cols-1 
+      md:grid-cols-2 
+      lg:grid-cols-3
+      xl:grid-cols-3"
+    >
       <div
         v-for="doc in documents"
         :key="doc.id"
-        class="doc-container w-[300px] flex flex-col items-center justify-center text-center gap-3"
+        class="doc-container flex flex-col items-center justify-center text-center gap-3"
       >
         <!-- Lien vers le PDF -->
         <a :href="doc.pdf" target="_blank" rel="noopener noreferrer">
           <!-- Image -->
-          <img :src="doc.image" class="w-full h-[400px] object-cover" :alt="doc.title" />
+          <img :src="doc.image" class="w-full h-[250px] object-cover" :alt="doc.title" />
         </a>
         <!-- Autres détails -->
         <a :href="doc.link" target="_blank" rel="noopener noreferrer">
@@ -31,6 +36,7 @@
     </div>
   </div>
 </template>
+
 
 
 <script>
