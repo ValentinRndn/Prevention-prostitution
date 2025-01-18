@@ -64,8 +64,8 @@ export default {
           title: doc.title,
           description: doc.description,
           category: doc.category,
-          image: `${apiUrl}${doc.image}`, 
-          pdf: `${apiUrl}${doc.pdf}`     
+          image: `${apiUrl}/${doc.image}`,
+          pdf: `${apiUrl}/${doc.pdf}`  
         }));
       } catch (error) {
         console.error('Error fetching documents:', error);
