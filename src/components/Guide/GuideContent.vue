@@ -14,13 +14,16 @@
     <div class="documents-container mt-14 mx-10 flex gap-5 flex-wrap">
       <div
         v-for="doc in documents"
-        :key="doc._id"
+        :key="doc.id"
         class="doc-container w-[300px] flex flex-col items-center justify-center text-center gap-3"
       >
-        <a :href="`/backend/${doc.pdf}`" target="_blank" rel="noopener noreferrer">
-          <img :src="`/backend/${doc.image}`" class="w-full h-[400px] object-cover" :alt="doc.title"  />
+        <!-- Lien vers le PDF -->
+        <a :href="doc.pdf" target="_blank" rel="noopener noreferrer">
+          <!-- Image -->
+          <img :src="doc.image" class="w-full h-[400px] object-cover" :alt="doc.title" />
         </a>
-          <a :href="doc.link" target="_blank" rel="noopener noreferrer">
+        <!-- Autres détails -->
+        <a :href="doc.link" target="_blank" rel="noopener noreferrer">
           <h3 class="w-full font-semibold">{{ doc.title }}</h3>
         </a>
         <p class="w-full">{{ doc.description }}</p>
@@ -33,6 +36,7 @@
 <script>
 import { getGuideByCategory } from '../../services/GuideService.js';
 
+const apiUrl = import.meta.env.VITE_API_URL;
 export default {
   name: 'GuideContent',
   props: {
@@ -59,9 +63,9 @@ export default {
           id: doc._id,
           title: doc.title,
           description: doc.description,
-          image: doc.image,
           category: doc.category,
-          pdf: doc.pdf
+          image: `${apiUrl}${doc.image}`, 
+          pdf: `${apiUrl}${doc.pdf}`     
         }));
       } catch (error) {
         console.error('Error fetching documents:', error);
