@@ -1,85 +1,91 @@
 <template>
-  <div class="dashboard flex bg-back-grey">
-
+  <div class="dashboard min-h-screen bg-gray-50">
     <div class="components">
-
-      <!-- Intégration de la barre latérale -->
       <HorizontalBar />
       <AdminBar />
-
     </div>
 
+    <div class="dashboard-container p-6 xl:p-8">
+      <!-- Stats générales -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6 mb-6">
+        <!-- Stats visiteurs -->
+        <div class="stat-card">
+          <h4 class="text-sm text-gray-600 mb-2">Visiteurs du mois</h4>
+          <p class="text-2xl font-bold text-gray-800">--</p>
+          <p class="text-sm text-gray-500 mt-2">En attente de Matomo</p>
+        </div>
 
-    <!-- Contenu du tableau de bord -->
-    <div class="dashboard-container flex flex-wrap gap-12 overflow-auto">
-      
-      <!-- Tableau users -->
-      <div class="posts-keys flex flex-col gap-5 w-[25%] h-[350px] bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
-            <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Gestion des utilisateurs</h3>
-            <div v-for="user in lastThreeUsers" :key="user._id" class="post-field flex w-full justify-between items-center border-b border-b-solid border-light-grey pb-5 md:flex-col">
-              <div class="user flex gap-2 justify-center items-center">
-                <!-- <img src="../../assets/back/users/user.png" class="w-[25px]" alt="user-icon"> -->
-                <p>{{user.pseudo}}</p>
-              </div>
-              <div class="edit-post flex gap-4 font-poppins">
-              </div>
+        <!-- Stats pages vues -->
+        <div class="stat-card">
+          <h4 class="text-sm text-gray-600 mb-2">Pages vues</h4>
+          <p class="text-2xl font-bold text-gray-800">--</p>
+          <p class="text-sm text-gray-500 mt-2">En attente de Matomo</p>
+        </div>
+
+        <!-- Autres stats... -->
+      </div>
+
+      <!-- Conteneurs principaux -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 xl:gap-6">
+        <!-- Gestion utilisateurs -->
+        <div class="dashboard-card">
+          <h3 class="card-title">Gestion des utilisateurs</h3>
+          
+          <div class="space-y-4 my-4">
+            <div v-for="user in lastThreeUsers" :key="user._id" class="user-item">
+              <p class="text-gray-700">{{ user.pseudo }}</p>
             </div>
-            <router-link to="/backoffice/users" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
+            <div v-if="!lastThreeUsers.length" class="text-center text-gray-500 py-4">
+              Aucun utilisateur
+            </div>
           </div>
 
+          <router-link to="/backoffice/users" class="dashboard-button">
+            En voir plus
+          </router-link>
+        </div>
 
-          <!-- tableau documents-->
-          <div class="posts-keys flex flex-col gap-5 w-[25%] h-[350px] bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
-            <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Mes derniers documents</h3>
-            <div v-for="(doc) in lastThreeDocuments" :key="doc.id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
-              <p>{{ doc.title }}</p>
-              <div class="edit-post flex gap-4 font-poppins">
-              </div>
+        <!-- Documents -->
+        <div class="dashboard-card">
+          <h3 class="card-title">Mes derniers documents</h3>
+          
+          <div class="space-y-4 my-4">
+            <div v-for="doc in lastThreeDocuments" :key="doc.id" class="doc-item">
+              <p class="text-gray-700">{{ doc.title }}</p>
             </div>
-            <router-link to="/backoffice/documentation" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
+            <div v-if="!lastThreeDocuments.length" class="text-center text-gray-500 py-4">
+              Aucun document
+            </div>
           </div>
 
-          <!-- tableau articles
-        <div class="posts-keys flex flex-col gap-5 w-[25%] h-[350px] bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
-          <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">Mes derniers articles</h3>
-          <div v-for="(article) in lastThreeArticles" :key="article._id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
-            <p>{{ article.title }}</p>
-          <div class="edit-post flex gap-4 font-poppins">
+          <router-link to="/backoffice/documentation" class="dashboard-button">
+            En voir plus
+          </router-link>
+        </div>
+
+        <!-- SEO -->
+        <div class="dashboard-card">
+          <h3 class="card-title">SEO</h3>
+          <div class="text-center text-gray-500 py-8">
+            Intégration Matomo à venir
+          </div>
         </div>
       </div>
-        <router-link to="/backoffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200 md:w-auto">En voir plus</router-link>
-      </div> -->
-
-          <!-- tableau SEO-->
-          <div class="posts-keys flex flex-col gap-5 w-[25%] h-[350px] bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
-            <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center">SEO</h3>
-            <div class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
-            <div class="edit-post flex gap-4 font-poppins">
-          </div>
-        </div>
-          <!-- <router-link to="/backoffice/blog" class="edit-button bg-purple text-white py-2 px-2 w-1/3 mx-auto rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">Modifier</router-link> -->
-        </div>
-
-
-
-
     </div>
   </div>
 </template>
 
 <script>
-// Importation du composant SideBar
 import AdminBar from "../../components/backOffice/AdminBar.vue";
 import HorizontalBar from "../../components/backOffice/HorizontalBar.vue";
-import { getAllGuides} from "../../services/GuideService.js";
-import { showAllBlogs} from "../../services/BlogsService.js";
-import  { getAllUsers } from "../../services/UsersService.js";
-
-
+import { getAllGuides } from "../../services/GuideService.js";
+import { showAllBlogs } from "../../services/BlogsService.js";
+import { getAllUsers } from "../../services/UsersService.js";
 
 export default {
+  name: 'Dashboard',
   components: {
-    AdminBar, 
+    AdminBar,
     HorizontalBar
   },
   data() {
@@ -93,9 +99,6 @@ export default {
     lastThreeUsers() {
       return this.users.slice(-3).reverse();
     },
-    lastThreeArticles() {
-      return this.articles.slice(-3).reverse();
-    },
     lastThreeDocuments() {
       return this.documents.slice(-3).reverse();
     }
@@ -108,24 +111,22 @@ export default {
         console.error('Failed to fetch articles:', error);
       }
     },
-
     async showAllUsers() {
       try {
         this.users = await getAllUsers();
       } catch (error) {
-        console.error('Failed to fecth users:', error);
+        console.error('Failed to fetch users:', error);
       }
     },
     async showAllGuides() {
       try {
         this.documents = await getAllGuides();
-        console.log(this.documents);
       } catch (error) {
+        console.error('Failed to fetch guides:', error);
       }
     }
   },
-
-  async mounted() {
+  mounted() {
     this.getAllBlogs();
     this.showAllUsers();
     this.showAllGuides();
@@ -133,19 +134,32 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .dashboard {
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #f9fafb;
 }
 
 .dashboard-container {
-    flex: 1 1 0;
-    padding: 2rem;
+  margin-left: 250px; /* Ajustez selon la largeur de votre AdminBar */
 }
 
-@media(max-width: 768px) {
-    .dashboard-container {
-        padding-left: 6rem;
-    }
+
+/* Responsive styles */
+@media (max-width: 1023px) {
+  .dashboard-container {
+    margin-left: 0;
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboard-container {
+    padding-left: 4rem;
+  }
+  
+  .stat-card {
+    @apply p-4;
+  }
 }
 </style>
