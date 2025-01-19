@@ -17,10 +17,18 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: '*',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      // Bloque l'origine
+      callback(new Error(`Origin ${origin} not allowed by CORS policy`));
+    }
+  },
   methods: 'GET,POST,PUT,DELETE,PATCH',
-  credentials: true
+  credentials: true,
 }));
+
 
 
 
