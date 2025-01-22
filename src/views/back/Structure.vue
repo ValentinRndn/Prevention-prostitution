@@ -4,11 +4,20 @@
       <HorizontalBar />
       <AdminBar />
     </div>
-    <div class="content w-full">
+    <div class="content w-full overflow-y-auto">
       <div class="dashboard-container">
         <div class="update-keys mt-16">
           <div class="button-container flex gap-5">
             <button @click="openModal" class="add-button bg-purple-fonce text-white py-4 px-6 rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">AJOUTER UNE NOUVELLE STRUCTURE</button>
+          </div>
+
+          <div class="search-container mb-5">
+            <input
+              type="text"
+              v-model="searchQuery"
+              placeholder="Rechercher une structure ou une catégorie"
+              class="border border-gray-300 rounded-md p-2 w-full mt-8"
+            />
           </div>
 
           <div class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6">
@@ -16,6 +25,7 @@
 
             <div v-for="structure in paginatedStructures()" :key="structure.id" class="post-field flex w-full justify-between border-b border-b-solid border-light-grey pb-5 md:flex-col md:items-center">
               <p>{{ structure.antenna }}</p>
+              <p class="text-light-grey">{{ getCategoryLabel(structure.category) }}</p> <!-- Utilisation de la méthode pour obtenir le label -->
               <div class="edit-post flex gap-4 font-poppins">
                 <p class="text-light-grey underline cursor-pointer" @click="openEditModal(structure)">Modifier</p>
                 <p class="text-light-grey underline cursor-pointer" @click="deleteStructure(structure.id)">Supprimer</p>
@@ -24,10 +34,28 @@
           </div>
 
           <!-- Pagination -->
-          <div class="pagination mt-6 flex justify-center gap-3">
-            <button v-for="page in totalPages()" :key="page" @click="changePage(page)" class="bg-purple text-white px-3 py-1 rounded-md">
-              {{ page }}
+          <div class="pagination mt-6 flex justify-center items-center gap-3">
+            <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1" class="bg-purple text-white px-3 py-1 rounded-md">
+              &laquo; <!-- Flèche gauche -->
             </button>
+
+            <span v-if="totalPages() > 1">
+              <button v-if="currentPage > 2" @click="changePage(1)" class="bg-purple text-white px-3 py-1 rounded-md">1</button>
+              <span v-if="currentPage > 3">...</span>
+              
+              <button v-for="page in visiblePages()" :key="page" @click="changePage(page)" class="bg-purple text-white px-3 py-1 rounded-md">
+                {{ page }}
+              </button>
+
+              <span v-if="currentPage < totalPages() - 2">...</span>
+              <button v-if="currentPage < totalPages() - 1" @click="changePage(totalPages())" class="bg-purple text-white px-3 py-1 rounded-md">{{ totalPages() }}</button>
+            </span>
+
+            <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages()" class="bg-purple text-white px-3 py-1 rounded-md">
+              &raquo; <!-- Flèche droite -->
+            </button>
+
+            <span class="ml-4 text-gray-700 absolute right-10">Total: {{ structures.length }} structures</span>
           </div>
         </div>
       </div>
@@ -115,6 +143,7 @@ export default {
         category: ''
       },
       structures: [],
+      searchQuery: '',
       currentPage: 1,
       structuresPerPage: 8,
       mainCategories: ['Professionnel', 'Personne en situation de prostitution'], 
@@ -163,6 +192,25 @@ export default {
     };
   },
   methods: {
+      getCategoryLabel(key) {
+      for (const mainCategory in this.allCategories) {
+        const category = this.allCategories[mainCategory].find(cat => cat.key === key);
+        if (category) return category.label;
+      }
+      return '';
+    },
+    visiblePages() {
+    const pages = [];
+    const total = totalPages();
+
+    for (let i = 1; i <= total; i++) {
+      if (i === 1 || i === total || (i >= this.currentPage - 1 && i <= this.currentPage + 1)) {
+        pages.push(i);
+      }
+    }
+    
+    return pages;
+  },
     openModal() {
       this.isModalVisible = true;
       this.isEditing = false;
@@ -241,13 +289,22 @@ export default {
         console.error('Error deleting structure', error);
       }
     },
-    changePage(page) {
-      this.currentPage = page;
-    },
+      changePage(page) {
+    if (page < 1 || page > this.totalPages()) return; // Vérifiez les limites
+    this.currentPage = page;
+  },
     paginatedStructures() {
+      const filteredStructures = this.structures.filter(structure => {
+        const nameMatch = structure.antenna.toLowerCase().includes(this.searchQuery.toLowerCase());
+        const categoryMatch = this.categories.some(category => 
+          category.label.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+        return nameMatch || categoryMatch;
+      });
+      
       const start = (this.currentPage - 1) * this.structuresPerPage;
       const end = start + this.structuresPerPage;
-      return this.structures.slice(start, end);
+      return filteredStructures.slice(start, end);
     },
     totalPages() {
       return Math.ceil(this.structures.length / this.structuresPerPage);
