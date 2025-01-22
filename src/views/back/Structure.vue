@@ -201,7 +201,7 @@ export default {
     },
     visiblePages() {
     const pages = [];
-    const total = totalPages();
+    const total = this.totalPages(); // Utilisez 'this' pour accéder à la méthode
 
     for (let i = 1; i <= total; i++) {
       if (i === 1 || i === total || (i >= this.currentPage - 1 && i <= this.currentPage + 1)) {
@@ -289,8 +289,8 @@ export default {
         console.error('Error deleting structure', error);
       }
     },
-      changePage(page) {
-    if (page < 1 || page > this.totalPages()) return; // Vérifiez les limites
+    changePage(page) {
+    if (page < 1 || page > this.totalPages()) return; // Utilisez 'this' ici aussi
     this.currentPage = page;
   },
     paginatedStructures() {
