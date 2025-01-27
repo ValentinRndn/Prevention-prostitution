@@ -1,13 +1,18 @@
 <template>
-  <div class="dashboard min-h-screen bg-gray-50">
+  <div class="dashboard flex bg-back-grey">
+
     <div class="components">
+
+      <!-- Intégration de la barre latérale -->
       <HorizontalBar />
       <AdminBar />
+
     </div>
 
-    <div class="dashboard-container p-6 xl:p-8">
+
+    <div class="dashboard-container p-6 xl:p-8 mt-16 ">
       <!-- Stats générales -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6 mb-6">
+      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-1 gap-4 xl:gap-6 mb-6 ">
         <!-- Stats visiteurs -->
         <div class="stat-card">
           <h4 class="text-sm text-gray-600 mb-2">Visiteurs du mois</h4>
@@ -26,10 +31,10 @@
       </div>
 
       <!-- Conteneurs principaux -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 xl:gap-6">
+      <div class="grid grid-cols-4 lg:grid-cols-3 gap-4 xl:gap-6">
         <!-- Gestion utilisateurs -->
-        <div class="dashboard-card">
-          <h3 class="card-title">Gestion des utilisateurs</h3>
+        <div class="dashboard-card bg-white p-4 rounded-md">
+          <h3 class="card-title border-b border-b-solid border-light-grey pb-4">Gestion des utilisateurs</h3>
           
           <div class="space-y-4 my-4">
             <div v-for="user in lastThreeUsers" :key="user._id" class="user-item">
@@ -40,14 +45,14 @@
             </div>
           </div>
 
-          <router-link to="/backoffice/users" class="dashboard-button">
+          <router-link to="/backoffice/users" class="dashboard-button bg-purple-fonce p-2 text-white rounded-md">
             En voir plus
           </router-link>
         </div>
 
         <!-- Documents -->
-        <div class="dashboard-card">
-          <h3 class="card-title">Mes derniers documents</h3>
+        <div class="dashboard-card bg-white p-4 rounded-md">
+          <h3 class="card-title border-b border-b-solid border-light-grey pb-4">Mes derniers documents</h3>
           
           <div class="space-y-4 my-4">
             <div v-for="doc in lastThreeDocuments" :key="doc.id" class="doc-item">
@@ -58,14 +63,14 @@
             </div>
           </div>
 
-          <router-link to="/backoffice/documentation" class="dashboard-button">
+          <router-link to="/backoffice/documentation" class="dashboard-button bg-purple-fonce p-2 text-white rounded-md ">
             En voir plus
           </router-link>
         </div>
 
         <!-- SEO -->
-        <div class="dashboard-card">
-          <h3 class="card-title">SEO</h3>
+        <div class="dashboard-card bg-white p-4 rounded-md">
+          <h3 class="card-title border-b border-b-solid border-light-grey pb-4">SEO</h3>
           <div class="text-center text-gray-500 py-8">
             Intégration Matomo à venir
           </div>
@@ -76,16 +81,18 @@
 </template>
 
 <script>
+// Importation du composant SideBar
 import AdminBar from "../../components/backOffice/AdminBar.vue";
 import HorizontalBar from "../../components/backOffice/HorizontalBar.vue";
-import { getAllGuides } from "../../services/GuideService.js";
-import { showAllBlogs } from "../../services/BlogsService.js";
-import { getAllUsers } from "../../services/UsersService.js";
+import { getAllGuides} from "../../services/GuideService.js";
+import { showAllBlogs} from "../../services/BlogsService.js";
+import  { getAllUsers } from "../../services/UsersService.js";
+
+
 
 export default {
-  name: 'Dashboard',
   components: {
-    AdminBar,
+    AdminBar, 
     HorizontalBar
   },
   data() {
@@ -99,6 +106,9 @@ export default {
     lastThreeUsers() {
       return this.users.slice(-3).reverse();
     },
+    lastThreeArticles() {
+      return this.articles.slice(-3).reverse();
+    },
     lastThreeDocuments() {
       return this.documents.slice(-3).reverse();
     }
@@ -111,22 +121,24 @@ export default {
         console.error('Failed to fetch articles:', error);
       }
     },
+
     async showAllUsers() {
       try {
         this.users = await getAllUsers();
       } catch (error) {
-        console.error('Failed to fetch users:', error);
+        console.error('Failed to fecth users:', error);
       }
     },
     async showAllGuides() {
       try {
         this.documents = await getAllGuides();
+        console.log(this.documents);
       } catch (error) {
-        console.error('Failed to fetch guides:', error);
       }
     }
   },
-  mounted() {
+
+  async mounted() {
     this.getAllBlogs();
     this.showAllUsers();
     this.showAllGuides();
@@ -134,32 +146,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .dashboard {
-  min-height: 100vh;
-  background-color: #f9fafb;
+  height: 100vh;
 }
 
 .dashboard-container {
-  margin-left: 250px; /* Ajustez selon la largeur de votre AdminBar */
+    flex: 1 1 0;
+    padding: 2rem;
 }
 
-
-/* Responsive styles */
-@media (max-width: 1023px) {
-  .dashboard-container {
-    margin-left: 0;
-    padding-top: 2rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .dashboard-container {
-    padding-left: 4rem;
-  }
-  
-  .stat-card {
-    @apply p-4;
-  }
+@media(max-width: 768px) {
+    .dashboard-container {
+        padding-left: 6rem;
+    }
 }
 </style>

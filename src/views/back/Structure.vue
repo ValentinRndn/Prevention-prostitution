@@ -15,7 +15,7 @@
             <input
               type="text"
               v-model="searchQuery"
-              placeholder="Rechercher une structure ou une catégorie"
+              placeholder="Rechercher une structure"
               class="border border-gray-300 rounded-md p-2 w-full mt-8"
             />
           </div>
