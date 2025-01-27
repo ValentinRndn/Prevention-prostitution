@@ -5,7 +5,7 @@
       <AdminBar />
     </div>
     <div class="content w-full overflow-y-auto">
-      <div class="dashboard-container">
+      <div class="dashboard-container ">
         <div class="update-keys mt-16">
           <div class="button-container flex gap-5">
             <button @click="openModal" class="add-button bg-purple-fonce text-white py-4 px-6 rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">AJOUTER UNE NOUVELLE STRUCTURE</button>

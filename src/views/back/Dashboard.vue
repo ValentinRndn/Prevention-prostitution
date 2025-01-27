@@ -12,23 +12,19 @@
 
     <div class="dashboard-container p-6 xl:p-8 mt-16 ">
       <!-- Stats générales -->
-      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-1 gap-4 xl:gap-6 mb-6 ">
-        <!-- Stats visiteurs -->
+      <!-- <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-1 gap-4 xl:gap-6 mb-6 ">
         <div class="stat-card">
           <h4 class="text-sm text-gray-600 mb-2">Visiteurs du mois</h4>
           <p class="text-2xl font-bold text-gray-800">--</p>
           <p class="text-sm text-gray-500 mt-2">En attente de Matomo</p>
         </div>
-
-        <!-- Stats pages vues -->
         <div class="stat-card">
           <h4 class="text-sm text-gray-600 mb-2">Pages vues</h4>
           <p class="text-2xl font-bold text-gray-800">--</p>
           <p class="text-sm text-gray-500 mt-2">En attente de Matomo</p>
         </div>
 
-        <!-- Autres stats... -->
-      </div>
+      </div> -->
 
       <!-- Conteneurs principaux -->
       <div class="grid grid-cols-4 lg:grid-cols-3 gap-4 xl:gap-6">
@@ -69,12 +65,12 @@
         </div>
 
         <!-- SEO -->
-        <div class="dashboard-card bg-white p-4 rounded-md">
+        <!-- <div class="dashboard-card bg-white p-4 rounded-md">
           <h3 class="card-title border-b border-b-solid border-light-grey pb-4">SEO</h3>
           <div class="text-center text-gray-500 py-8">
             Intégration Matomo à venir
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
