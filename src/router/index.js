@@ -30,7 +30,7 @@ import { useHead } from '@vueuse/head';
               metaTags: [
                 {
                   name: 'description',
-                  content: 'Découvrez Prévention Prostitution Normandie, une plateforme dédiée aux Personnes en Situation de Prostitution (PSP), témoins, collectivités, et professionnels. Accédez à des ressources, dispositifs d’aide, et conseils pour favoriser l’accès aux droits, aux soins et réduire les risques.'
+                  content: "Prévention Prostitution Normandie : ressources et aides pour les PSP, témoins et professionnels afin de favoriser l'accès aux droits et réduire les risques."
                 },
                 {
                   property: 'og:title',
