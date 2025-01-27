@@ -2,8 +2,8 @@
   <aside>
     <div class="icon-burger flex w-full items-center justify-evenly  p-4" :class="{'bg-purple-fonce text-white transition-transform duration-300 ease-in-out transform': menuOpen}">
       <router-link to="/">
-        <img v-if="!menuOpen" src="../assets/logo_black.png" alt="Logo blanc" class="object-cover w-[200px]">
-        <img v-else src="../assets/logo_white.png" alt="close icon" @click="toggleMenu" class="object-cover w-[200px]">
+        <img v-if="!menuOpen" src="../assets/logo_typo.png" alt="Logo blanc" class="object-cover w-[200px]">
+        <img v-else src="../assets/logo_typo_blanc.png" alt="close icon" @click="toggleMenu" class="object-cover w-[200px]">
       </router-link>  
       <svg xmlns="http://www.w3.org/2000/svg" class="text-2xl font-bold cursor-pointer" width="32" height="32" viewBox="0 0 32 32" @click="toggleMenu">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h22M5 16h22M5 24h22"/>

@@ -1,7 +1,7 @@
 <template>
   <aside class="flex items-center justify-around text-xl gap-5 my-4 mx-12 sm:hidden 2xl:text-sm ">
     <router-link to="/">
-    <img src="../assets/logo_black.png" alt="Logo black" class="w-[150px] " />
+    <img src="../assets/logo_typo.png" alt="Logo black" class="w-[200px] " />
   </router-link>
     <ul class="navbar flex items-center gap-10 h-full font-cgothic font-bold text-grey 2xl:gap-8">
       <li class="menu w-fit text-center" :class="{ 'selectedMenu': currentPage === '/map' }">
