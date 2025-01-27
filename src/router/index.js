@@ -266,27 +266,14 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-// Middleware pour mettre à jour le SEO
 router.afterEach((to) => {
-  // Mise à jour du titre
-  if (to.meta.title) {
-    document.title = to.meta.title;
-  }
+  const title = to.meta.title || 'Prévention Prostitution Normandie'; 
+  const metaTags = to.meta.metaTags || []; 
 
-  // Mise à jour des balises meta
-  const metaTags = document.querySelectorAll('[data-vue-router-controlled]');
-  metaTags.forEach((tag) => tag.parentNode.removeChild(tag));
-
-  if (to.meta.metaTags) {
-    to.meta.metaTags.forEach((metaTag) => {
-      const tag = document.createElement('meta');
-      Object.keys(metaTag).forEach((key) => {
-        tag.setAttribute(key, metaTag[key]);
-      });
-      tag.setAttribute('data-vue-router-controlled', '');
-      document.head.appendChild(tag);
-    });
-  }
+  useHead({
+    title,
+    meta: metaTags,
+  });
 });
 
 export default router;

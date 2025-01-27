@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^6.0.1",
+    "@vueuse/head": "^2.0.0",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "install": "^0.13.0",
