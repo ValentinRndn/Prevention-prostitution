@@ -17,6 +17,7 @@ import BlogDetail from '../components/Blog/BlogDetail.vue';
 import Login from '../views/back/Login.vue';
 import StructureBack from '../views/back/Structure.vue';
 import LegalNotices from '../views/LegalNotices.vue';
+import { useHead } from '@vueuse/head';
 
 
     const routes = [
