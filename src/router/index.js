@@ -35,6 +35,10 @@ import { useHead } from '@vueuse/head';
                 {
                   property: 'og:title',
                   content: 'Prévention Prostitution Normandie | Accès aux Droits et Réduction des Risques'
+                },
+                {
+                  name: 'keywords',
+                  content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP'
                 }
               ]
             }
@@ -53,6 +57,10 @@ import { useHead } from '@vueuse/head';
                 {
                   property: 'og:title',
                   content: 'Prévention Prostitution Normandie | Cartographie'
+                },
+                {
+                  name: 'keywords',
+                  content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, cartes, structures, services'
                 }
               ]
             }
@@ -71,6 +79,10 @@ import { useHead } from '@vueuse/head';
                 {
                   property: 'og:title',
                   content: 'Prévention Prostitution Normandie | Documentation'
+                },
+                {
+                  name: 'keywords',
+                  content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, guides, documents'
                 }
               ]
             }
@@ -90,6 +102,10 @@ import { useHead } from '@vueuse/head';
                 {
                   property: 'og:title',
                   content: 'Prévention Prostitution Normandie | Contact'
+                },
+                {
+                  name: 'keywords',
+                  content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, contact, informations'
                 }
               ]
             }
@@ -170,6 +186,10 @@ import { useHead } from '@vueuse/head';
                 {
                   property: 'og:title',
                   content: 'Prévention Prostitution Normandie | Cartographie pour personnes en situation de prostitution'
+                },
+                {
+                  name: 'keywords',
+                  content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, cartes, structures, services'
                 }
               ]
         },
@@ -186,6 +206,10 @@ import { useHead } from '@vueuse/head';
               {
                 property: 'og:title',
                 content: 'Prévention Prostitution Normandie | Cartographie pour professionnels'
+              },
+              {
+                name: 'keywords',
+                content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, cartes, structures, services'
               }
             ]
         },
@@ -202,7 +226,12 @@ import { useHead } from '@vueuse/head';
               {
                 property: 'og:title',
                 content: 'Prévention Prostitution Normandie | Documentation pour personnes en situation de prostitution'
-              }
+              },
+                {
+                  name: 'keywords',
+                  content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP,  guides, documents'
+                }
+              
             ]
         },
         {
@@ -218,6 +247,10 @@ import { useHead } from '@vueuse/head';
               {
                 property: 'og:title',
                 content: 'Prévention Prostitution Normandie | Documentation pour professionnels'
+              },
+              {
+                name: 'keywords',
+                content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, guides, documents'
               }
             ]
         },
@@ -234,7 +267,12 @@ import { useHead } from '@vueuse/head';
               {
                 property: 'og:title',
                 content: 'Prévention Prostitution Normandie | Mentions légales'
-              }
+              },
+              ,
+                {
+                  name: 'keywords',
+                  content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, mentions légales'
+                }
             ]
         }
     ];
