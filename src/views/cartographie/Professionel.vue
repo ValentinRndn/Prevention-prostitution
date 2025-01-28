@@ -15,6 +15,8 @@
     </span>
 
     <!-- Liste des catégories -->
+    <div class="categories-container bg-grey h-full px-6 flex flex-col justify-center md:h-fit md:w-full md:bg-white md:text-black">
+    <!-- ... reste du code ... -->
     <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black">
       <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
         <input 
@@ -26,6 +28,8 @@
         <label :for="category.key">{{ category.label }}</label>
       </div>
     </div>
+  </div>
+
     </div>
     <div id="map" class="h-full w-full md:h-[80vh]">
 
@@ -185,21 +189,48 @@ export default {
       this.markers = [];
     },
     addMarkers() {
-      this.structures.forEach(structure => {
-        if (structure.gps && this.selectedCategories.includes(structure.category)) {
-          const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord));
-          if (!isNaN(lat) && !isNaN(lon)) {
-            const color = iconColors[structure.category];
-            const icon = createIcon(color);
-            const marker = L.marker([lat, lon], { icon }).addTo(this.map);
-            marker.on('click', () => {
-              this.selectedStructure = structure;
-            });
-            this.markers.push(marker);
-          }
-        }
-      });
-    },
+  this.structures.forEach(structure => {
+    // Vérifier si la structure a des catégories
+    if (!structure.categories || !structure.gps) {
+      return;
+    }
+
+    // S'assurer que categories est un tableau
+    const categories = Array.isArray(structure.categories) ? structure.categories : [structure.categories];
+
+    // Vérifier si au moins une des catégories de la structure est sélectionnée
+    const hasSelectedCategory = this.selectedCategories.length === 0 || // Afficher tous les marqueurs si aucune catégorie n'est sélectionnée
+      categories.some(category => this.selectedCategories.includes(category));
+      
+    if (hasSelectedCategory) {
+      const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord.trim()));
+      
+      if (!isNaN(lat) && !isNaN(lon)) {
+        const matchingCategory = categories.find(category => 
+          this.selectedCategories.includes(category)
+        ) || categories[0]; // Utiliser la première catégorie si aucune ne correspond
+
+        const color = iconColors[matchingCategory] || 'grey';
+        const icon = createIcon(color);
+        
+        const marker = L.marker([lat, lon], { icon }).addTo(this.map);
+        
+        // Supprimer le bindPopup et ne garder que l'événement click
+        marker.on('click', () => {
+          this.selectedStructure = {
+            ...structure,
+            categoriesList: categories.map(cat => {
+              const category = this.categories.find(c => c.key === cat);
+              return category ? category.label : '';
+            }).filter(Boolean)
+          };
+        });
+
+        this.markers.push(marker);
+      }
+    }
+  });
+},
     hidePopup() {
       this.showPopup = false;
     },
