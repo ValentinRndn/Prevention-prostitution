@@ -31,7 +31,7 @@
     <CookieBanner ref="cookieBanner" class="z-100" />
 
     <div v-if="!shouldHideFooter">
-      <ContactPopup class="z-100" />
+      <EmergencyContactPopup class="z-100" />
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ import NavigationBar from "./components/NavigationBar.vue";
 import NavigationBarMobile from "./components/NavigationBarMobile.vue";
 import Footer from "./components/Footer.vue";
 import CookieBanner from "./components/CookieBanner.vue";
-import ContactPopup from "./components/ContactPopup.vue;"
+import EmergencyContactPopup from "./components/EmergencyContactPopup.vue;"
 
 
 const route = useRoute();
