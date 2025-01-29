@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full bg-purple-fonce items-center absolute top-0 left-0 right-0">
+  <header class="w-full bg-purple-fonce items-center absolute top-0 left-0 right-0 z-50">
     <div>
       <!-- Contenu de votre barre horizontale -->
       <div class="flex justify-between text-white mx-4">

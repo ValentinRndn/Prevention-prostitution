@@ -64,9 +64,9 @@
 
 
           <div
-            class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-10 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6 relative"
+            class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-14 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6 relative"
           >
-          <span class="ml-4 text-gray-700 absolute top-[-30px] left-0"
+          <span class="ml-4 text-gray-700 absolute top-[-30px] left-[-15px] z-0 "
               >Total: {{ structures.length }} structures</span
             >
 
