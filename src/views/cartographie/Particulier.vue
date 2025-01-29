@@ -259,6 +259,27 @@ export default {
   .map-container {
     position: relative;
   }
+  .checkbox {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+/* Pointer cursor sur les labels des checkboxes */
+.checkbox label {
+  cursor: pointer;
+}
+
+
+/* Ajout du curseur pointer pour l'input également */
+input[type="checkbox"] {
+  cursor: pointer;
+}
+.checkbox:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+
 
   .structure-popup {
     position: absolute;
