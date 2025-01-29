@@ -45,6 +45,7 @@ import Footer from "./components/Footer.vue";
 import CookieBanner from "./components/CookieBanner.vue";
 import ContactPopup from "./components/ContactPopup.vue";
 
+
 const route = useRoute();
 const router = useRouter();
 const shouldHideNavbar = ref(false);
