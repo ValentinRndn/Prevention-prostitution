@@ -38,8 +38,6 @@ export default {
         password: this.password
     })
     .then(response => {
-        console.log('Response:', response);
-
         // Vérifiez si la réponse contient un token
         if (response.status === 200 && response.data.token) {
             // Enregistrez le token dans le localStorage
@@ -48,7 +46,6 @@ export default {
             this.$router.push('/backoffice/dashboard');
         } else {
             // Afficher un message d'erreur si l'authentification a échoué
-            console.log(response.data);
             this.error = "email ou mot de passe incorrect";
         }
     })

@@ -146,7 +146,7 @@ export default {
     initMap() {
       const mapContainer = document.getElementById("map");
       if (mapContainer) {
-        this.map = L.map(mapContainer).setView([49.183333, -0.35], 13);
+        this.map = L.map(mapContainer).setView([49.183333, -0.35], 10);
         
         L.tileLayer("https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", {
           maxZoom: 19,
@@ -191,8 +191,10 @@ export default {
     const categories = Array.isArray(structure.categories) ? structure.categories : [structure.categories];
 
     // Vérifier si au moins une des catégories de la structure est sélectionnée
-    const hasSelectedCategory = this.selectedCategories.length === 0 || // Afficher tous les marqueurs si aucune catégorie n'est sélectionnée
-      categories.some(category => this.selectedCategories.includes(category));
+    // Modifié ici : on retire la condition qui affiche tout quand aucune catégorie n'est sélectionnée
+    const hasSelectedCategory = categories.some(category => 
+      this.selectedCategories.includes(category)
+    );
       
     if (hasSelectedCategory) {
       const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord.trim()));
@@ -200,14 +202,13 @@ export default {
       if (!isNaN(lat) && !isNaN(lon)) {
         const matchingCategory = categories.find(category => 
           this.selectedCategories.includes(category)
-        ) || categories[0]; // Utiliser la première catégorie si aucune ne correspond
+        ) || categories[0];
 
         const color = iconColors[matchingCategory] || 'grey';
         const icon = createIcon(color);
         
         const marker = L.marker([lat, lon], { icon }).addTo(this.map);
         
-        // Supprimer le bindPopup et ne garder que l'événement click
         marker.on('click', () => {
           this.selectedStructure = {
             ...structure,
