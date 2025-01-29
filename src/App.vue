@@ -43,7 +43,7 @@ import NavigationBar from "./components/NavigationBar.vue";
 import NavigationBarMobile from "./components/NavigationBarMobile.vue";
 import Footer from "./components/Footer.vue";
 import CookieBanner from "./components/CookieBanner.vue";
-import EmergencyContactPopup from "./components/EmergencyContactPopup.vue;"
+import EmergencyContactPopup from "./components/EmergencyContactPopup.vue";
 
 
 const route = useRoute();
