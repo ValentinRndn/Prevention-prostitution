@@ -16,11 +16,24 @@ const allowedOrigins = [
   'http://www.preventionprostitutionnormandie.com',
 ];
 
+// app.use(cors({
+//   origin: '*',
+//   methods: 'GET,POST,PUT,DELETE,PATCH',
+//   credentials: true
+// }));
+
 app.use(cors({
-  origin: '*',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,POST,PUT,DELETE,PATCH',
   credentials: true
 }));
+
 
 
 
