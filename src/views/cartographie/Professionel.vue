@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="page-container flex flex-col">
     <!-- Entête avec titre et introduction -->
     <div class="header-section py-12 px-6   ">
@@ -12,41 +11,6 @@
         </p>
       </div>
     </div>
-=======
-  <div class="page-container flex h-[700px] items-center md:flex-col ">
-    <div class="categories-container bg-grey h-full px-6 flex flex-col justify-center md:h-fit md:w-full md:bg-white md:text-black">
-      <h1 class="text-white text-2xl font-bold mt-6 font-cgothic md:hidden">JE RECHERCHE :</h1>
-      
-    <!-- Bouton pour afficher/masquer les catégories sur mobile -->
-    <span 
-      class="hidden md:flex md:items-center text-black cursor-pointer mb-4 md:w-fit font-semibold text-xl"
-      @click="toggleVisibility"
-    >
-      {{ selectedCategories.length ? `${selectedCategories.length} catégories sélectionnées` : 'Catégories' }}
-      <svg xmlns="http://www.w3.org/2000/svg" :class="{rotatedIcon: categoryVisible}" class="transition duration-200" width="24" height="24" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 15.5l-6-6l1.41-1.41L12 12.67l4.59-4.58L18 9.5z"/>
-      </svg>
-    </span>
-
-    <!-- Liste des catégories -->
-    <div class="categories-container bg-grey h-full px-6 flex flex-col justify-center md:h-fit md:w-full md:bg-white md:text-black">
-    <!-- ... reste du code ... -->
-    <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black">
-      <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
-        <input 
-          :id="category.key" 
-          type="checkbox" 
-          :checked="selectedCategories.includes(category.key)" 
-          @change="updateSelectedCategories(category.key)" 
-        />
-        <label :for="category.key">{{ category.label }}</label>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div id="map" class="h-full w-full md:h-[80vh]">
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
 
     <!-- Section carte interactive -->
     <div class="map-container relative">
@@ -405,7 +369,6 @@ export default {
       this.isLoading = true;
       const mapContainer = document.getElementById("map");
       if (mapContainer) {
-<<<<<<< HEAD
         this.map = L.map(mapContainer, {
           zoomControl: false, // Désactiver le contrôle de zoom par défaut
         }).setView([49.183333, -0.35], 10);
@@ -415,9 +378,6 @@ export default {
           position: 'topright'
         }).addTo(this.map);
         
-=======
-        this.map = L.map(mapContainer).setView([49.183333, -0.35], 10);
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
         L.tileLayer("https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", {
           maxZoom: 19,
           attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a> &mdash; ' +
@@ -482,7 +442,6 @@ export default {
       }
     },
     addMarkers() {
-<<<<<<< HEAD
       if (!this.map) return;
       
       this.structures.forEach(structure => {
@@ -519,53 +478,6 @@ export default {
           padding: [50, 50]
         });
       }
-=======
-  this.structures.forEach(structure => {
-    // Vérifier si la structure a des catégories
-    if (!structure.categories || !structure.gps) {
-      return;
-    }
-
-    // S'assurer que categories est un tableau
-    const categories = Array.isArray(structure.categories) ? structure.categories : [structure.categories];
-
-    // Vérifier si au moins une des catégories de la structure est sélectionnée
-    // Modifié ici : on retire la condition qui affiche tout quand aucune catégorie n'est sélectionnée
-    const hasSelectedCategory = categories.some(category => 
-      this.selectedCategories.includes(category)
-    );
-      
-    if (hasSelectedCategory) {
-      const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord.trim()));
-      
-      if (!isNaN(lat) && !isNaN(lon)) {
-        const matchingCategory = categories.find(category => 
-          this.selectedCategories.includes(category)
-        ) || categories[0];
-
-        const color = iconColors[matchingCategory] || 'grey';
-        const icon = createIcon(color);
-        
-        const marker = L.marker([lat, lon], { icon }).addTo(this.map);
-        
-        marker.on('click', () => {
-          this.selectedStructure = {
-            ...structure,
-            categoriesList: categories.map(cat => {
-              const category = this.categories.find(c => c.key === cat);
-              return category ? category.label : '';
-            }).filter(Boolean)
-          };
-        });
-
-        this.markers.push(marker);
-      }
-    }
-  });
-},
-    hidePopup() {
-      this.showPopup = false;
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
     },
     closePopup() {
       this.selectedStructure = null;

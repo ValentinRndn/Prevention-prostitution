@@ -6,22 +6,12 @@
     <!-- Content -->
     <div class="relative z-1 flex flex-col items-center justify-center h-full px-4 text-center md:px-6 lg:px-8 py-4">
       <!-- Heading -->
-<<<<<<< HEAD
-      <h1 class="text-white font-cgothic font-bold text-4xl md:text-3xl sm:text-2xl drop-shadow-md mb-4 max-w-[80%] md:max-w-4xl ">
+      <h1 clnpmass="text-white font-cgothic font-bold text-4xl md:text-3xl sm:text-2xl drop-shadow-md mb-4 max-w-[80%] md:max-w-4xl ">
         Personnes en Situation de Prostitution : Accès aux Droits, Soins et Accompagnement en Normandie
             </h1>
       <!-- Paragraph -->
       <p class="text-white text-lg md:text-base sm:text-sm lg:text-lg xl:text-xl leading-relaxed mb-8 max-w-4xl sm:max-w-full">
         La prévention et l'accompagnement des Personnes en Situation de Prostitution (PSP) en Normandie sont des enjeux majeurs pour favoriser leur accès aux droits, aux soins et aux dispositifs de soutien. Que vous soyez directement concerné(e), témoin d'une situation ou un professionnel souhaitant aider, il existe des solutions adaptées pour garantir une prise en charge globale et réduire les risques liés à la prostitution.      </p>
-=======
-      <h1 class="text-white font-cgothic font-bold text-4xl md:text-3xl sm:text-2xl drop-shadow-md mb-4">
-        Personnes en Situation de Prostitution : Accès aux Droits, Soins et Accompagnement en Normandie
-      </h1>
-      <!-- Paragraph -->
-      <p class="text-white text-lg md:text-base sm:text-sm lg:text-lg xl:text-xl leading-relaxed mb-8 max-w-4xl sm:max-w-full">
-        <strong>La prévention et l’accompagnement des Personnes en Situation de Prostitution (PSP)</strong> en Normandie sont des enjeux majeurs pour favoriser leur accès aux droits, aux soins et aux dispositifs de soutien. Que vous soyez directement concerné(e), témoin d’une situation ou un professionnel souhaitant aider, il existe des solutions adaptées pour garantir une prise en charge globale et réduire les risques liés à la prostitution.
-            </p>
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
       <!-- Button -->
       <router-link
         to="/guide"
@@ -42,7 +32,6 @@
         </svg>
       </router-link>
     </div>
-<<<<<<< HEAD
   </div>
 
   <!-- Contenu principal -->
@@ -168,9 +157,6 @@
       </div>
     </section>
   </div>
-=======
-</div>
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
 </template>
 
 <script>

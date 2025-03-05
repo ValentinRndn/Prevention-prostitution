@@ -11,25 +11,8 @@
         </p>
         
 
-<<<<<<< HEAD
       </div>
     </div>
-=======
-      <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black">
-      <div class="checkbox flex gap-3 items-center" v-for="(category, index) in categories" :key="index">
-        <input 
-          :id="category.key" 
-          type="checkbox" 
-          :checked="selectedCategories.includes(category.key)" 
-          @change="updateSelectedCategories(category.key)" 
-        />
-        <label :for="category.key">{{ category.label }}</label>
-      </div>
-    </div>
-
-  </div>
-    <div id="map" class="h-full w-full md:h-[80vh]"></div>
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
 
     <!-- Section carte interactive -->
     <div class="map-container relative">
@@ -369,7 +352,6 @@ export default {
       this.isLoading = true;
       const mapContainer = document.getElementById("map");
       if (mapContainer) {
-<<<<<<< HEAD
         this.map = L.map(mapContainer, {
           zoomControl: false, // Désactiver le contrôle de zoom par défaut
         }).setView([49.183333, -0.35], 10);
@@ -378,9 +360,6 @@ export default {
         L.control.zoom({
           position: 'topright'
         }).addTo(this.map);
-=======
-        this.map = L.map(mapContainer).setView([49.183333, -0.35], 10);
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
         
         L.tileLayer("https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", {
           maxZoom: 19,
@@ -446,7 +425,6 @@ export default {
       }
     },
     addMarkers() {
-<<<<<<< HEAD
       if (!this.map) return;
       
       this.structures.forEach(structure => {
@@ -495,51 +473,6 @@ export default {
       const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`;
       window.open(url, '_blank');
     },
-=======
-  this.structures.forEach(structure => {
-    // Vérifier si la structure a des catégories
-    if (!structure.categories || !structure.gps) {
-      return;
-    }
-
-    // S'assurer que categories est un tableau
-    const categories = Array.isArray(structure.categories) ? structure.categories : [structure.categories];
-
-    // Vérifier si au moins une des catégories de la structure est sélectionnée
-    // Modifié ici : on retire la condition qui affiche tout quand aucune catégorie n'est sélectionnée
-    const hasSelectedCategory = categories.some(category => 
-      this.selectedCategories.includes(category)
-    );
-      
-    if (hasSelectedCategory) {
-      const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord.trim()));
-      
-      if (!isNaN(lat) && !isNaN(lon)) {
-        const matchingCategory = categories.find(category => 
-          this.selectedCategories.includes(category)
-        ) || categories[0];
-
-        const color = iconColors[matchingCategory] || 'grey';
-        const icon = createIcon(color);
-        
-        const marker = L.marker([lat, lon], { icon }).addTo(this.map);
-        
-        marker.on('click', () => {
-          this.selectedStructure = {
-            ...structure,
-            categoriesList: categories.map(cat => {
-              const category = this.categories.find(c => c.key === cat);
-              return category ? category.label : '';
-            }).filter(Boolean)
-          };
-        });
-
-        this.markers.push(marker);
-      }
-    }
-  });
-},
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
     hidePopup() {
       this.showPopup = false;
     },
@@ -581,36 +514,9 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< HEAD
 .popup-instruction {
   z-index: 1500;
 }
-=======
-  .map-container {
-    position: relative;
-  }
-  .checkbox {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-/* Pointer cursor sur les labels des checkboxes */
-.checkbox label {
-  cursor: pointer;
-}
-
-
-/* Ajout du curseur pointer pour l'input également */
-input[type="checkbox"] {
-  cursor: pointer;
-}
-.checkbox:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-
->>>>>>> 6fb671e2df721875a139806a08cb902c204bb60a
 
 .search-guide-container > div {
   background-color: rgba(255, 255, 255, 0.95);
