@@ -39,7 +39,7 @@
 
 
     <section class="mb-16 bg-gray-50 p-8 rounded-lg shadow-sm">
-      <h2 class="text-2xl md:text-3xl font-semibold text-purple-fonce mb-6">
+      <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6">
         Comprendre la Situation des Personnes en Situation de Prostitution
       </h2>
       <p class="text-gray-800 text-lg leading-relaxed">
@@ -48,7 +48,7 @@
     </section>
 
     <section class="mb-16">
-  <h2 class="text-2xl md:text-3xl font-semibold text-purple-fonce mb-6 text-center">
+  <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6 text-center">
     Quels Dispositifs d'Aide pour les Personnes en Situation de Prostitution ?
   </h2>
   <p class="text-gray-800 text-lg leading-relaxed mb-8 text-center">
@@ -103,7 +103,7 @@
 </section>
 
     <section class="mb-16 bg-gray-50 p-8 rounded-lg shadow-sm">
-      <h2 class="text-2xl md:text-3xl font-semibold text-purple-fonce mb-6">
+      <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6">
         Réduction des Risques et Prévention
       </h2>
       <p class="text-gray-800 text-lg leading-relaxed mb-6">
@@ -126,7 +126,7 @@
     </section>
 
     <section class="mb-16">
-      <h2 class="text-2xl md:text-3xl font-semibold text-purple-fonce mb-6 text-center">
+      <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6 text-center">
         Comment Contacter un Dispositif d'Aide en Normandie ?
       </h2>
       <p class="text-gray-800 text-lg leading-relaxed mb-6 text-center">

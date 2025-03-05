@@ -7,19 +7,19 @@
       class="navbar flex items-center gap-10 h-full font-cgothic font-bold text-grey 2xl:gap-8"
     >
       <li
-        class="menu w-fit text-center"
+        class="menu-item w-fit text-center relative"
         :class="{ 'selectedMenu': currentPage === '/map' }"
       >
         <router-link to="/map">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
       </li>
       <li
-        class="menu w-fit text-center"
+        class="menu-item w-fit text-center relative"
         :class="{ 'selectedMenu': currentPage === '/guide' }"
       >
         <router-link to="/guide">JE CONSULTE LA DOCUMENTATION</router-link>
       </li>
       <li
-        class="menu w-fit text-center"
+        class="menu-item w-fit text-center relative"
         :class="{ 'selectedMenu': currentPage === '/contact' }"
       >
         <router-link to="/contact">JE PRENDS CONTACT</router-link>
@@ -130,27 +130,50 @@ const logout = () => {
 </script>
 
 <style scoped>
+/* Style pour les items du menu */
+.menu-item {
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.menu-item:hover {
+  color: #f1b04c;
+}
+
+/* Style pour l'effet d'animation au survol */
+.menu-item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -4px;
+  height: 3px; /* Épaisseur du soulignement réduite */
+  width: 0;
+  background-color: #f1b04c;
+  transition: width 0.3s ease;
+}
+
+.menu-item:hover::after {
+  width: 60%; /* Largeur réduite du soulignement au survol */
+}
+
 /* Style pour le menu sélectionné */
 .selectedMenu {
   color: #f1b04c;
-  position: relative;
 }
 
 .selectedMenu::after {
   content: "";
   position: absolute;
-  left: 20%;
-  right: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: -4px;
-  height: 4px;
+  height: 3px; /* Épaisseur du soulignement réduite */
+  width: 60%; /* Largeur réduite du soulignement pour le menu sélectionné */
   background-color: #f1b04c;
 }
 
 /* Style pour les éléments du menu déroulant */
-.menu-item {
-  cursor: pointer;
-}
-
 .dropdown-menu {
   z-index: 1000;
   animation: fadeIn 0.3s ease-in-out;
