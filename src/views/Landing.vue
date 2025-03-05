@@ -6,7 +6,7 @@
     <!-- Content -->
     <div class="relative z-1 flex flex-col items-center justify-center h-full px-4 text-center md:px-6 lg:px-8 py-4">
       <!-- Heading -->
-      <h1 clnpmass="text-white font-cgothic font-bold text-4xl md:text-3xl sm:text-2xl drop-shadow-md mb-4 max-w-[80%] md:max-w-4xl ">
+      <h1 class="text-white font-cgothic font-bold text-4xl md:text-3xl sm:text-2xl drop-shadow-md mb-4 max-w-[80%] md:max-w-4xl ">
         Personnes en Situation de Prostitution : Accès aux Droits, Soins et Accompagnement en Normandie
             </h1>
       <!-- Paragraph -->
