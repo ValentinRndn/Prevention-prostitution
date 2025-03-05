@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Boutons des catégories -->
     <div class="button-container flex gap-5 mx-10">
       <button
         v-for="(category, index) in categories"
@@ -11,31 +12,36 @@
       </button>
     </div>
 
-    <div class="documents-container mt-14 mx-10 grid gap-5 grid-cols-3 
-      sm:grid-cols-1 
-      md:grid-cols-2 
-      lg:grid-cols-3
-      xl:grid-cols-3"
-    >
+    <!-- Conteneur des documents -->
+    <div class="documents-container mt-14 mx-10 flex flex-wrap gap-5 justify-center sm:justify-center">
       <div
         v-for="doc in documents"
         :key="doc.id"
-        class="doc-container flex flex-col items-center justify-center text-center gap-3"
+        class="doc-container flex flex-col items-center text-center gap-3 w-[300px]"
       >
         <!-- Lien vers le PDF -->
         <a :href="doc.pdf" target="_blank" rel="noopener noreferrer">
-          <!-- Image -->
-          <img :src="doc.image" class="w-full h-[250px] object-cover" :alt="doc.title" />
+          <img
+            :src="doc.image"
+            class="w-full h-[300px] object-cover rounded-sm"
+            :alt="doc.title"
+          />
         </a>
-        <!-- Autres détails -->
+        <!-- Détails -->
         <a :href="doc.link" target="_blank" rel="noopener noreferrer">
-          <h3 class="w-full font-semibold">{{ doc.title }}</h3>
+          <h3 class="text-lg font-semibold max-w-[250px] mx-auto overflow-hidden text-ellipsis whitespace-nowrap">
+            {{ doc.title }}
+          </h3>
         </a>
-        <p class="w-full">{{ doc.description }}</p>
+        <p class="text-sm max-w-[250px] mx-auto overflow-hidden text-ellipsis whitespace-nowrap">
+          {{ doc.description }}
+        </p>
       </div>
     </div>
   </div>
 </template>
+
+
 
 
 
@@ -87,12 +93,3 @@ export default {
 };
 </script>
 
-<style>
-  
-.button-prostitution.bg-blue-500 {
-  background-color: #4299e1; 
-}
-.button-prostitution.text-white {
-  color: white;
-}
-</style>

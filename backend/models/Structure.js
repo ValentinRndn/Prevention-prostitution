@@ -7,7 +7,10 @@ const StructureSchema = new mongoose.Schema({
   department: { type: String, required: true },
   phone: { type: String, required: false },
   email: { type: String, required: false },
-  category: { type: String, required: true }
+  categories: { 
+    type: [String], 
+    required: true
+  }
 });
 
 module.exports = mongoose.model('Structure', StructureSchema);

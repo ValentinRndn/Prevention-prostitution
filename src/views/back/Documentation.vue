@@ -45,7 +45,18 @@
           </div>
           <div class="mb-4">
             <label for="category" class="block text-sm font-medium text-gray-700">Catégorie</label>
-            <input v-model="newGuide.category" type="text" id="category" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+            <select 
+              v-model="newGuide.category" 
+              id="category" 
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 bg-white" 
+              required
+            >
+              <option value="" disabled>Sélectionnez une catégorie</option>
+              <option value="service-prostitution">Service Prostitution</option>
+              <option value="service-prostitution-mineur">Service Prostitution Mineur</option>
+              <option value="professionnel-prostitution">Professionnel Prostitution</option>
+              <option value="professionnel-prostitution-mineur">Professionnel Prostitution Mineur</option>
+            </select>
           </div>
           <div class="mb-4">
             <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
@@ -131,7 +142,7 @@ export default {
       this.newGuide = {
         title: '',
         description: '',
-        category: '',
+        category: 'Séléctionnez une catégorie',
       };
       this.image = null;
       this.pdf = null;

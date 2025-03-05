@@ -1,10 +1,10 @@
 <template>
-  <header class="w-full bg-purple-fonce items-center absolute top-0 left-0 right-0">
-    <div class="">
+  <header class="w-full bg-purple-fonce items-center absolute top-0 left-0 right-0 z-50">
+    <div>
       <!-- Contenu de votre barre horizontale -->
       <div class="flex justify-between text-white mx-4">
         <!-- Contenu gauche -->
-        <div class="flex ">
+        <div class="flex">
           <!-- Ajoutez ici le contenu de la partie gauche de la barre horizontale -->
           <router-link class="button flex items-center gap-2 text-white" to="/">
             <img src="../../assets/logo_back.svg" alt="logo" class="material-icons w-[2rem] mt-4 mb-4">
@@ -13,8 +13,7 @@
         </div>
         <!-- Contenu droit -->
         <div class="flex items-center">
-          <!-- Ajoutez ici le contenu de la partie droite de la barre horizontale -->
-            <!-- <span class="">Bonjour {{ user.pseudo }}</span> -->
+          <span class="">Bonjour {{ user.pseudo || 'Utilisateur' }}</span>
         </div>
       </div>
     </div>
@@ -22,39 +21,33 @@
 </template>
 
 <script>
+import { getUserPseudoFromToken } from '../../services/decodeJwt';
+
+
 export default {
   name: 'HorizontalBar',
 
   data() {
     return {
       user: {
-        pseudo: ''
-      }
+        pseudo: '', // Valeur par défaut
+      },
     };
   },
 
   mounted() {
-    this.decodeToken();
+    this.fetchUserPseudo();
   },
 
   methods: {
-    decodeToken() {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const user = this.parseJwt(token);
-        this.user = user;
+    fetchUserPseudo() {
+      const pseudo = getUserPseudoFromToken();
+      if (pseudo) {
+        this.user.pseudo = pseudo;
+      } else {
       }
     },
-
-    parseJwt(token) {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      return JSON.parse(jsonPayload);
-    }
-  }
+  },
 };
 </script>
 

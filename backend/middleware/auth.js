@@ -6,7 +6,10 @@ module.exports = function (req, res, next) {
 
   // Si l'en-tête Authorization n'existe pas
   if (!authHeader) {
-    return res.status(401).json({ message: 'No token, authorization denied' });
+    return res.status(401).json({ 
+      message: 'No token, authorization denied',
+      code: 'NO_TOKEN'
+    });
   }
 
   // Extraire le token de l'en-tête Authorization ("Bearer <token>")
@@ -14,7 +17,10 @@ module.exports = function (req, res, next) {
 
   // Si le token n'existe pas dans l'en-tête
   if (!token) {
-    return res.status(401).json({ message: 'Token not found' });
+    return res.status(401).json({ 
+      message: 'Token not found',
+      code: 'TOKEN_NOT_FOUND'
+    });
   }
 
   try {
@@ -27,6 +33,23 @@ module.exports = function (req, res, next) {
     next(); // Continuer vers la route suivante
   } catch (err) {
     console.error('Token verification failed:', err.message);
-    return res.status(401).json({ message: 'Token is not valid' });
+    
+    // Différencier les types d'erreurs
+    if (err instanceof jwt.TokenExpiredError) {
+      return res.status(401).json({ 
+        message: 'Token has expired',
+        code: 'TOKEN_EXPIRED'
+      });
+    } else if (err instanceof jwt.JsonWebTokenError) {
+      return res.status(401).json({ 
+        message: 'Invalid token',
+        code: 'TOKEN_INVALID'
+      });
+    }
+
+    return res.status(401).json({ 
+      message: 'Token verification failed',
+      code: 'TOKEN_VERIFICATION_FAILED'
+    });
   }
 };

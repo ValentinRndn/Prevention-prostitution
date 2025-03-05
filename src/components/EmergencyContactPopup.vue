@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <!-- Bouton avec l'icône de téléphone toujours visible -->
     <div class="fixed bottom-4 right-4 bg-purple-fonce rounded-full p-3 cursor-pointer shadow-lg z-120" @click="toggleVisibility">
       <svg xmlns="http://www.w3.org/2000/svg" class="z-100" width="32" height="32" viewBox="0 0 24 24">

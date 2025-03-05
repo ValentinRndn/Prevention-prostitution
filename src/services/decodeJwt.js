@@ -37,22 +37,20 @@ export const getUserRoleFromToken = () => {
 
 // Fonction pour récupérer le pseudonyme de l'utilisateur à partir du token JWT
 export const getUserPseudoFromToken = () => {
-  const token = localStorage.getItem('token');
-  if (token) {
+    const token = localStorage.getItem('token');
+    if (token) {
       try {
-          const decodedToken = decodeJwt(token);
-          if (decodedToken && decodedToken.user && decodedToken.user.pseudo) {
-              return decodedToken.user.pseudo;
-          } else {
-              console.warn("Le pseudonyme n'est pas défini dans le token JWT.");
-              return null;
-          }
+        const decodedToken = decodeJwt(token);
+        if (decodedToken && decodedToken.user && decodedToken.user.pseudo) {
+          return decodedToken.user.pseudo;
+        } else {
+
+            return null;
+        }
       } catch (err) {
-          console.error("Erreur lors du décodage du token JWT:", err);
-          return null;
+        return null;
       }
-  } else {
-      console.warn('Aucun token JWT trouvé.');
+    } else {
       return null;
-  }
-};
+    }
+  };
