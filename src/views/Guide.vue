@@ -1,12 +1,12 @@
 <template>
     <div class="flex flex-col">
-      <div class="header-banner bg-banner-contact w-full h-[350px] bg-cover relative sm:hidden">
+      <div class="bg-banner-contact w-full h-[350px] bg-cover relative sm:hidden">
         <div class="absolute bottom-0 left-0 right-0 text-center">
           <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">DOCUMENTATION</div>
         </div>
       </div>
   
-      <div class="header-banner bg-banner-contact-mobile w-full h-[350px] bg-cover relative hidden sm:block">
+      <div class="header-banner bg-banner-doc-mobile w-full h-[350px] bg-cover relative hidden sm:block">
         <div class="absolute bottom-0 left-0 right-0 text-center">
           <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">DOCUMENTATION</div>
         </div>
@@ -20,7 +20,7 @@
         <h2 class="text-2xl font-semibold text-purple-fonce mb-4">
           Un Outil Essentiel pour les Personnes Concernées, les Témoins et les Professionnels
         </h2>
-        <p class="text-gray-700 text-lg leading-relaxed mb-8">
+        <p class="text-gray-700 text-lg leading-relaxed ">
           Ce guide a été conçu pour fournir des informations claires et accessibles aux Personnes en Situation de Prostitution (PSP), ainsi qu'aux témoins, professionnels du social, du médical et du juridique souhaitant mieux comprendre et accompagner ces publics.
         </p>
       </div>
@@ -28,22 +28,14 @@
       <!-- Section des boutons (originale) -->
       <div class="flex flex-col justify-center font-cgothic gap-4 w-[400px] mx-auto mb-16">
         <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md hover:bg-purple transition-colors duration-300 group">
-          <router-link to="/guide/ParticularGuide" class="flex items-center justify-center w-full">
-            Je suis en situation de prostitution
+          <router-link to="/guide/ContentGuide" class="flex items-center justify-center w-full">
+            Je consulte la documentation
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
               <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
-            </svg>
+            </svg>  
           </router-link>
         </button>
-  
-        <button class="bg-purple text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md hover:bg-purple-fonce transition-colors duration-300 group">
-          <router-link to="/guide/ProfessionalGuide" class="flex items-center justify-center w-full">
-            Je suis professionnel ou témoin
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
-              <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
-            </svg>
-          </router-link>
-        </button>
+
       </div>
   
       <!-- NOUVELLE MISE EN PAGE POUR LES SECTIONS D'INFORMATION -->

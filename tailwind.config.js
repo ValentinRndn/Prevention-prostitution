@@ -43,6 +43,9 @@ export default {
         'back-carto-left': 'url("../assets/background-carto-left.webp")',
         'banner-contact-mobile': 'url("../assets/contact/contact-responsive.svg")',
         'banner-propos-mobile': 'url("../assets/banner-propos-mobile.svg")',
+        'banner-doc-mobile': 'url("../assets/guides/banner_guide_mobile.svg")',
+        'banner-doc': 'url("../assets/guide/banner_guide.png")',
+        
       },    
       fontSize: {
         'login-txt': '0.60rem',

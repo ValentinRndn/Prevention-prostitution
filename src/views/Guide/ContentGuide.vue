@@ -1,8 +1,8 @@
 <template>
 <div>
-    <GuideContent :categories="['service-prostitution', 'service-prostitution-mineur']" />
+    <GuideContent :categories="['general', 'euro', 'calvados', 'seine-maritime', 'manche', 'orne']" />
   </div>
-
+  
 </template>
 
 <script>

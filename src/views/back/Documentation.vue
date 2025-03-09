@@ -52,10 +52,13 @@
               required
             >
               <option value="" disabled>Sélectionnez une catégorie</option>
-              <option value="service-prostitution">Service Prostitution</option>
-              <option value="service-prostitution-mineur">Service Prostitution Mineur</option>
-              <option value="professionnel-prostitution">Professionnel Prostitution</option>
-              <option value="professionnel-prostitution-mineur">Professionnel Prostitution Mineur</option>
+              <option value="general">Information générale</option>
+              <option value="eure">Eure</option>
+              <option value="calvados">Calvados</option>
+              <option value="seine-maritime">Seine-Maritime</option>
+              <option value="manche">Manche</option>
+              <option value="orne">Orne</option>
+
             </select>
           </div>
           <div class="mb-4">

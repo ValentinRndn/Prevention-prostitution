@@ -205,7 +205,7 @@ export default {
 
 /* Style pour le menu actif */
 .active-menu a {
-  color: #f1b04c;
+  color: lightgray;
 }
 
 .active-menu a::after {
