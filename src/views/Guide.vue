@@ -6,7 +6,7 @@
         </div>
       </div>
   
-      <div class="header-banner bg-banner-doc-mobile w-full h-[350px] bg-cover relative hidden sm:block">
+      <div class="header-banner bg-banner-contact-mobile w-full h-[350px] bg-cover relative hidden sm:block">
         <div class="absolute bottom-0 left-0 right-0 text-center">
           <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">DOCUMENTATION</div>
         </div>
