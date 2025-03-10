@@ -393,7 +393,6 @@ export default {
           }
         });
         
-        console.log("Structures par catégorie (PSP):", structuresByCat);
         
         this.structures = structures;
         this.isLoading = false;
@@ -470,8 +469,6 @@ export default {
           
           if (shouldAddMarker) {
             structuresWithSelectedCategories++;
-            console.log("Structure trouvée avec categories[]:", structure.antenna, 
-              "Categories:", structure.categories.filter(cat => this.selectedCategories.includes(cat)));
           }
         } 
         
@@ -481,8 +478,6 @@ export default {
           
           if (shouldAddMarker) {
             structuresWithSelectedCategories++;
-            console.log("Structure trouvée avec category:", structure.antenna, 
-              "Category:", structure.category);
           }
         }
         
@@ -533,9 +528,7 @@ export default {
           }
         }
       });
-      
-      console.log(`Structures avec catégories sélectionnées: ${structuresWithSelectedCategories}, Marqueurs ajoutés: ${markersAdded}`);
-      
+            
       // Ajuster la vue de la carte pour englober tous les marqueurs
       if (this.markers.length > 0) {
         const group = L.featureGroup(this.markers);
