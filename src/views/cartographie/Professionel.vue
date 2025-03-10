@@ -81,7 +81,7 @@
           </div>
 
           <!-- Message si aucun marqueur n'est affiché -->
-          <div v-if="!isLoading && markers.length === 0 && selectedCategories.length > 0" class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 9999;">
+*          <div v-if="!isLoading && markers.length === 0 && selectedCategories.length > 0" class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 9999;">
             <!-- Overlay semi-transparent pour griser la carte -->
             <div class="absolute inset-0 bg-black/30"></div>
             
@@ -95,27 +95,27 @@
           </div>
           <!-- Guide d'utilisation si aucune catégorie n'est sélectionnée -->
           <div v-if="!isLoading && showSearchGuide" class="absolute inset-0 flex items-center justify-center" style="z-index: 9999;">
-            <!-- Overlay gris semi-transparent -->
-            <div class="absolute inset-0 bg-black/50"></div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-md text-center max-w-sm relative z-10">
-              <!-- Bouton fermer -->
-              <button @click="closeSearchGuide" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-purple-fonce mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <!-- Overlay gris semi-transparent -->
+          <div class="absolute inset-0 bg-black/50"></div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-md text-center max-w-sm relative z-10">
+            <!-- Bouton fermer -->
+            <button @click="closeSearchGuide" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
-              <h3 class="font-bold text-lg text-gray-800 mb-2">Commencez votre recherche</h3>
-              <p class="text-gray-600 mb-3">Sélectionnez une ou plusieurs catégories sur la gauche pour afficher les structures correspondantes sur la carte.</p>
-              <button @click="closeSearchGuide" class="bg-purple-fonce hover:bg-purple text-white font-semibold py-2 px-4 rounded transition duration-300">
-                Compris
-              </button>
-            </div>
+            </button>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-purple-fonce mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h3 class="font-bold text-lg text-gray-800 mb-2">Commencez votre recherche</h3>
+            <p class="text-gray-600 mb-3">Sélectionnez une ou plusieurs catégories sur la gauche pour afficher les structures correspondantes sur la carte.</p>
+            <button @click="selectRecommendedCategories" class="bg-purple-fonce hover:bg-purple text-white font-semibold py-2 px-4 rounded transition duration-300">
+              Sélection recommandée
+            </button>
           </div>
+        </div>
 
           <!-- Transition et popup pour afficher la structure sélectionnée -->
           <transition name="slide-in">
@@ -308,9 +308,6 @@ function createIcon(color) {
   });
 }
 
-// Dans la section script, je retire la méthode selectRecommendedCategories()
-// et je modifie la vue pour retirer le bouton correspondant
-
 export default {
   data() {
     return {
@@ -349,9 +346,9 @@ export default {
   },
   methods: {
     closeSearchGuide() {
-      this.showSearchGuide = false;
-    },
-    
+    this.showSearchGuide = false;
+  },
+  
     toggleVisibility() {
       this.categoryVisible = !this.categoryVisible;
     },
@@ -390,66 +387,21 @@ export default {
         this.showStructures();
       }
     },
-// Modifiez la méthode showStructures() comme suit :
-async showStructures() {
-  try {
-    const structures = await getAllStructures();
-    
-    // Comptez les structures par catégorie
-    const structuresByCat = {};
-    structures.forEach(s => {
-      if (s.categories && Array.isArray(s.categories)) {
-        s.categories.forEach(cat => {
-          if (!structuresByCat[cat]) {
-            structuresByCat[cat] = 0;
-          }
-          structuresByCat[cat]++;
-        });
-      } else if (s.category) {
-        // Ancien format où 'category' est une chaîne unique
-        if (!structuresByCat[s.category]) {
-          structuresByCat[s.category] = 0;
+    async showStructures() {
+      try {
+        const structures = await getAllStructures();
+        this.structures = structures;
+        this.isLoading = false;
+        
+        // Si aucune catégorie n'est sélectionnée, on n'affiche pas les marqueurs
+        if (this.selectedCategories.length > 0) {
+          this.addMarkers();
         }
-        structuresByCat[s.category]++;
+      } catch (error) {
+        console.error('Error fetching structures:', error);
+        this.isLoading = false;
       }
-    });
-    
-    console.log("Structures par catégorie (nouveau format):", structuresByCat);
-    
-    // Vérifiez spécifiquement les structures avec catégories 13 et 16
-    const cat13Structures = structures.filter(s => 
-      (s.categories && s.categories.includes("category-13")) || 
-      s.category === "category-13"
-    );
-    
-    const cat16Structures = structures.filter(s => 
-      (s.categories && s.categories.includes("category-16")) || 
-      s.category === "category-16"
-    );
-    
-    console.log("Structures avec catégorie 13:", cat13Structures.length);
-    console.log("Structures avec catégorie 16:", cat16Structures.length);
-    
-    if (cat13Structures.length > 0) {
-      console.log("Exemple structure catégorie 13:", cat13Structures[0]);
-    }
-    
-    if (cat16Structures.length > 0) {
-      console.log("Exemple structure catégorie 16:", cat16Structures[0]);
-    }
-    
-    this.structures = structures;
-    this.isLoading = false;
-    
-    // Si aucune catégorie n'est sélectionnée, on n'affiche pas les marqueurs
-    if (this.selectedCategories.length > 0) {
-      this.addMarkers();
-    }
-  } catch (error) {
-    console.error('Error fetching structures:', error);
-    this.isLoading = false;
-  }
-},
+    },
     updateSelectedCategories(categoryKey) {
       if (this.selectedCategories.includes(categoryKey)) {
         this.selectedCategories = this.selectedCategories.filter(id => id !== categoryKey);
@@ -468,6 +420,18 @@ async showStructures() {
       this.selectedCategories = [];
       this.removeMarkers();
       this.closePopup();
+    },
+    selectRecommendedCategories() {
+      // Sélection des catégories les plus pertinentes (exemple)
+      this.selectedCategories = [
+        "category-13",
+        "category-16",
+        "category-19",
+        "category-20"
+      ];
+      this.removeMarkers();
+      this.addMarkers();
+      this.closeSearchGuide();
     },
     removeMarkers() {
       if (this.map) {
@@ -604,7 +568,6 @@ async showStructures() {
     },
   },
   mounted() {
-    this.selectedCategories = ["category-13", "category-16"];
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     this.checkCookieConsent();
