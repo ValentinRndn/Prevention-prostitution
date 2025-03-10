@@ -478,43 +478,97 @@ async showStructures() {
       }
     },
     addMarkers() {
-      if (!this.map) return;
+  if (!this.map) return;
+  
+  let markersAdded = 0;
+  let structuresWithSelectedCategories = 0;
+  
+  this.structures.forEach(structure => {
+    // Vérifions si la structure a des catégories qui correspondent à notre sélection
+    let shouldAddMarker = false;
+    
+    // Vérifier d'abord le tableau categories (nouvelle version)
+    if (structure.categories && Array.isArray(structure.categories)) {
+      shouldAddMarker = structure.categories.some(cat => 
+        this.selectedCategories.includes(cat)
+      );
       
-      this.structures.forEach(structure => {
-        if (structure.gps && this.selectedCategories.includes(structure.category)) {
-          const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord));
-          if (!isNaN(lat) && !isNaN(lon)) {
-            const color = iconColors[structure.category];
-            const icon = createIcon(color);
-            const marker = L.marker([lat, lon], { icon }).addTo(this.map);
-            
-            // Ajouter une propriété personnalisée au marqueur
-            marker.structureData = structure;
-            
-            marker.on('click', () => {
-              this.selectedStructure = structure;
-              this.selectedMarker = marker;
-              
-              // Centrer la carte sur le marqueur avec une animation
-              this.map.flyTo([lat, lon], 13, {
-                animate: true,
-                duration: 0.5
-              });
-            });
-            
-            this.markers.push(marker);
-          }
-        }
-      });
-      
-      // Ajuster la vue de la carte pour englober tous les marqueurs
-      if (this.markers.length > 0) {
-        const group = L.featureGroup(this.markers);
-        this.map.fitBounds(group.getBounds(), {
-          padding: [50, 50]
-        });
+      if (shouldAddMarker) {
+        structuresWithSelectedCategories++;
+        console.log("Structure trouvée avec categories[]:", structure.antenna, 
+          "Categories:", structure.categories.filter(cat => this.selectedCategories.includes(cat)));
       }
-    },
+    } 
+    
+    // Si aucune correspondance trouvée dans le tableau, vérifier le champ category (ancienne version)
+    if (!shouldAddMarker && structure.category) {
+      shouldAddMarker = this.selectedCategories.includes(structure.category);
+      
+      if (shouldAddMarker) {
+        structuresWithSelectedCategories++;
+        console.log("Structure trouvée avec category:", structure.antenna, 
+          "Category:", structure.category);
+      }
+    }
+    
+    if (structure.gps && shouldAddMarker) {
+      const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord.trim()));
+      
+      if (!isNaN(lat) && !isNaN(lon)) {
+        // Déterminer quelle catégorie utiliser pour la couleur
+        let categoryForColor;
+        
+        // Si la structure a plusieurs catégories, prendre la première catégorie sélectionnée
+        if (structure.categories && Array.isArray(structure.categories)) {
+          categoryForColor = structure.categories.find(cat => this.selectedCategories.includes(cat));
+        }
+        
+        // Si aucune catégorie trouvée dans le tableau ou si le tableau n'existe pas, utiliser le champ category
+        if (!categoryForColor) {
+          categoryForColor = structure.category;
+        }
+        
+        // Si toujours pas de catégorie, utiliser une catégorie par défaut
+        if (!categoryForColor || !iconColors[categoryForColor]) {
+          categoryForColor = "category-12"; // Catégorie par défaut
+        }
+        
+        const color = iconColors[categoryForColor];
+        const icon = createIcon(color);
+        const marker = L.marker([lat, lon], { icon }).addTo(this.map);
+        
+        // Ajouter une propriété personnalisée au marqueur
+        marker.structureData = structure;
+        
+        marker.on('click', () => {
+          this.selectedStructure = structure;
+          this.selectedMarker = marker;
+          
+          // Centrer la carte sur le marqueur avec une animation
+          this.map.flyTo([lat, lon], 13, {
+            animate: true,
+            duration: 0.5
+          });
+        });
+        
+        this.markers.push(marker);
+        markersAdded++;
+      } else {
+        console.warn("Coordonnées GPS invalides:", structure.antenna, structure.gps);
+      }
+    }
+  });
+  
+  console.log(`Structures avec catégories sélectionnées: ${structuresWithSelectedCategories}, Marqueurs ajoutés: ${markersAdded}`);
+  
+  // Ajuster la vue de la carte pour englober tous les marqueurs
+  if (this.markers.length > 0) {
+    const group = L.featureGroup(this.markers);
+    this.map.fitBounds(group.getBounds(), {
+      padding: [50, 50]
+    });
+  }
+},
     closePopup() {
       this.selectedStructure = null;
       this.selectedMarker = null;
