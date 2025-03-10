@@ -395,24 +395,48 @@ async showStructures() {
   try {
     const structures = await getAllStructures();
     
-    // Débogage des structures par catégorie
+    // Comptez les structures par catégorie
     const structuresByCat = {};
     structures.forEach(s => {
-      if (!structuresByCat[s.category]) {
-        structuresByCat[s.category] = 0;
+      if (s.categories && Array.isArray(s.categories)) {
+        s.categories.forEach(cat => {
+          if (!structuresByCat[cat]) {
+            structuresByCat[cat] = 0;
+          }
+          structuresByCat[cat]++;
+        });
+      } else if (s.category) {
+        // Ancien format où 'category' est une chaîne unique
+        if (!structuresByCat[s.category]) {
+          structuresByCat[s.category] = 0;
+        }
+        structuresByCat[s.category]++;
       }
-      structuresByCat[s.category]++;
     });
     
-    console.log("Structures par catégorie:", structuresByCat);
+    console.log("Structures par catégorie (nouveau format):", structuresByCat);
     
-    // Vérifier spécifiquement les catégories 13 et 16
-    console.log("Structures catégorie 13:", structures.filter(s => s.category === "category-13").length);
-    console.log("Structures catégorie 16:", structures.filter(s => s.category === "category-16").length);
+    // Vérifiez spécifiquement les structures avec catégories 13 et 16
+    const cat13Structures = structures.filter(s => 
+      (s.categories && s.categories.includes("category-13")) || 
+      s.category === "category-13"
+    );
     
-    // Examiner quelques structures de ces catégories
-    console.log("Exemple structure cat 13:", structures.filter(s => s.category === "category-13")[0]);
-    console.log("Exemple structure cat 16:", structures.filter(s => s.category === "category-16")[0]);
+    const cat16Structures = structures.filter(s => 
+      (s.categories && s.categories.includes("category-16")) || 
+      s.category === "category-16"
+    );
+    
+    console.log("Structures avec catégorie 13:", cat13Structures.length);
+    console.log("Structures avec catégorie 16:", cat16Structures.length);
+    
+    if (cat13Structures.length > 0) {
+      console.log("Exemple structure catégorie 13:", cat13Structures[0]);
+    }
+    
+    if (cat16Structures.length > 0) {
+      console.log("Exemple structure catégorie 16:", cat16Structures[0]);
+    }
     
     this.structures = structures;
     this.isLoading = false;
