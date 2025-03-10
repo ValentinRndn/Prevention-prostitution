@@ -234,20 +234,20 @@ import NavigationBar from "../../components/NavigationBar.vue";
 import NavigationBarMobile from "../../components/NavigationBarMobile.vue";
 import { getAllStructures } from "../../services/StructuresService";
 
-// Couleurs pour chaque catégorie
+// Couleurs pour chaque catégorie - utilisons des codes HEX au lieu des noms simples
 const iconColors = {
-  "category-0": "grey",
-  "category-1": "red",
-  "category-2": "orange",
-  "category-3": "green", 
-  "category-4": "aqua",
-  "category-5": "blue",
-  "category-6": "purple",
-  "category-7": "fuchsia",
-  "category-8": "orchid",
-  "category-9": "yellowgreen",
-  "category-10": "gold",
-  "category-11": "teal"
+  "category-0": "#6B7280", // grey
+  "category-1": "#EF4444", // red
+  "category-2": "#F97316", // orange
+  "category-3": "#22C55E", // green
+  "category-4": "#06B6D4", // cyan/aqua
+  "category-5": "#3B82F6", // blue
+  "category-6": "#8B5CF6", // purple
+  "category-7": "#D946EF", // fuchsia
+  "category-8": "#DA70D6", // orchid
+  "category-9": "#9ACD32", // yellowgreen
+  "category-10": "#FFD700", // gold
+  "category-11": "#008080"  // teal
 };
 
 function createIcon(color) {
@@ -373,6 +373,28 @@ export default {
     async showStructures() {
       try {
         const structures = await getAllStructures();
+        
+        // Comptez les structures par catégorie pour le débogage
+        const structuresByCat = {};
+        structures.forEach(s => {
+          if (s.categories && Array.isArray(s.categories)) {
+            s.categories.forEach(cat => {
+              if (!structuresByCat[cat]) {
+                structuresByCat[cat] = 0;
+              }
+              structuresByCat[cat]++;
+            });
+          } else if (s.category) {
+            // Ancien format où 'category' est une chaîne unique
+            if (!structuresByCat[s.category]) {
+              structuresByCat[s.category] = 0;
+            }
+            structuresByCat[s.category]++;
+          }
+        });
+        
+        console.log("Structures par catégorie (PSP):", structuresByCat);
+        
         this.structures = structures;
         this.isLoading = false;
         
@@ -393,11 +415,17 @@ export default {
       }
       this.removeMarkers();
       this.addMarkers();
+      
+      // Fermez le guide si des catégories sont sélectionnées
+      if (this.selectedCategories.length > 0) {
+        this.closeSearchGuide();
+      }
     },
     selectAllCategories() {
       this.selectedCategories = this.categories.map(cat => cat.key);
       this.removeMarkers();
       this.addMarkers();
+      this.closeSearchGuide();
     },
     deselectAllCategories() {
       this.selectedCategories = [];
@@ -425,97 +453,97 @@ export default {
       }
     },
     addMarkers() {
-  if (!this.map) return;
-  
-  let markersAdded = 0;
-  let structuresWithSelectedCategories = 0;
-  
-  this.structures.forEach(structure => {
-    // Vérifions si la structure a des catégories qui correspondent à notre sélection
-    let shouldAddMarker = false;
-    
-    // Vérifier d'abord le tableau categories (nouvelle version)
-    if (structure.categories && Array.isArray(structure.categories)) {
-      shouldAddMarker = structure.categories.some(cat => 
-        this.selectedCategories.includes(cat)
-      );
+      if (!this.map) return;
       
-      if (shouldAddMarker) {
-        structuresWithSelectedCategories++;
-        console.log("Structure trouvée avec categories[]:", structure.antenna, 
-          "Categories:", structure.categories.filter(cat => this.selectedCategories.includes(cat)));
-      }
-    } 
-    
-    // Si aucune correspondance trouvée dans le tableau, vérifier le champ category (ancienne version)
-    if (!shouldAddMarker && structure.category) {
-      shouldAddMarker = this.selectedCategories.includes(structure.category);
+      let markersAdded = 0;
+      let structuresWithSelectedCategories = 0;
       
-      if (shouldAddMarker) {
-        structuresWithSelectedCategories++;
-        console.log("Structure trouvée avec category:", structure.antenna, 
-          "Category:", structure.category);
-      }
-    }
-    
-    if (structure.gps && shouldAddMarker) {
-      const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord.trim()));
-      
-      if (!isNaN(lat) && !isNaN(lon)) {
-        // Déterminer quelle catégorie utiliser pour la couleur
-        let categoryForColor;
+      this.structures.forEach(structure => {
+        // Vérifions si la structure a des catégories qui correspondent à notre sélection
+        let shouldAddMarker = false;
         
-        // Si la structure a plusieurs catégories, prendre la première catégorie sélectionnée
+        // Vérifier d'abord le tableau categories (nouvelle version)
         if (structure.categories && Array.isArray(structure.categories)) {
-          categoryForColor = structure.categories.find(cat => this.selectedCategories.includes(cat));
-        }
-        
-        // Si aucune catégorie trouvée dans le tableau ou si le tableau n'existe pas, utiliser le champ category
-        if (!categoryForColor) {
-          categoryForColor = structure.category;
-        }
-        
-        // Si toujours pas de catégorie, utiliser une catégorie par défaut
-        if (!categoryForColor || !iconColors[categoryForColor]) {
-          categoryForColor = "category-12"; // Catégorie par défaut
-        }
-        
-        const color = iconColors[categoryForColor];
-        const icon = createIcon(color);
-        const marker = L.marker([lat, lon], { icon }).addTo(this.map);
-        
-        // Ajouter une propriété personnalisée au marqueur
-        marker.structureData = structure;
-        
-        marker.on('click', () => {
-          this.selectedStructure = structure;
-          this.selectedMarker = marker;
+          shouldAddMarker = structure.categories.some(cat => 
+            this.selectedCategories.includes(cat)
+          );
           
-          // Centrer la carte sur le marqueur avec une animation
-          this.map.flyTo([lat, lon], 13, {
-            animate: true,
-            duration: 0.5
-          });
-        });
+          if (shouldAddMarker) {
+            structuresWithSelectedCategories++;
+            console.log("Structure trouvée avec categories[]:", structure.antenna, 
+              "Categories:", structure.categories.filter(cat => this.selectedCategories.includes(cat)));
+          }
+        } 
         
-        this.markers.push(marker);
-        markersAdded++;
-      } else {
-        console.warn("Coordonnées GPS invalides:", structure.antenna, structure.gps);
+        // Si aucune correspondance trouvée dans le tableau, vérifier le champ category (ancienne version)
+        if (!shouldAddMarker && structure.category) {
+          shouldAddMarker = this.selectedCategories.includes(structure.category);
+          
+          if (shouldAddMarker) {
+            structuresWithSelectedCategories++;
+            console.log("Structure trouvée avec category:", structure.antenna, 
+              "Category:", structure.category);
+          }
+        }
+        
+        if (structure.gps && shouldAddMarker) {
+          const [lat, lon] = structure.gps.split(',').map(coord => parseFloat(coord.trim()));
+          
+          if (!isNaN(lat) && !isNaN(lon)) {
+            // Déterminer quelle catégorie utiliser pour la couleur
+            let categoryForColor;
+            
+            // Si la structure a plusieurs catégories, prendre la première catégorie sélectionnée
+            if (structure.categories && Array.isArray(structure.categories)) {
+              categoryForColor = structure.categories.find(cat => this.selectedCategories.includes(cat));
+            }
+            
+            // Si aucune catégorie trouvée dans le tableau ou si le tableau n'existe pas, utiliser le champ category
+            if (!categoryForColor) {
+              categoryForColor = structure.category;
+            }
+            
+            // Si toujours pas de catégorie, utiliser une catégorie par défaut
+            if (!categoryForColor || !iconColors[categoryForColor]) {
+              categoryForColor = "category-0"; // Catégorie par défaut
+            }
+            
+            const color = iconColors[categoryForColor];
+            const icon = createIcon(color);
+            const marker = L.marker([lat, lon], { icon }).addTo(this.map);
+            
+            // Ajouter une propriété personnalisée au marqueur
+            marker.structureData = structure;
+            
+            marker.on('click', () => {
+              this.selectedStructure = structure;
+              this.selectedMarker = marker;
+              
+              // Centrer la carte sur le marqueur avec une animation
+              this.map.flyTo([lat, lon], 13, {
+                animate: true,
+                duration: 0.5
+              });
+            });
+            
+            this.markers.push(marker);
+            markersAdded++;
+          } else {
+            console.warn("Coordonnées GPS invalides:", structure.antenna, structure.gps);
+          }
+        }
+      });
+      
+      console.log(`Structures avec catégories sélectionnées: ${structuresWithSelectedCategories}, Marqueurs ajoutés: ${markersAdded}`);
+      
+      // Ajuster la vue de la carte pour englober tous les marqueurs
+      if (this.markers.length > 0) {
+        const group = L.featureGroup(this.markers);
+        this.map.fitBounds(group.getBounds(), {
+          padding: [50, 50]
+        });
       }
-    }
-  });
-  
-  console.log(`Structures avec catégories sélectionnées: ${structuresWithSelectedCategories}, Marqueurs ajoutés: ${markersAdded}`);
-  
-  // Ajuster la vue de la carte pour englober tous les marqueurs
-  if (this.markers.length > 0) {
-    const group = L.featureGroup(this.markers);
-    this.map.fitBounds(group.getBounds(), {
-      padding: [50, 50]
-    });
-  }
-},
+    },
     closePopup() {
       this.selectedStructure = null;
       this.selectedMarker = null;
@@ -689,18 +717,18 @@ input[type="checkbox"] {
 }
 
 /* Styles pour les catégories avec couleurs correspondantes */
-#category-0 { accent-color: grey; }
-#category-1 { accent-color: red; }
-#category-2 { accent-color: orange; }
-#category-3 { accent-color: green; }
-#category-4 { accent-color: aqua; }
-#category-5 { accent-color: blue; }
-#category-6 { accent-color: purple; }
-#category-7 { accent-color: fuchsia; }
-#category-8 { accent-color: orchid; }
-#category-9 { accent-color: yellowgreen; }
-#category-10 { accent-color: gold; }
-#category-11 { accent-color: teal; }
+#category-0 { accent-color: #6B7280; }
+#category-1 { accent-color: #EF4444; }
+#category-2 { accent-color: #F97316; }
+#category-3 { accent-color: #22C55E; }
+#category-4 { accent-color: #06B6D4; }
+#category-5 { accent-color: #3B82F6; }
+#category-6 { accent-color: #8B5CF6; }
+#category-7 { accent-color: #D946EF; }
+#category-8 { accent-color: #DA70D6; }
+#category-9 { accent-color: #9ACD32; }
+#category-10 { accent-color: #FFD700; }
+#category-11 { accent-color: #008080; }
 
 @media (max-width: 768px) {
   .structure-popup {
