@@ -95,27 +95,27 @@
           </div>
           <!-- Guide d'utilisation si aucune catégorie n'est sélectionnée -->
           <div v-if="!isLoading && showSearchGuide" class="absolute inset-0 flex items-center justify-center" style="z-index: 9999;">
-          <!-- Overlay gris semi-transparent -->
-          <div class="absolute inset-0 bg-black/50"></div>
-          
-          <div class="bg-white p-6 rounded-lg shadow-md text-center max-w-sm relative z-10">
-            <!-- Bouton fermer -->
-            <button @click="closeSearchGuide" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
+            <!-- Overlay gris semi-transparent -->
+            <div class="absolute inset-0 bg-black/50"></div>
             
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-purple-fonce mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 class="font-bold text-lg text-gray-800 mb-2">Commencez votre recherche</h3>
-            <p class="text-gray-600 mb-3">Sélectionnez une ou plusieurs catégories sur la gauche pour afficher les structures correspondantes sur la carte.</p>
-            <button @click="selectRecommendedCategories" class="bg-purple-fonce hover:bg-purple text-white font-semibold py-2 px-4 rounded transition duration-300">
-              Sélection recommandée
-            </button>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center max-w-sm relative z-10">
+              <!-- Bouton fermer -->
+              <button @click="closeSearchGuide" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-purple-fonce mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 class="font-bold text-lg text-gray-800 mb-2">Commencez votre recherche</h3>
+              <p class="text-gray-600 mb-3">Sélectionnez une ou plusieurs catégories sur la gauche pour afficher les structures correspondantes sur la carte.</p>
+              <button @click="closeSearchGuide" class="bg-purple-fonce hover:bg-purple text-white font-semibold py-2 px-4 rounded transition duration-300">
+                Compris
+              </button>
+            </div>
           </div>
-        </div>
 
           <!-- Transition et popup pour afficher la structure sélectionnée -->
           <transition name="slide-in">
@@ -308,6 +308,9 @@ function createIcon(color) {
   });
 }
 
+// Dans la section script, je retire la méthode selectRecommendedCategories()
+// et je modifie la vue pour retirer le bouton correspondant
+
 export default {
   data() {
     return {
@@ -346,9 +349,9 @@ export default {
   },
   methods: {
     closeSearchGuide() {
-    this.showSearchGuide = false;
-  },
-  
+      this.showSearchGuide = false;
+    },
+    
     toggleVisibility() {
       this.categoryVisible = !this.categoryVisible;
     },
@@ -420,18 +423,6 @@ export default {
       this.selectedCategories = [];
       this.removeMarkers();
       this.closePopup();
-    },
-    selectRecommendedCategories() {
-      // Sélection des catégories les plus pertinentes (exemple)
-      this.selectedCategories = [
-        "category-13",
-        "category-16",
-        "category-19",
-        "category-20"
-      ];
-      this.removeMarkers();
-      this.addMarkers();
-      this.closeSearchGuide();
     },
     removeMarkers() {
       if (this.map) {
