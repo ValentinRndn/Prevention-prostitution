@@ -1,6 +1,6 @@
 <template>
 <div>
-    <GuideContent :categories="['general', 'euro', 'calvados', 'seine-maritime', 'manche', 'orne']" />
+    <GuideContent :categories="['general', 'eure', 'calvados', 'seine-maritime', 'manche', 'orne']" />
   </div>
   
 </template>
