@@ -42,7 +42,7 @@
           v-if="dropdownVisible"
           class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg text-gray-700"
         >
-          <li class="menu-item no-underline flex items-center gap-2 p-3 hover:bg-gray-100">
+          <li class="menu-item no-underline flex items-center gap-2 p-3 hover:bg-gray-100 rounded-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5 text-purple-fonce"
@@ -62,7 +62,7 @@
             </router-link>
           </li>
           <li
-            class="menu-item no-underline flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer"
+            class="menu-item no-underline flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer rounded-md"
             @click="logout"
           >
             <svg
