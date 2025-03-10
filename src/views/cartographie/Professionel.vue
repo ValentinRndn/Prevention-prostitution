@@ -390,21 +390,42 @@ export default {
         this.showStructures();
       }
     },
-    async showStructures() {
-      try {
-        const structures = await getAllStructures();
-        this.structures = structures;
-        this.isLoading = false;
-        
-        // Si aucune catégorie n'est sélectionnée, on n'affiche pas les marqueurs
-        if (this.selectedCategories.length > 0) {
-          this.addMarkers();
-        }
-      } catch (error) {
-        console.error('Error fetching structures:', error);
-        this.isLoading = false;
+// Modifiez la méthode showStructures() comme suit :
+async showStructures() {
+  try {
+    const structures = await getAllStructures();
+    
+    // Débogage des structures par catégorie
+    const structuresByCat = {};
+    structures.forEach(s => {
+      if (!structuresByCat[s.category]) {
+        structuresByCat[s.category] = 0;
       }
-    },
+      structuresByCat[s.category]++;
+    });
+    
+    console.log("Structures par catégorie:", structuresByCat);
+    
+    // Vérifier spécifiquement les catégories 13 et 16
+    console.log("Structures catégorie 13:", structures.filter(s => s.category === "category-13").length);
+    console.log("Structures catégorie 16:", structures.filter(s => s.category === "category-16").length);
+    
+    // Examiner quelques structures de ces catégories
+    console.log("Exemple structure cat 13:", structures.filter(s => s.category === "category-13")[0]);
+    console.log("Exemple structure cat 16:", structures.filter(s => s.category === "category-16")[0]);
+    
+    this.structures = structures;
+    this.isLoading = false;
+    
+    // Si aucune catégorie n'est sélectionnée, on n'affiche pas les marqueurs
+    if (this.selectedCategories.length > 0) {
+      this.addMarkers();
+    }
+  } catch (error) {
+    console.error('Error fetching structures:', error);
+    this.isLoading = false;
+  }
+},
     updateSelectedCategories(categoryKey) {
       if (this.selectedCategories.includes(categoryKey)) {
         this.selectedCategories = this.selectedCategories.filter(id => id !== categoryKey);
@@ -505,6 +526,7 @@ export default {
     },
   },
   mounted() {
+    this.selectedCategories = ["category-13", "category-16"];
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     this.checkCookieConsent();
