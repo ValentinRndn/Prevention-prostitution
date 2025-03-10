@@ -81,7 +81,7 @@
           </div>
 
           <!-- Message si aucun marqueur n'est affiché -->
-*          <div v-if="!isLoading && markers.length === 0 && selectedCategories.length > 0" class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 9999;">
+          <div v-if="!isLoading && markers.length === 0 && selectedCategories.length > 0" class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 9999;">
             <!-- Overlay semi-transparent pour griser la carte -->
             <div class="absolute inset-0 bg-black/30"></div>
             
@@ -425,7 +425,7 @@ export default {
       // Sélection des catégories les plus pertinentes (exemple)
       this.selectedCategories = [
         "category-13",
-        "category-16",
+        // "category-16",
         "category-19",
         "category-20"
       ];
