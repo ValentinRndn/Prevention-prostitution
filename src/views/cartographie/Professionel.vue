@@ -425,7 +425,7 @@ export default {
       // Sélection des catégories les plus pertinentes (exemple)
       this.selectedCategories = [
         "category-13",
-        // "category-16",
+        "category-16",
         "category-19",
         "category-20"
       ];
