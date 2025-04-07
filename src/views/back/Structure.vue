@@ -186,6 +186,7 @@
               placeholder="Entrez une adresse"
               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
+            <div id="autocomplete-container" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"></div>
           </div>
 
           <!-- Boucle pour les champs du formulaire -->
@@ -363,39 +364,43 @@ export default {
       categories: [],
       allCategories: {
         Professionnel: [
-          { key: "category-12", label: "Une structure d'accès aux soins" },
+          { key: "category-13", label: "Une structure d'accès aux soins" },
           {
-            key: "category-13",
+            key: "category-14",
             label: "Une structures d'accès aux droits de santé",
           },
           {
-            key: "category-14",
+            key: "category-15",
             label: "Une structure proposant des dépistages",
           },
-          { key: "category-15", label: "Un service d'urgence" },
-          { key: "category-16", label: "Une structure d'écoute" },
-          { key: "category-17", label: "Une structure en santé sexuelle" },
-          { key: "category-18", label: "Une structure communautaire" },
-          {
-            key: "category-19",
-            label: "Une structure d'accompagnement psychologique",
-          },
+          { key: "category-16", label: "Un service d'urgence" },
+          { key: "category-17", label: "Une structure d'écoute" },
+          { key: "category-18", label: "Une structure en santé sexuelle" },
+          { key: "category-19", label: "Une structure communautaire" },
           {
             key: "category-20",
-            label:
-              "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle",
+            label: "Une structure d'accompagnement psychologique",
           },
           {
             key: "category-21",
             label:
-              "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement",
+              "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle",
           },
           {
             key: "category-22",
             label:
+              "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement",
+          },
+          {
+            key: "category-23",
+            label:
               "Une structure de prévention et réduction des risques pour les usagers de drogues",
           },
-          { key: "category-23", label: "Un commissariat" },
+          { key: "category-24", label: "Un commissariat" },
+          {
+            key: "category-25",
+            label: "Association agréée parcours sortie de prostitution",
+          },
         ],
         "Personne en situation de prostitution": [
           { key: "category-0", label: "Rencontrer un médecin" },
@@ -420,6 +425,7 @@ export default {
               "Trouver du matériel de consommation de drogue à moindre risque",
           },
           { key: "category-11", label: "Déposer plainte" },
+          { key: "category-12", label: "Trouver une association agréée pour sortir de la prostitution" }
         ],
       },
       showNotificationPopup: false,

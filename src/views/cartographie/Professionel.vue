@@ -32,39 +32,60 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[980px] items-stretch md:flex-col md:h-[700px]" v-if="cookieAccepted">
-        <div class="categories-container bg-grey h-full px-6 flex flex-col justify-start pt-8 md:h-fit md:w-full md:bg-white md:text-black md:pt-4">
-          <h1 class="text-white text-2xl font-bold mb-6 font-cgothic md:hidden">JE RECHERCHE :</h1>
-          
+      <div class="map-section flex h-[1050px]  items-stretch md:flex-col " v-if="cookieAccepted">
+        <div 
+          :class="[
+            'categories-container bg-grey h-full px-6 flex text-white md:text-black flex-col justify-start  md:bg-white  transition-all duration-300 p-4 md:h-fit',
+            windowWidth <= 767 ? (categoryVisible ? 'h-full overflow-y-auto' : 'h-0') : 'h-full'
+          ]"
+        >
+          <h1 
+            v-if="windowWidth > 767 || categoryVisible" 
+            class=" text-2xl font-bold mb-6 font-cgothic text-white md:hidden"
+          >
+            JE SOUHAITE :
+          </h1>
+
           <!-- Bouton pour afficher/masquer les catégories sur mobile -->
           <span 
-            class="hidden md:flex md:items-center text-black cursor-pointer mb-4 md:w-fit font-semibold text-xl"
+            class="hidden md:flex md:items-center cursor-pointer mb-4 md:w-fit font-semibold text-xl"
             @click="toggleVisibility"
           >
             {{ selectedCategories.length ? `${selectedCategories.length} catégories sélectionnées` : 'Catégories' }}
-            <svg xmlns="http://www.w3.org/2000/svg" :class="{rotatedIcon: categoryVisible}" class="transition duration-200" width="24" height="24" viewBox="0 0 24 24">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              :class="{rotatedIcon: categoryVisible}" 
+              class="transition duration-200 " 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24"
+            >
               <path fill="currentColor" d="M12 15.5l-6-6l1.41-1.41L12 12.67l4.59-4.58L18 9.5z"/>
             </svg>
           </span>
 
-          <!-- Sélection rapide des catégories -->
-          <div class="mb-4 block md:hidden">
-            <button @click="selectAllCategories" class="mr-2 px-3 py-1 text-sm bg-purple-fonce text-white rounded-full hover:bg-purple transition duration-300">Tout sélectionner</button>
-            <button @click="deselectAllCategories" class="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition duration-300">Tout désélectionner</button>
-          </div>
-
           <!-- Liste des catégories -->
-          <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black max-h-[80vh] md:overflow-y-auto md:pr-4">
-            <div class="checkbox flex gap-3 items-center p-2 rounded-md transition-all duration-300" v-for="(category, index) in categories" :key="index">
+          <div 
+            v-if="categoryVisible || windowWidth > 767" 
+            class="checkboxes flex flex-col gap-4 font-poppins  text-xl  pr-2"
+          >
+            <div 
+              v-for="(category, index) in categories" 
+              :key="index" 
+              class="flex gap-3 items-center p-2 rounded-md transition-all duration-300 hover:bg-gray-500 md:hover:bg-gray-100"
+            >
               <input 
                 :id="category.key" 
                 type="checkbox" 
                 :checked="selectedCategories.includes(category.key)" 
                 @change="updateSelectedCategories(category.key)" 
-                class="h-5 w-5"
+                class="h-5 w-5 accent-purple-fonce"
               />
               <label :for="category.key" class="cursor-pointer flex-1">{{ category.label }}</label>
-              <div class="color-indicator w-4 h-4 rounded-full" :style="`background-color: ${iconColors[category.key]}`"></div>
+              <div 
+                class="w-4 h-4 rounded-full" 
+                :style="`background-color: ${iconColors[category.key]}`"
+              ></div>
             </div>
           </div>
 
@@ -81,7 +102,7 @@
           </div>
 
           <!-- Message si aucun marqueur n'est affiché -->
-*          <div v-if="!isLoading && markers.length === 0 && selectedCategories.length > 0" class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 9999;">
+          <div v-if="!isLoading && markers.length === 0 && selectedCategories.length > 0" class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 9999;">
             <!-- Overlay semi-transparent pour griser la carte -->
             <div class="absolute inset-0 bg-black/30"></div>
             
@@ -253,18 +274,19 @@ import { getAllStructures } from "../../services/StructuresService";
 
 // Couleurs pour chaque catégorie
 const iconColors = {
-  "category-12": "#6B7280", // grey
-  "category-13": "#EF4444", // red
-  "category-14": "#F97316", // orange
-  "category-15": "#22C55E", // green
-  "category-16": "#06B6D4", // cyan/aqua
-  "category-17": "#3B82F6", // blue
-  "category-18": "#8B5CF6", // purple
-  "category-19": "#D946EF", // fuchsia
-  "category-20": "#DA70D6", // orchid
-  "category-21": "#9ACD32", // yellowgreen
-  "category-22": "#FFD700", // gold
-  "category-23": "#008080"  // teal
+  "category-13": "#6B7280", // grey
+  "category-14": "#EF4444", // red
+  "category-15": "#F97316", // orange
+  "category-16": "#22C55E", // green
+  "category-17": "#06B6D4", // cyan/aqua
+  "category-18": "#3B82F6", // blue
+  "category-19": "#8B5CF6", // purple
+  "category-20": "#D946EF", // fuchsia
+  "category-21": "#DA70D6", // orchid
+  "category-22": "#9ACD32", // yellowgreen
+  "category-23": "#FFD700", // gold
+  "category-24": "#008080",  // teal
+  "category-25": "#FF6347", // tomato
 };
 
 function createIcon(color) {
@@ -317,18 +339,20 @@ export default {
       cookieAccepted: false,
       isLoading: true,
       categories: [
-        { key: "category-12", label: "Une structure d'accès aux soins" },
-        { key: "category-13", label: "Une structures d'accès aux droits de santé" },
-        { key: "category-14", label: "Une structure proposant des dépistages" },
-        { key: "category-15", label: "Un service d'urgence" },
-        { key: "category-16", label: "Une structure d'écoute" },
-        { key: "category-17", label: "Une structure en santé sexuelle" },
-        { key: "category-18", label: "Une structure communautaire" },
-        { key: "category-19", label: "Une structure d'accompagnement psychologique" },
-        { key: "category-20", label: "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle" },
-        { key: "category-21", label: "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement" },
-        { key: "category-22", label: "Une structure de prévention et réduction des risques pour les usagers de drogues" },
-        { key: "category-23", label: "Un commissariat" }
+        { key: "category-13", label: "Une structure d'accès aux soins" },
+        { key: "category-14", label: "Une structures d'accès aux droits de santé" },
+        { key: "category-15", label: "Une structure proposant des dépistages" },
+        { key: "category-16", label: "Un service d'urgence" },
+        { key: "category-17", label: "Une structure d'écoute" },
+        { key: "category-18", label: "Une structure en santé sexuelle" },
+        { key: "category-19", label: "Une structure communautaire" },
+        { key: "category-20", label: "Une structure d'accompagnement psychologique" },
+        { key: "category-21", label: "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle" },
+        { key: "category-22", label: "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement" },
+        { key: "category-23", label: "Une structure de prévention et réduction des risques pour les usagers de drogues" },
+        { key: "category-24", label: "Un commissariat" },
+        { key: "category-25", label: "Association agréée parcours sortie de prostitution"},
+
       ],
       selectedCategories: [],
       structures: [],
@@ -707,18 +731,19 @@ input[type="checkbox"] {
 }
 
 /* Styles pour les catégories avec couleurs correspondantes */
-#category-12 { accent-color: #6B7280; }
-#category-13 { accent-color: #EF4444; }
-#category-14 { accent-color: #F97316; }
-#category-15 { accent-color: #22C55E; }
-#category-16 { accent-color: #06B6D4; }
-#category-17 { accent-color: #3B82F6; }
-#category-18 { accent-color: #8B5CF6; }
-#category-19 { accent-color: #D946EF; }
-#category-20 { accent-color: #DA70D6; }
-#category-21 { accent-color: #9ACD32; }
-#category-22 { accent-color: #FFD700; }
-#category-23 { accent-color: #008080; }
+#category-13 { accent-color: #6B7280; }
+#category-14 { accent-color: #EF4444; }
+#category-15 { accent-color: #F97316; }
+#category-16 { accent-color: #22C55E; }
+#category-17 { accent-color: #06B6D4; }
+#category-18 { accent-color: #3B82F6; }
+#category-19 { accent-color: #8B5CF6; }
+#category-20 { accent-color: #D946EF; }
+#category-21 { accent-color: #DA70D6; }
+#category-22 { accent-color: #9ACD32; }
+#category-23 { accent-color: #FFD700; }
+#category-24 { accent-color: #008080; }
+#category-25 { accent-color: #FF6347; }
 
 @media (max-width: 768px) {
   .structure-popup {

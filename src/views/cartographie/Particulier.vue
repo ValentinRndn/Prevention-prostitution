@@ -34,48 +34,71 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[980px] items-stretch md:flex-col md:h-[700px]" v-if="cookieAccepted">
-        <div class="categories-container bg-grey h-full px-6 flex flex-col justify-start pt-8 md:h-fit md:w-full md:bg-white md:text-black md:pt-4">
-          <h1 class="text-white text-2xl font-bold mb-6 font-cgothic md:hidden">JE SOUHAITE :</h1>
-          
-          <!-- Bouton pour afficher/masquer les catégories sur mobile -->
-          <span 
-            class="hidden md:flex md:items-center text-black cursor-pointer mb-4 md:w-fit font-semibold text-xl"
-            @click="toggleVisibility"
-          >
-            {{ selectedCategories.length ? `${selectedCategories.length} catégories sélectionnées` : 'Catégories' }}
-            <svg xmlns="http://www.w3.org/2000/svg" :class="{rotatedIcon: categoryVisible}" class="transition duration-200" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M12 15.5l-6-6l1.41-1.41L12 12.67l4.59-4.58L18 9.5z"/>
-            </svg>
-          </span>
+      <div class="map-section flex h-[1050px]  items-stretch md:flex-col " v-if="cookieAccepted">
+        <div 
+  :class="[
+    'categories-container bg-grey h-full text-white md:text-black px-6 flex flex-col justify-start  md:bg-white  transition-all duration-300 p-4 md:h-fit',
+    windowWidth <= 767 ? (categoryVisible ? 'h-full overflow-y-auto' : 'h-0') : 'h-full'
+  ]"
+>
+  <h1 
+    v-if="windowWidth > 767 || categoryVisible" 
+    class=" text-2xl font-bold mb-6 font-cgothic text-white md:hidden"
+  >
+    JE SOUHAITE :
+  </h1>
 
-          <!-- Sélection rapide des catégories -->
-          <div class="mb-4 block md:hidden">
-            <button @click="selectAllCategories" class="mr-2 px-3 py-1 text-sm bg-purple-fonce text-white rounded-full hover:bg-purple transition duration-300">Tout sélectionner</button>
-            <button @click="deselectAllCategories" class="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition duration-300">Tout désélectionner</button>
-          </div>
+  <!-- Bouton pour afficher/masquer les catégories sur mobile -->
+  <span 
+    class="hidden md:flex md:items-center cursor-pointer mb-4 md:w-fit font-semibold text-xl"
+    @click="toggleVisibility"
+  >
+    {{ selectedCategories.length ? `${selectedCategories.length} catégories sélectionnées` : 'Catégories' }}
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      :class="{rotatedIcon: categoryVisible}" 
+      class="transition duration-200 " 
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24"
+    >
+      <path fill="currentColor" d="M12 15.5l-6-6l1.41-1.41L12 12.67l4.59-4.58L18 9.5z"/>
+    </svg>
+  </span>
 
-          <!-- Liste des catégories -->
-          <div v-if="categoryVisible || windowWidth > 768" class="checkboxes relative flex flex-col gap-4 font-poppins text-white text-xl md:text-black max-h-[80vh] md:overflow-y-auto md:pr-4">
-            <div class="checkbox flex gap-3 items-center p-2 rounded-md transition-all duration-300" v-for="(category, index) in categories" :key="index">
-              <input 
-                :id="category.key" 
-                type="checkbox" 
-                :checked="selectedCategories.includes(category.key)" 
-                @change="updateSelectedCategories(category.key)" 
-                class="h-5 w-5"
-              />
-              <label :for="category.key" class="cursor-pointer flex-1">{{ category.label }}</label>
-              <div class="color-indicator w-4 h-4 rounded-full" :style="`background-color: ${iconColors[category.key]}`"></div>
-            </div>
-          </div>
+  <!-- Liste des catégories -->
+  <div 
+    v-if="categoryVisible || windowWidth > 767" 
+    class="checkboxes flex flex-col gap-4 font-poppins  text-xl  pr-2"
+  >
+    <div 
+      v-for="(category, index) in categories" 
+      :key="index" 
+      class="flex gap-3 items-center p-2 rounded-md transition-all duration-300 hover:bg-gray-500 md:hover:bg-gray-100"
+    >
+      <input 
+        :id="category.key" 
+        type="checkbox" 
+        :checked="selectedCategories.includes(category.key)" 
+        @change="updateSelectedCategories(category.key)" 
+        class="h-5 w-5 accent-purple-fonce"
+      />
+      <label :for="category.key" class="cursor-pointer flex-1">{{ category.label }}</label>
+      <div 
+        class="w-4 h-4 rounded-full" 
+        :style="`background-color: ${iconColors[category.key]}`"
+      ></div>
+    </div>
+  </div>
 
-          <!-- Légende visible seulement en mode desktop -->
-          <div class="mt-auto block md:hidden text-white md:text-black text-sm opacity-80 pt-4 pb-2">
-            <p>Sélectionnez une ou plusieurs catégories pour afficher les structures correspondantes sur la carte.</p>
-          </div>
-        </div>
-        
+  <!-- Légende visible seulement en mode desktop -->
+  <div 
+    v-if="categoryVisible || windowWidth > 767" 
+    class="mt-auto text-white md:text-black text-sm opacity-80 pt-4 pb-2"
+  >
+    <p>Sélectionnez une ou plusieurs catégories pour afficher les structures correspondantes sur la carte.</p>
+  </div>
+</div>
         <div id="map" class="h-full w-full md:h-[80vh] relative">
           <!-- Overlay de chargement -->
           <div v-if="isLoading" class="absolute inset-0 bg-white/80 flex items-center justify-center z-50" style="z-index: 9999">
@@ -247,7 +270,8 @@ const iconColors = {
   "category-8": "#DA70D6", // orchid
   "category-9": "#9ACD32", // yellowgreen
   "category-10": "#FFD700", // gold
-  "category-11": "#008080"  // teal
+  "category-11": "#008080",  // teal
+  "category-12": "#FF6347", // tomato
 };
 
 function createIcon(color) {
@@ -311,7 +335,8 @@ export default {
         { key: "category-8", label: "Sortir d'un réseau d'exploitation sexuelle" },
         { key: "category-9", label: "Trouver des préservatifs" },
         { key: "category-10", label: "Trouver du matériel de consommation de drogue à moindre risque" },
-        { key: "category-11", label: "Déposer plainte" }
+        { key: "category-11", label: "Déposer plainte" },
+        { key : "category-12", label: "Trouver une association agréée pour sortir de la prostitution"}
       ],
       selectedCategories: [],
       structures: [],
@@ -722,6 +747,7 @@ input[type="checkbox"] {
 #category-9 { accent-color: #9ACD32; }
 #category-10 { accent-color: #FFD700; }
 #category-11 { accent-color: #008080; }
+#category-12 { accent-color: #FF6347; } 
 
 @media (max-width: 768px) {
   .structure-popup {
@@ -741,6 +767,25 @@ input[type="checkbox"] {
   
   .categories-container {
     border-top: 1px solid #e5e7eb;
+    
   }
+}
+
+/* Barre de défilement personnalisée */
+.categories-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.categories-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.categories-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 8px;
+}
+
+.categories-container::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
 }
 </style>
