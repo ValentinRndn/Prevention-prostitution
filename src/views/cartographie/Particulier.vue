@@ -287,7 +287,7 @@ const iconColors = {
   "category-9": "#9ACD32", // yellowgreen
   "category-10": "#FFD700", // gold
   "category-11": "#008080",  // teal
-  "category-12": "#FF6347", // tomato
+  "category-25": "#FF6347", // tomato
 };
 
 function createIcon(color) {
@@ -352,7 +352,7 @@ export default {
         { key: "category-9", label: "Trouver des préservatifs" },
         { key: "category-10", label: "Trouver du matériel de consommation de drogue à moindre risque" },
         { key: "category-11", label: "Déposer plainte" },
-        { key : "category-12", label: "Trouver une association agréée pour sortir de la prostitution"}
+        { key : "category-25", label: "Trouver une association agréée pour sortir de la prostitution"}
       ],
       selectedCategories: [],
       structures: [],
@@ -763,7 +763,7 @@ input[type="checkbox"] {
 #category-9 { accent-color: #9ACD32; }
 #category-10 { accent-color: #FFD700; }
 #category-11 { accent-color: #008080; }
-#category-12 { accent-color: #FF6347; } 
+#category-25 { accent-color: #FF6347; } 
 
 @media (max-width: 768px) {
   .structure-popup {

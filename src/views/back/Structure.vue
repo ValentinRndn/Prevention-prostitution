@@ -364,41 +364,41 @@ export default {
       categories: [],
       allCategories: {
         Professionnel: [
-          { key: "category-13", label: "Une structure d'accès aux soins" },
+          { key: "category-12", label: "Une structure d'accès aux soins" },
           {
-            key: "category-14",
+            key: "category-13",
             label: "Une structures d'accès aux droits de santé",
           },
           {
-            key: "category-15",
+            key: "category-14",
             label: "Une structure proposant des dépistages",
           },
-          { key: "category-16", label: "Un service d'urgence" },
-          { key: "category-17", label: "Une structure d'écoute" },
-          { key: "category-18", label: "Une structure en santé sexuelle" },
-          { key: "category-19", label: "Une structure communautaire" },
+          { key: "category-15", label: "Un service d'urgence" },
+          { key: "category-16", label: "Une structure d'écoute" },
+          { key: "category-17", label: "Une structure en santé sexuelle" },
+          { key: "category-18", label: "Une structure communautaire" },
           {
-            key: "category-20",
+            key: "category-19",
             label: "Une structure d'accompagnement psychologique",
           },
           {
-            key: "category-21",
+            key: "category-20",
             label:
               "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle",
           },
           {
-            key: "category-22",
+            key: "category-21",
             label:
               "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement",
           },
           {
-            key: "category-23",
+            key: "category-22",
             label:
               "Une structure de prévention et réduction des risques pour les usagers de drogues",
           },
-          { key: "category-24", label: "Un commissariat" },
+          { key: "category-23", label: "Un commissariat" },
           {
-            key: "category-25",
+            key: "category-24",
             label: "Association agréée parcours sortie de prostitution",
           },
         ],
@@ -425,7 +425,8 @@ export default {
               "Trouver du matériel de consommation de drogue à moindre risque",
           },
           { key: "category-11", label: "Déposer plainte" },
-          { key: "category-12", label: "Trouver une association agréée pour sortir de la prostitution" }
+          { key: "category-25", label: "Trouver une association agréée pour sortir de la prostitution" }
+
         ],
       },
       showNotificationPopup: false,
