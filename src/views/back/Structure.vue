@@ -174,20 +174,25 @@
           @submit.prevent="isEditing ? updateStructure() : createStructure()"
           class="scrollable-form"
         >
-          <div class="mb-4">
-            <label
-              for="address"
-              class="block text-sm font-medium text-gray-700 w-full"
-              >Adresse</label
-            >
-            <input
-              type="text"
-              ref="autocompleteInput"
-              placeholder="Entrez une adresse"
-              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-            />
-            <div id="autocomplete-container" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"></div>
-          </div>
+        <div class="mb-4">
+          <label
+            for="address"
+            class="block text-sm font-medium text-gray-700 w-full"
+          >
+            Adresse
+          </label>
+          <input
+            type="text"
+            ref="autocompleteInput"
+            placeholder="Entrez une adresse"
+            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-purple-fonce focus:border-purple-fonce transition duration-300"
+          />
+          <div
+            id="autocomplete-container"
+            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+          ></div>
+        </div>
+
 
           <!-- Boucle pour les champs du formulaire -->
           <div v-for="field in fields" :key="field.id" class="mb-4">
