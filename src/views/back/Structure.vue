@@ -437,7 +437,6 @@ export default {
         }
 
         await loadGoogleMapsAPI(apiKey); // Charge l'API
-        console.log("Google Maps API chargée avec succès");
         this.initAutocomplete(); // Initialise l'Autocomplete
       } catch (error) {
         console.error("Erreur lors du chargement de l'API Google Maps :", error);
@@ -521,7 +520,6 @@ export default {
     async fetchStructures() {
       try {
         const response = await getAllStructures(); // Récupère les structures depuis l'API
-        console.log("Données reçues :", response);
 
         if (Array.isArray(response)) {
           this.structures = response.map((structure) => ({
@@ -557,7 +555,6 @@ export default {
         };
 
         await createStructure(structureData);
-        console.log("Structure created successfully");
         this.closeModal();
         this.showNotificationPopup = true;
         this.fetchStructures();
@@ -624,7 +621,6 @@ export default {
     async deleteStructure(id) {
       try {
         await deleteStructure(id);
-        console.log("Structure deleted successfully");
         this.fetchStructures();
       } catch (error) {
         console.error("Error deleting structure", error);
@@ -708,7 +704,6 @@ export default {
 
         // Ajoute un listener pour traiter les données de l’adresse sélectionnée
         this.autocomplete.addListener("place_changed", this.fillAddressData);
-        console.log("Autocomplete initialisé avec succès");
       } catch (error) {
         console.error(
           "Erreur lors de l’initialisation de l’Autocomplete :",
@@ -732,12 +727,6 @@ export default {
       // Mettre à jour les champs de l'adresse et des coordonnées GPS
       this.newStructure.address = address;
       this.newStructure.gps = `${lat}, ${lng}`;
-
-      console.log("Adresse sélectionnée :", {
-        fullAddress: address,
-        latitude: lat,
-        longitude: lng,
-      });
     },
   },
   watch: {
