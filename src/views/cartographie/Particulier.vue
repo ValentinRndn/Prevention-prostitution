@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[1050px]  items-stretch md:flex-col " v-if="cookieAccepted">
+      <div class="map-section flex h-[1100px]  items-stretch md:flex-col " v-if="cookieAccepted">
         <div 
   :class="[
     'categories-container bg-grey h-full text-white md:text-black px-6 flex flex-col justify-start  md:bg-white  transition-all duration-300 p-4 md:h-fit',
@@ -65,6 +65,22 @@
       <path fill="currentColor" d="M12 15.5l-6-6l1.41-1.41L12 12.67l4.59-4.58L18 9.5z"/>
     </svg>
   </span>
+
+          <!-- Boutons "Tout sélectionner" et "Tout désélectionner" -->
+          <div v-if="categoryVisible || windowWidth > 767" class="mb-4 flex gap-2">
+          <button 
+            @click="selectAllCategories" 
+            class="px-4 py-2 text-sm font-semibold bg-purple-fonce text-white rounded-full hover:bg-purple transition duration-300"
+          >
+            Tout sélectionner
+          </button>
+          <button 
+            @click="deselectAllCategories" 
+            class="px-4 py-2 text-sm font-semibold bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition duration-300"
+          >
+            Tout désélectionner
+          </button>
+        </div>
 
   <!-- Liste des catégories -->
   <div 
