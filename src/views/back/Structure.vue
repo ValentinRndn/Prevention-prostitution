@@ -429,8 +429,8 @@ export default {
 
     async initGoogleMaps() {
       try {
-        // Charge dynamiquement l'API Google Maps avec la clé API depuis .env
-        const apiKey = process.env.VUE_APP_GOOGLE_MAPS_API_KEY;
+        const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
         if (!apiKey) {
           console.error("Clé API Google Maps manquante dans le fichier .env");
           return;
