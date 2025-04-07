@@ -187,10 +187,6 @@
             placeholder="Entrez une adresse"
             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-purple-fonce focus:border-purple-fonce transition duration-300"
           />
-          <div
-            id="autocomplete-container"
-            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-          ></div>
         </div>
 
 
