@@ -313,6 +313,7 @@ import {
 } from "../../services/StructuresService.js";
 import ModalCreate from "../../components/backOffice/blog/ModalCreate.vue";
 import NotificationPopup from "../../components/backOffice/NotificationPopup.vue";
+import { loadGoogleMapsAPI } from "../../services/mapLoader.js";
 
 export default {
   components: {
@@ -425,6 +426,24 @@ export default {
     };
   },
   methods: {
+
+    async initGoogleMaps() {
+      try {
+        // Charge dynamiquement l'API Google Maps avec la clé API depuis .env
+        const apiKey = process.env.VUE_APP_GOOGLE_MAPS_API_KEY;
+        if (!apiKey) {
+          console.error("Clé API Google Maps manquante dans le fichier .env");
+          return;
+        }
+
+        await loadGoogleMapsAPI(apiKey); // Charge l'API
+        console.log("Google Maps API chargée avec succès");
+        this.initAutocomplete(); // Initialise l'Autocomplete
+      } catch (error) {
+        console.error("Erreur lors du chargement de l'API Google Maps :", error);
+      }
+    },
+
     toggleCategory(categoryKey) {
       const index = this.newStructure.categories.indexOf(categoryKey);
       if (index === -1) {
@@ -733,6 +752,7 @@ export default {
   },
 
   mounted() {
+    this.initGoogleMaps();
     this.$nextTick(() => {
       this.fetchStructures(); // Charge les données de la structure
     });
