@@ -31,10 +31,7 @@
           @click="toggleDropdown"
           class="menu flex items-center gap-2 p-2 rounded-full bg-grey hover:bg-gray-500 transition-colors duration-300"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 rounded-full object-cover object-center text-white" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
-          <span class="hidden xl:block text-sm font-medium text-gray-700">
-            Mon compte
-          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 rounded-full object-cover object-center text-white" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg> 
         </button>
 
         <!-- Menu déroulant -->
