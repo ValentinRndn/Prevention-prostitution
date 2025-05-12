@@ -384,7 +384,7 @@ export default {
         { key: "category-21", label: "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement" },
         { key: "category-22", label: "Une structure de prévention et réduction des risques pour les usagers de drogues" },
         { key: "category-23", label: "Un commissariat" },
-        { key: "category-24", label: 'Une association agréée "Parcours Sortie de Prostitution '},
+        { key: "category-24", label: 'Une association agréée "Parcours Sortie de Prostitution" '},
 
       ],
       selectedCategories: [],
