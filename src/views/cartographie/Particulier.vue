@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[1100px]  items-stretch md:flex-col " v-if="cookieAccepted">
+      <div class="map-section flex h-[1000px]  items-stretch md:flex-col " v-if="cookieAccepted">
         <div 
   :class="[
     'categories-container bg-grey h-full text-white md:text-black px-6 flex flex-col justify-start  md:bg-white  transition-all duration-300 p-4 md:h-fit',
@@ -207,6 +207,8 @@
       </div>
 
       <div class="max-w-6xl mx-auto px-6 py-12">
+
+      
       <div class="my-10 ">
           <h2 class="text-2xl font-semibold text-purple-fonce mb-4">
             Pourquoi utiliser notre carte des dispositifs d'aide ?

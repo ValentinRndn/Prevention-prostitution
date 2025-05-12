@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[1100px]  items-stretch md:flex-col " v-if="cookieAccepted">
+      <div class="map-section flex h-[1000px]  items-stretch md:flex-col " v-if="cookieAccepted">
         <div 
             :class="[
               'categories-container bg-grey h-full text-white md:text-black px-6 flex flex-col justify-start  md:bg-white  transition-all duration-300 p-4 md:h-fit',
@@ -277,6 +277,23 @@
           </div>
         </div>
       </div>
+      <div class="mb-4">
+          <h2 class="text-lg font-semibold text-gray-800">
+            Dispositif National d'Accueil et de Protection des victimes de la traite "Ac.Sé"
+          </h2>
+          <p class="text-gray-700 mb-2">
+            Il a pour mission la mise en sécurité, par un éloignement géographique, les personnes victimes de traite des êtres humains ou de proxénétisme. Nous ne pouvons pas communiquer la liste des partenaires qui accueillent ces personnes.
+          </p>
+          <p class="text-gray-700 mb-2">
+            Néanmoins, Ac.Sé étant un pôle ressource pour toutes les questions en lien avec la traite et le proxénétisme, vous trouverez ci-dessous les coordonnées mail et téléphoniques, afin de répondre à vos questions.
+          </p>
+          <p class="text-gray-700 mb-2">
+            Leur ligne téléphonique est ouverte à toutes personnes, professionnels, particuliers et victimes.
+          </p>
+          <p class="text-gray-700">
+            <span class="font-semibold"><a href="tel:0492151051">04 92 15 10 51</a></span> / <a href="mailto:ac.se@association-alc.org" class="text-purple-fonce">ac.se@association-alc.org</a>
+          </p>
+        </div>
     </div>
   </div>
 </template>
@@ -367,7 +384,7 @@ export default {
         { key: "category-21", label: "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement" },
         { key: "category-22", label: "Une structure de prévention et réduction des risques pour les usagers de drogues" },
         { key: "category-23", label: "Un commissariat" },
-        { key: "category-24", label: "Une structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement des personnes en situation de prostitution"},
+        { key: "category-24", label: "Une structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement des personnes en situation de    "},
 
       ],
       selectedCategories: [],
