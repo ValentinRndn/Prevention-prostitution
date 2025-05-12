@@ -400,7 +400,7 @@ export default {
           { key: "category-23", label: "Un commissariat" },
           {
             key: "category-24",
-            label: "Une structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement des personnes en situation de prostitution",
+            label: 'Une association agréée "Parcours Sortie de Prostitution"',
           },
         ],
         "Personne en situation de prostitution": [
