@@ -348,11 +348,11 @@ export default {
         { key: "category-5", label: "Rencontrer un médecin gynécologue ou une sage-femme" },
         { key: "category-6", label: "Trouver un soutien communautaire" },
         { key: "category-7", label: "Rencontrer un psychologue" },
-        { key: "category-8", label: "Sortir d'un réseau d'exploitation sexuelle" },
+        // { key: "category-8", label: "Sortir d'un réseau d'exploitation sexuelle" },
         { key: "category-9", label: "Trouver des préservatifs" },
         { key: "category-10", label: "Trouver du matériel de consommation de drogue à moindre risque" },
         { key: "category-11", label: "Déposer plainte" },
-        { key : "category-25", label: "Trouver une association agréée pour sortir de la prostitution"}
+        { key : "category-25", label: 'Trouver une association agréée "Parcours Sortie de Prostitution'}
       ],
       selectedCategories: [],
       structures: [],

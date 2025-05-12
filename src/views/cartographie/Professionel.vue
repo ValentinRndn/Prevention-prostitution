@@ -363,11 +363,11 @@ export default {
         { key: "category-17", label: "Une structure en santé sexuelle" },
         { key: "category-18", label: "Une structure communautaire" },
         { key: "category-19", label: "Une structure d'accompagnement psychologique" },
-        { key: "category-20", label: "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle" },
+        // { key: "category-20", label: "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle" },
         { key: "category-21", label: "Un structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement" },
         { key: "category-22", label: "Une structure de prévention et réduction des risques pour les usagers de drogues" },
         { key: "category-23", label: "Un commissariat" },
-        { key: "category-24", label: "Association agréée parcours sortie de prostitution"},
+        { key: "category-24", label: "Une structure d'aller-vers, de prévention par la réduction des risques et d'accompagnement des personnes en situation de prostitution"},
 
       ],
       selectedCategories: [],
