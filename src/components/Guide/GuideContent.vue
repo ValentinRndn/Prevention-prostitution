@@ -65,8 +65,16 @@ export default {
   },
   methods: {
     formatCategory(category) {
-    return category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-  },
+      const categoryNames = {
+        'service-prostitution': 'Service Prostitution',
+        'service-prostitution-mineur': 'Service Prostitution Mineur',
+        'service-repit-lieu-accueil': 'Répit - Lieu d\'accueil',
+        'professionnel-prostitution': 'Professionnel Prostitution',
+        'professionnel-prostitution-mineur': 'Professionnel Prostitution Mineur',
+        'professionnel-repit-lieu-accueil': 'Répit - Lieu d\'accueil'
+      };
+      return categoryNames[category] || category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+    },
     async loadCategory(category) {
       this.selectedCategory = category;
       try {

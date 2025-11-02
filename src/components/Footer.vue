@@ -32,7 +32,7 @@
 
 </div>
 <p class="font-semibold absolute bottom-0 left-1/2 transform -translate-x-1/2 sm:left-0 sm:-translate-x-0 sm:w-full sm:text-center">
-  © 2024 AGRASC – Tous droits réservés
+  © {{ currentYear }} AGRASC – Tous droits réservés
 </p>
   </footer>
 </template>
@@ -40,6 +40,11 @@
 <script>
 export default {
   name: 'Footer',
+  data() {
+    return {
+      currentYear: new Date().getFullYear(),
+    };
+  },
   methods: {
     openCookieSettings() {
       this.$emit('openCookieSettings');

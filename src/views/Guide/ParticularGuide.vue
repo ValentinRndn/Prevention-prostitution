@@ -1,6 +1,6 @@
 <template>
 <div>
-    <GuideContent :categories="['service-prostitution', 'service-prostitution-mineur']" />
+    <GuideContent :categories="['service-prostitution', 'service-prostitution-mineur', 'service-repit-lieu-accueil']" />
   </div>
 
 </template>

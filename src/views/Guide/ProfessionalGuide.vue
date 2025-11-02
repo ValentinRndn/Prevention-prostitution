@@ -1,5 +1,5 @@
 <template>
-    <GuideContent :categories="['professionnel-prostitution', 'professionnel-prostitution-mineur']" />
+    <GuideContent :categories="['professionnel-prostitution', 'professionnel-prostitution-mineur', 'professionnel-repit-lieu-accueil']" />
     </template>
     
     <script>
