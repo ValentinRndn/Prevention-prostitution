@@ -7,19 +7,19 @@
       class="navbar flex items-center gap-10 h-full font-cgothic font-bold text-grey 2xl:gap-8"
     >
       <li
-        class="menu w-fit text-center"
+        class="menu-item w-fit text-center relative"
         :class="{ 'selectedMenu': currentPage === '/map' }"
       >
         <router-link to="/map">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
       </li>
       <li
-        class="menu w-fit text-center"
+        class="menu-item w-fit text-center relative"
         :class="{ 'selectedMenu': currentPage === '/guide' }"
       >
         <router-link to="/guide">JE CONSULTE LA DOCUMENTATION</router-link>
       </li>
       <li
-        class="menu w-fit text-center"
+        class="menu-item w-fit text-center relative"
         :class="{ 'selectedMenu': currentPage === '/contact' }"
       >
         <router-link to="/contact">JE PRENDS CONTACT</router-link>
@@ -31,10 +31,7 @@
           @click="toggleDropdown"
           class="menu flex items-center gap-2 p-2 rounded-full bg-grey hover:bg-gray-500 transition-colors duration-300"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 rounded-full object-cover object-center text-white" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
-          <span class="hidden xl:block text-sm font-medium text-gray-700">
-            Mon compte
-          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 rounded-full object-cover object-center text-white" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg> 
         </button>
 
         <!-- Menu déroulant -->
@@ -42,7 +39,7 @@
           v-if="dropdownVisible"
           class="dropdown-menu absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg text-gray-700"
         >
-          <li class="menu-item flex items-center gap-2 p-3 hover:bg-gray-100">
+          <li class="menu-item no-underline flex items-center gap-2 p-3 hover:bg-gray-100 rounded-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5 text-purple-fonce"
@@ -62,7 +59,7 @@
             </router-link>
           </li>
           <li
-            class="menu-item flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer"
+            class="menu-item no-underline flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer rounded-md"
             @click="logout"
           >
             <svg
@@ -130,27 +127,56 @@ const logout = () => {
 </script>
 
 <style scoped>
+/* Style pour les items du menu */
+.menu-item {
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.menu-item:hover {
+  color: #f1b04c;
+}
+
+/* Désactiver le soulignement pour les éléments de menu avec la classe `no-underline` */
+.menu-item.no-underline::after,
+.menu-item.no-underline:hover::after {
+  content: none;
+}
+
+/* Style pour l'effet d'animation au survol */
+.menu-item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -4px;
+  height: 3px; /* Épaisseur du soulignement réduite */
+  width: 0;
+  background-color: #f1b04c;
+  transition: width 0.3s ease;
+}
+
+.menu-item:hover::after {
+  width: 60%; /* Largeur réduite du soulignement au survol */
+}
+
 /* Style pour le menu sélectionné */
 .selectedMenu {
   color: #f1b04c;
-  position: relative;
 }
 
 .selectedMenu::after {
   content: "";
   position: absolute;
-  left: 20%;
-  right: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: -4px;
-  height: 4px;
+  height: 3px; /* Épaisseur du soulignement réduite */
+  width: 60%; /* Largeur réduite du soulignement pour le menu sélectionné */
   background-color: #f1b04c;
 }
 
 /* Style pour les éléments du menu déroulant */
-.menu-item {
-  cursor: pointer;
-}
-
 .dropdown-menu {
   z-index: 1000;
   animation: fadeIn 0.3s ease-in-out;

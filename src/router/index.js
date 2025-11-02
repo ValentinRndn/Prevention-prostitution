@@ -11,8 +11,7 @@ import BackBlog from '../views/back/Blog.vue';
 import Blog from '../views/Blog.vue';
 import Particulier from '../views/cartographie/Particulier.vue';
 import Professionel from '../views/cartographie/Professionel.vue';
-import ParticularGuide from '../views/Guide/ParticularGuide.vue';
-import ProfessionalGuide from '../views/Guide/ProfessionalGuide.vue';
+import ContentGuide from '../views/Guide/ContentGuide.vue';
 import BlogDetail from '../components/Blog/BlogDetail.vue';
 import Login from '../views/back/Login.vue';
 import StructureBack from '../views/back/Structure.vue';
@@ -214,9 +213,9 @@ import { useHead } from '@vueuse/head';
             ]
         },
         {
-            path: '/guide/particularguide',
-            name: 'ParticularGuide',
-            component: ParticularGuide,
+            path: '/guide/contentGuide',
+            name: 'ContentGuide',
+            component: ContentGuide,
             title: 'Prévention Prostitution Normandie | Documentation pour personnes en situation de prostitution',
             metaTags: [
               {
@@ -232,26 +231,6 @@ import { useHead } from '@vueuse/head';
                   content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP,  guides, documents'
                 }
               
-            ]
-        },
-        {
-            path: '/guide/professionalguide',
-            name: 'ProfessionalGuide',
-            component: ProfessionalGuide,
-            title: 'Prévention Prostitution Normandie | Documentation pour professionnels',
-            metaTags: [
-              {
-                name: 'description',
-                content: "Accédez à une documentation dédiée aux professionnels. Trouvez des guides d'aide et des documents adaptés adaptés à vos besoins."
-              },
-              {
-                property: 'og:title',
-                content: 'Prévention Prostitution Normandie | Documentation pour professionnels'
-              },
-              {
-                name: 'keywords',
-                content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, guides, documents'
-              }
             ]
         },
         {

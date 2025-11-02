@@ -174,19 +174,21 @@
           @submit.prevent="isEditing ? updateStructure() : createStructure()"
           class="scrollable-form"
         >
-          <div class="mb-4">
-            <label
-              for="address"
-              class="block text-sm font-medium text-gray-700 w-full"
-              >Adresse</label
-            >
-            <input
-              type="text"
-              ref="autocompleteInput"
-              placeholder="Entrez une adresse"
-              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-            />
-          </div>
+        <div class="mb-4">
+          <label
+            for="address"
+            class="block text-sm font-medium text-gray-700 w-full"
+          >
+            Adresse
+          </label>
+          <input
+            type="text"
+            ref="autocompleteInput"
+            placeholder="Entrez une adresse"
+            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-purple-fonce focus:border-purple-fonce transition duration-300"
+          />
+        </div>
+
 
           <!-- Boucle pour les champs du formulaire -->
           <div v-for="field in fields" :key="field.id" class="mb-4">
@@ -313,6 +315,7 @@ import {
 } from "../../services/StructuresService.js";
 import ModalCreate from "../../components/backOffice/blog/ModalCreate.vue";
 import NotificationPopup from "../../components/backOffice/NotificationPopup.vue";
+import { loadGoogleMapsAPI } from "../../services/mapLoader.js";
 
 export default {
   components: {
@@ -379,11 +382,11 @@ export default {
             key: "category-19",
             label: "Une structure d'accompagnement psychologique",
           },
-          {
-            key: "category-20",
-            label:
-              "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle",
-          },
+          // {
+          //   key: "category-20",
+          //   label:
+          //     "Une association accompagnant la sortie d'un réseau d'exploitation sexuelle",
+          // },
           {
             key: "category-21",
             label:
@@ -395,6 +398,10 @@ export default {
               "Une structure de prévention et réduction des risques pour les usagers de drogues",
           },
           { key: "category-23", label: "Un commissariat" },
+          {
+            key: "category-24",
+            label: 'Une association agréée "Parcours Sortie de Prostitution"',
+          },
         ],
         "Personne en situation de prostitution": [
           { key: "category-0", label: "Rencontrer un médecin" },
@@ -408,10 +415,10 @@ export default {
           },
           { key: "category-6", label: "Trouver un soutien communautaire" },
           { key: "category-7", label: "Rencontrer un psychologue" },
-          {
-            key: "category-8",
-            label: "Sortir d'un réseau d'exploitation sexuelle",
-          },
+          // {
+          //   key: "category-8",
+          //   label: "Sortir d'un réseau d'exploitation sexuelle",
+          // },
           { key: "category-9", label: "Trouver des préservatifs" },
           {
             key: "category-10",
@@ -419,12 +426,31 @@ export default {
               "Trouver du matériel de consommation de drogue à moindre risque",
           },
           { key: "category-11", label: "Déposer plainte" },
+          { key: "category-25", label: '  Trouver une association agréée "Parcours Sortie de Prostitution' }
+
         ],
       },
       showNotificationPopup: false,
     };
   },
   methods: {
+
+    async initGoogleMaps() {
+      try {
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+        if (!apiKey) {
+          console.error("Clé API Google Maps manquante dans le fichier .env");
+          return;
+        }
+
+        await loadGoogleMapsAPI(apiKey); // Charge l'API
+        this.initAutocomplete(); // Initialise l'Autocomplete
+      } catch (error) {
+        console.error("Erreur lors du chargement de l'API Google Maps :", error);
+      }
+    },
+
     toggleCategory(categoryKey) {
       const index = this.newStructure.categories.indexOf(categoryKey);
       if (index === -1) {
@@ -502,7 +528,6 @@ export default {
     async fetchStructures() {
       try {
         const response = await getAllStructures(); // Récupère les structures depuis l'API
-        console.log("Données reçues :", response);
 
         if (Array.isArray(response)) {
           this.structures = response.map((structure) => ({
@@ -538,7 +563,6 @@ export default {
         };
 
         await createStructure(structureData);
-        console.log("Structure created successfully");
         this.closeModal();
         this.showNotificationPopup = true;
         this.fetchStructures();
@@ -605,7 +629,6 @@ export default {
     async deleteStructure(id) {
       try {
         await deleteStructure(id);
-        console.log("Structure deleted successfully");
         this.fetchStructures();
       } catch (error) {
         console.error("Error deleting structure", error);
@@ -689,7 +712,6 @@ export default {
 
         // Ajoute un listener pour traiter les données de l’adresse sélectionnée
         this.autocomplete.addListener("place_changed", this.fillAddressData);
-        console.log("Autocomplete initialisé avec succès");
       } catch (error) {
         console.error(
           "Erreur lors de l’initialisation de l’Autocomplete :",
@@ -713,12 +735,6 @@ export default {
       // Mettre à jour les champs de l'adresse et des coordonnées GPS
       this.newStructure.address = address;
       this.newStructure.gps = `${lat}, ${lng}`;
-
-      console.log("Adresse sélectionnée :", {
-        fullAddress: address,
-        latitude: lat,
-        longitude: lng,
-      });
     },
   },
   watch: {
@@ -733,6 +749,7 @@ export default {
   },
 
   mounted() {
+    this.initGoogleMaps();
     this.$nextTick(() => {
       this.fetchStructures(); // Charge les données de la structure
     });
