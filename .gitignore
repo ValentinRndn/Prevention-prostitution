@@ -25,4 +25,8 @@ dist-ssr
 
 
 .env
+.env.local
+.env.*.local
 backend/.env
+backend/.env.local
+NOUVEAUX_SECRETS_SECURISES.txt

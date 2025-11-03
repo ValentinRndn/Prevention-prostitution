@@ -76,6 +76,7 @@
 <script>
 
 import { showAllBlogs, showLastBlog } from "../services/BlogsService";
+import { sanitizeHtml } from '../utils/sanitize.js';
 
 export default {
   components: {
@@ -95,7 +96,8 @@ export default {
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     },
     truncatedcontent(content) {
-      return content.length > 300 ? content.substring(0, 300) + '...' : content;
+      const truncated = content.length > 300 ? content.substring(0, 300) + '...' : content;
+      return sanitizeHtml(truncated);
     },
     changePage(page) {
       this.currentPage = page;

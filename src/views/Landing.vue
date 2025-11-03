@@ -168,6 +168,53 @@ export default {
     Footer,
     NavigationBarMobile,
   },
+  mounted() {
+    // Ajouter le structured data JSON-LD au head
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "GovernmentOrganization",
+      "name": "Prévention Prostitution Normandie - PAPSP",
+      "alternateName": "PAPSP",
+      "url": "https://preventionprostitutionnormandie.com",
+      "logo": "https://preventionprostitutionnormandie.com/logo.png",
+      "description": "Plateforme d'accompagnement et de prévention pour les personnes en situation de prostitution en Normandie. Services d'aide sociale, médicale et juridique.",
+      "areaServed": {
+        "@type": "Place",
+        "name": "Normandie",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Normandie",
+          "addressCountry": "FR"
+        }
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+33626592637",
+        "contactType": "Support",
+        "email": "maraudeinnormandie@gmail.fr",
+        "availableLanguage": ["French"],
+        "areaServed": "FR-NOR"
+      },
+      "serviceType": [
+        "Accompagnement social",
+        "Aide juridique",
+        "Prise en charge sanitaire",
+        "Réinsertion professionnelle",
+        "Hébergement d'urgence",
+        "Réduction des risques"
+      ],
+      "knowsAbout": [
+        "Prostitution",
+        "Prévention",
+        "Travail social",
+        "Réduction des risques",
+        "Accompagnement juridique"
+      ]
+    });
+    document.head.appendChild(script);
+  }
 };
 </script>
 

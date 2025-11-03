@@ -4,8 +4,8 @@
 
       <!-- Bandeau blanc avec les logos -->
       <div class="bg-white py-10 w-full flex justify-center items-center gap-24 shadow-md md:flex-col">
-        <img src="../assets/welcome/logo_agrasc.jpg" alt="Logo AGRASC" class="h-28 object-cover" />
-        <img src="../assets/prefecture-de-region-normandie_logo.png" alt="Logo Préfecture de Normandie" class="h-28  object-cover" />
+        <img src="../assets/welcome/logo_agrasc.jpg" alt="Logo AGRASC - Agence de Gestion et de Recouvrement des Avoirs Saisis et Confisqués" class="h-28 object-cover" loading="lazy" />
+        <img src="../assets/prefecture-de-region-normandie_logo.png" alt="Logo Préfecture de Région Normandie" class="h-28  object-cover" loading="lazy" />
       </div>
 
 

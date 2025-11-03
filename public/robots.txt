@@ -1,0 +1,15 @@
+# robots.txt pour Prévention Prostitution Normandie
+# https://preventionprostitutionnormandie.com
+
+User-agent: *
+Allow: /
+Disallow: /backoffice/
+Disallow: /login
+Disallow: /dashboard/
+
+# Fichiers administratifs
+Disallow: /backend/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://preventionprostitutionnormandie.com/sitemap.xml

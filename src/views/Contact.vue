@@ -1,13 +1,13 @@
 <template>
         <div class="header-banner bg-banner-contact w-full h-[350px] bg-cover relative sm:hidden">
       <div class="absolute bottom-0 left-0 right-0 text-center">
-        <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">CONTACT</div>
+        <h1 class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">Contact - Prévention Prostitution Normandie</h1>
       </div>
       </div>
 
     <div class="header-banner bg-banner-contact-mobile w-full h-[350px] bg-cover relative hidden sm:block">
       <div class="absolute bottom-0 left-0 right-0 text-center">
-        <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">CONTACT</div>
+        <h1 class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl" aria-label="Page de contact">CONTACT</h1>
       </div>
       </div>
 
@@ -15,11 +15,11 @@
 <div class="contact-container flex flex-wrap justify-center items-center gap-10 mt-20 font-jost sm:mt-10 mb-8">
     <div class="info-contact font-jost-sans flex flex-col bg-purple-fonce p-10 rounded-xl text-white gap-4">
         <div class="mail-container flex items-center gap-2">
-            <img src="../assets/mail_icon.png" alt="mail-icon" class="size-10">
+            <img src="../assets/mail_icon.png" alt="Icône email - Contactez-nous par mail" class="size-10" loading="lazy">
             <a href="mailto:maraudeinnormandie@gmail.fr" class="mail font-semibold">maraudeinnormandie@gmail.fr</a>
         </div>
         <div class="phone-container flex items-center gap-2">
-            <img src="../assets/phone_icon.png" alt="phone-icon" class="size-10">
+            <img src="../assets/phone_icon.png" alt="Icône téléphone - Appelez-nous" class="size-10" loading="lazy">
             <a href="tel:0626592637" class="phone font-semibold">06.26.59.26.37</a>
         </div>
     </div>

@@ -14,7 +14,7 @@
       </router-link>
     </div>
 
-    <p v-html="article.content"></p>
+    <p v-html="sanitizedContent"></p>
   </div>
 
   <Footer />
@@ -23,6 +23,7 @@
 <script>
 import Footer from "../../components/Footer.vue";
 import { showBlog } from "../../services/BlogsService";
+import { sanitizeHtml } from "../../utils/sanitize.js";
 
 export default {
   components: {
@@ -32,6 +33,11 @@ export default {
     return {
       article: {},
     };
+  },
+  computed: {
+    sanitizedContent() {
+      return sanitizeHtml(this.article.content || '');
+    }
   },
   methods: {
     formatDate(dateString) {
