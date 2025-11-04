@@ -30,3 +30,6 @@ dist-ssr
 backend/.env
 backend/.env.local
 NOUVEAUX_SECRETS_SECURISES.txt
+
+# Google Analytics credentials
+backend/config/ga4-credentials.json
