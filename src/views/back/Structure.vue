@@ -7,146 +7,119 @@
     <div class="content w-full overflow-y-auto">
       <div class="dashboard-container">
         <div class="update-keys mt-16">
-          <div class="button-container flex gap-5">
-            <button
-              @click="openModal"
-              class="add-button bg-purple-fonce text-white py-4 px-6 rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200"
-            >
-              AJOUTER UNE NOUVELLE STRUCTURE
+          <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:items-stretch max-md:gap-4">
+            <h1 class="text-3xl font-bold text-gray-800">Gestion des structures</h1>
+            <button @click="openModal" class="flex items-center justify-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/>
+              </svg>
+              Nouvelle structure
             </button>
           </div>
-          <!-- Nouveaux boutons de filtrage -->
-          <!-- <div class="filter-buttons flex gap-4 mt-8">
-            <button
-              @click="filterByType('all')"
-              class="py-2 px-4 rounded-md"
-              :class="
-                currentFilter === 'all'
-                  ? 'bg-purple-fonce text-white shadow-xl'
-                  : 'bg-white text-gray-700 hover:scale-105 duration-200 shadow-xl'
-              "
-            >
-              Toutes les structures
-            </button>
-            <button
-              @click="filterByType('pro')"
-              class="py-2 px-4 rounded-md"
-              :class="
-                currentFilter === 'pro'
-                  ? 'bg-purple-fonce text-white shadow-xl'
-                  : 'bg-white text-gray-700 hover:scale-105 duration-200 shadow-xl'
-              "
-            >
-              Structures professionnelles
-            </button>
-            <button
-              @click="filterByType('psp')"
-              class="py-2 px-4 rounded-md"
-              :class="
-                currentFilter === 'psp'
-                  ? 'bg-purple-fonce text-white shadow-xl'
-                  : 'bg-white text-gray-700 border hover:scale-105 duration-200 shadow-xl'
-              "
-            >
-              Structures PSP
-            </button>
-          </div> -->
 
-          <div class="search-container mb-5">
-            <input
-              type="text"
-              v-model="searchQuery"
-              placeholder="Rechercher une structure"
-              class="border border-gray-300 rounded-md p-2 w-full mt-8"
-            />
+          <div class="mb-6">
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <input
+                type="text"
+                v-model="searchQuery"
+                placeholder="Rechercher une structure..."
+                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f1b04c] focus:border-transparent transition-all"
+              />
+            </div>
           </div>
 
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6 border-b border-gray-200">
+              <h3 class="text-lg font-bold text-gray-800">Toutes les structures</h3>
+              <p class="text-sm text-gray-600 mt-1">{{ getFilteredStructures().length }} structure{{ getFilteredStructures().length > 1 ? 's' : '' }} trouvée{{ getFilteredStructures().length > 1 ? 's' : '' }}</p>
+            </div>
 
-
-          <div
-            class="posts-keys flex flex-col gap-5 w-full bg-white p-4 mt-14 rounded-md shadow-xl font-poppins justify-center md:items-center md:w-full md:h-4/6 relative"
-          >
-          <span class="ml-4 text-gray-700 absolute top-[-30px] left-[-15px] z-0 "
-              >Total: {{ structures.length }} structures</span
-            >
-
-            <h3
-              class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2 text-center"
-            >
-              Gérer mes structures
-            </h3>
-
-            <div
-              v-for="structure in paginatedStructures()"
-              :key="structure.id"
-              class="post-field flex w-full items-center border-b border-b-solid border-light-grey pb-5"
-            >
-              <div class="w-1/4">
-                <p class="font-medium">{{ structure.antenna }}</p>
-              </div>
-              <div class="w-2/4">
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    v-for="categoryKey in structure.categories"
-                    :key="categoryKey"
-                    class="bg-gray-100 px-2 py-1 rounded-md text-sm text-gray-700"
-                  >
-                    {{ getCategoryLabel(categoryKey) }}
-                  </span>
+            <div class="divide-y divide-gray-200">
+              <div v-for="structure in paginatedStructures()" :key="structure.id" class="p-6 hover:bg-gray-50 transition-colors">
+                <div class="flex items-start justify-between gap-4 max-lg:flex-col">
+                  <div class="flex items-start gap-4 flex-1 min-w-0">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-[#fef7ed] flex-shrink-0 mt-1">
+                      <svg class="w-6 h-6 text-[#f1b04c]" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="font-medium text-gray-900 mb-2">{{ structure.antenna }}</p>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          v-for="categoryKey in structure.categories"
+                          :key="categoryKey"
+                          class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700"
+                        >
+                          {{ getCategoryLabel(categoryKey) }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 flex-shrink-0">
+                    <button @click="openEditModal(structure)" class="px-4 py-2 text-sm font-medium text-[#f1b04c] hover:bg-[#fef7ed] rounded-md transition-colors">
+                      Modifier
+                    </button>
+                    <button @click="deleteStructure(structure.id)" class="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors">
+                      Supprimer
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="w-1/4 flex justify-end gap-4 font-poppins">
-                <p
-                  class="text-light-grey underline cursor-pointer"
-                  @click="openEditModal(structure)"
-                >
-                  Modifier
-                </p>
-                <p
-                  class="text-light-grey underline cursor-pointer"
-                  @click="deleteStructure(structure.id)"
-                >
-                  Supprimer
-                </p>
+
+              <div v-if="!getFilteredStructures().length" class="p-12 text-center">
+                <div class="flex justify-center mb-4">
+                  <div class="flex items-center justify-center w-16 h-16 rounded-full bg-gray-100">
+                    <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-gray-600 font-medium">Aucune structure trouvée</p>
+                <p class="text-sm text-gray-500 mt-1">{{ searchQuery ? 'Essayez de modifier votre recherche' : 'Commencez par créer votre première structure' }}</p>
               </div>
             </div>
           </div>
 
           <!-- Pagination -->
-          <div class="pagination mt-6 flex justify-center items-center gap-3">
+          <div v-if="totalPages() > 1" class="pagination mt-6 flex justify-center items-center gap-2">
             <button
               @click="changePage(currentPage - 1)"
               :disabled="currentPage === 1"
-              class="bg-purple text-white px-3 py-1 rounded-md"
+              class="px-3 py-2 rounded-md transition-all duration-200 font-medium"
+              :class="currentPage === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-[#fef7ed] hover:text-[#f1b04c] border border-gray-300'"
             >
               &laquo;
-              <!-- Flèche gauche -->
             </button>
 
-            <span v-if="totalPages() > 1">
+            <span class="flex items-center gap-2">
               <button
                 v-if="currentPage > 2"
                 @click="changePage(1)"
-                class="bg-purple text-white px-3 py-1 rounded-md"
+                class="px-3 py-2 rounded-md transition-all duration-200 font-medium bg-white text-gray-700 hover:bg-[#fef7ed] hover:text-[#f1b04c] border border-gray-300"
               >
                 1
               </button>
-              <span v-if="currentPage > 3">...</span>
+              <span v-if="currentPage > 3" class="text-gray-500 px-2">...</span>
 
               <button
                 v-for="page in visiblePages()"
                 :key="page"
                 @click="changePage(page)"
-                class="bg-purple text-white px-3 py-1 rounded-md"
+                class="px-3 py-2 rounded-md transition-all duration-200 font-medium"
+                :class="currentPage === page ? 'bg-[#f1b04c] text-white shadow-md' : 'bg-white text-gray-700 hover:bg-[#fef7ed] hover:text-[#f1b04c] border border-gray-300'"
               >
                 {{ page }}
               </button>
 
-              <span v-if="currentPage < totalPages() - 2">...</span>
+              <span v-if="currentPage < totalPages() - 2" class="text-gray-500 px-2">...</span>
               <button
                 v-if="currentPage < totalPages() - 1"
                 @click="changePage(totalPages())"
-                class="bg-purple text-white px-3 py-1 rounded-md"
+                class="px-3 py-2 rounded-md transition-all duration-200 font-medium bg-white text-gray-700 hover:bg-[#fef7ed] hover:text-[#f1b04c] border border-gray-300"
               >
                 {{ totalPages() }}
               </button>
@@ -155,55 +128,49 @@
             <button
               @click="changePage(currentPage + 1)"
               :disabled="currentPage === totalPages()"
-              class="bg-purple text-white px-3 py-1 rounded-md"
+              class="px-3 py-2 rounded-md transition-all duration-200 font-medium"
+              :class="currentPage === totalPages() ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-[#fef7ed] hover:text-[#f1b04c] border border-gray-300'"
             >
               &raquo;
-              <!-- Flèche droite -->
             </button>
           </div>
         </div>
       </div>
 
       <ModalCreate :visible="isModalVisible" @close="closeModal">
-        <h2 class="text-xl font-bold mb-4">
-          {{
-            isEditing ? "Modifier la structure" : "Créer une nouvelle structure"
-          }}
-        </h2>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#f1b04c] to-[#d4a159] flex items-center justify-center shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">{{ isEditing ? "Modifier la structure" : "Nouvelle structure" }}</h2>
+            <p class="text-sm text-gray-600">{{ isEditing ? "Mettez à jour les informations" : "Ajoutez une structure au réseau" }}</p>
+          </div>
+        </div>
+
         <form
           @submit.prevent="isEditing ? updateStructure() : createStructure()"
           class="scrollable-form"
         >
         <div class="mb-4">
-          <label
-            for="address"
-            class="block text-sm font-medium text-gray-700 w-full"
-          >
-            Adresse
-          </label>
+          <label for="address">Adresse complète</label>
           <input
             type="text"
             ref="autocompleteInput"
-            placeholder="Entrez une adresse"
-            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-purple-fonce focus:border-purple-fonce transition duration-300"
+            placeholder="Recherchez et sélectionnez une adresse..."
           />
         </div>
 
-
           <!-- Boucle pour les champs du formulaire -->
           <div v-for="field in fields" :key="field.id" class="mb-4">
-            <label
-              :for="field.id"
-              class="block text-sm font-medium text-gray-700"
-              >{{ field.label }}</label
-            >
-
-            <!-- Utiliser un input pour les autres champs -->
+            <label :for="field.id">{{ field.label }}</label>
             <input
               v-model="newStructure[field.model]"
               :type="field.type"
               :id="field.id"
-              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+              :placeholder="field.label"
             />
           </div>
 
@@ -284,11 +251,8 @@
   </div>
 </div>
 
-          <button
-            type="submit"
-            class="bg-purple text-white py-2 px-4 rounded-md"
-          >
-            {{ isEditing ? "Modifier" : "Créer" }}
+          <button type="submit">
+            {{ isEditing ? "Enregistrer les modifications" : "Créer la structure" }}
           </button>
         </form>
       </ModalCreate>
@@ -638,13 +602,13 @@ export default {
       if (page < 1 || page > this.totalPages()) return; // Utilisez 'this' ici aussi
       this.currentPage = page;
     },
-    paginatedStructures() {
+    getFilteredStructures() {
       if (!Array.isArray(this.structures)) {
         console.error("structures n'est pas un tableau :", this.structures);
         return [];
       }
 
-      let filteredStructures = this.structures.filter((structure) => {
+      return this.structures.filter((structure) => {
         const nameMatch = structure.antenna
           .toLowerCase()
           .includes(this.searchQuery.toLowerCase());
@@ -676,13 +640,16 @@ export default {
         }
         return nameMatch || categoryMatch;
       });
-
+    },
+    paginatedStructures() {
+      const filtered = this.getFilteredStructures();
       const start = (this.currentPage - 1) * this.structuresPerPage;
       const end = start + this.structuresPerPage;
-      return filteredStructures.slice(start, end);
+      return filtered.slice(start, end);
     },
     totalPages() {
-      return Math.ceil(this.structures.length / this.structuresPerPage);
+      const filtered = this.getFilteredStructures();
+      return Math.ceil(filtered.length / this.structuresPerPage);
     },
     updateCategories() {
       // Met à jour les catégories en fonction de la sélection dans mainCategory
@@ -745,6 +712,10 @@ export default {
           this.initAutocomplete();
         });
       }
+    },
+    searchQuery() {
+      // Reset to first page when searching
+      this.currentPage = 1;
     },
   },
 

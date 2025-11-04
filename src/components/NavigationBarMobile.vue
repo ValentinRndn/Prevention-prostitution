@@ -43,9 +43,9 @@
           <!-- Navigation menu -->
           <nav class="flex-1">
             <ul class="space-y-5 text-center flex flex-col mt-8">
-              <li class="menu-item relative py-2" :class="{'active-menu': currentRoute === '/map'}">
-                <router-link 
-                  to="/map" 
+              <li class="menu-item relative py-2" :class="{'active-menu': currentRoute === '/carte' || currentRoute === '/map'}">
+                <router-link
+                  to="/carte"
                   class="text-white text-xl font-cgothic inline-block"
                   @click="toggleMenu"
                 >

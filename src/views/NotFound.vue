@@ -44,7 +44,7 @@
       </router-link>
 
       <router-link
-        to="/map"
+        to="/carte"
         class="btn-secondary bg-white text-purple-fonce font-semibold px-8 py-3 rounded-lg shadow-lg border-2 border-purple-fonce hover:bg-gray-50 transition duration-300 flex items-center gap-2"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -69,8 +69,8 @@
       <p class="text-gray-600 font-jost-sans mb-4">Pages utiles :</p>
       <div class="links flex flex-wrap gap-6 justify-center text-purple-fonce font-semibold">
         <router-link to="/guide" class="hover:underline">Guides</router-link>
-        <router-link to="/guide/particulier" class="hover:underline">Guide Particulier</router-link>
-        <router-link to="/guide/professionnel" class="hover:underline">Guide Professionnel</router-link>
+        <router-link to="/guides/particuliers" class="hover:underline">Guides Particuliers</router-link>
+        <router-link to="/guides/professionnels" class="hover:underline">Guides Professionnels</router-link>
         <router-link to="/legalNotices" class="hover:underline">Mentions légales</router-link>
       </div>
     </div>

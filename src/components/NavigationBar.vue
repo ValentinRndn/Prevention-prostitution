@@ -8,9 +8,9 @@
     >
       <li
         class="menu-item w-fit text-center relative"
-        :class="{ 'selectedMenu': currentPage === '/map' }"
+        :class="{ 'selectedMenu': currentPage === '/carte' || currentPage === '/map' }"
       >
-        <router-link to="/map">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
+        <router-link to="/carte">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
       </li>
       <li
         class="menu-item w-fit text-center relative"

@@ -1,5 +1,5 @@
 <template>
-    <GuideContent :categories="['professionnel-prostitution', 'professionnel-prostitution-mineur', 'professionnel-repit-lieu-accueil']" />
+    <GuideContent :categories="['professionnel-info-generale', 'professionnel-eure', 'professionnel-calvados', 'professionnel-seine-maritime', 'professionnel-manche', 'professionnel-orne', 'professionnel-repit-lieu-accueil']" />
     </template>
     
     <script>

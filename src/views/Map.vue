@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-back-carto flex min-h-[80vh] bg-cover bg-no-repeat">
-        <div class="w-[50vw] flex justify-center items-center xl:w-full xl:bg-back-carto-left xl:bg-cover">
+    <div class="map-bg-container flex min-h-[80vh] bg-cover bg-no-repeat bg-gray-200">
+        <div class="w-[50vw] flex justify-center items-center xl:w-full xl:map-bg-mobile xl:bg-cover">
             <!-- Nouveau contenu pour présenter la cartographie -->
             <div class="bg-white/90 rounded-xl p-8 max-w-[600px] shadow-lg m-8 xl:m-4">
                 <h1 class="text-3xl font-bold text-purple-fonce mb-6 font-cgothic">Cartographie des Ressources en Normandie</h1>
@@ -54,7 +54,7 @@
                 <!-- Boutons originaux -->
                 <div class="flex flex-col font-cgothic gap-4 w-full">
                     <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md xl:shadow-md hover:bg-purple transition-colors duration-300 group">
-                        <router-link to="/cartographie/Particulier" class="flex items-center justify-center w-full">
+                        <router-link to="/cartographie/particulier" class="flex items-center justify-center w-full">
                             Je suis en situation de prostitution
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
                                 <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
@@ -63,7 +63,7 @@
                     </button>
 
                     <button class="bg-purple text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md xl:shadow-md hover:bg-purple-fonce transition-colors duration-300 group">
-                        <router-link to="/cartographie/Professionel" class="flex items-center justify-center w-full">
+                        <router-link to="/cartographie/professionnel" class="flex items-center justify-center w-full">
                             Je suis professionnel ou témoin
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
                                 <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
@@ -91,5 +91,22 @@ export default {
 .bg-purple-fonce\/10:hover, .bg-purple\/10:hover {
   transform: translateY(-2px);
   transition: transform 0.3s ease;
+}
+
+/* Lazy loading des images de background pour améliorer les performances */
+.map-bg-container {
+  background-color: #E5E7EB; /* Couleur grise pendant le chargement */
+  background-image: url('../assets/background-carto.webp');
+  background-position: center;
+  will-change: background-image;
+}
+
+@media (max-width: 1279px) {
+  .map-bg-mobile {
+    background-color: #E5E7EB;
+    background-image: url('../assets/background-carto-left.webp');
+    background-position: center;
+    will-change: background-image;
+  }
 }
 </style>

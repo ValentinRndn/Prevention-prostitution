@@ -26,13 +26,22 @@
       </div>
       
       <!-- Section des boutons (originale) -->
-      <div class="flex flex-col justify-center font-cgothic gap-4 w-[400px] mx-auto mb-16">
+      <div class="flex flex-col justify-center font-cgothic gap-4 w-[400px] mx-auto mb-16 md:w-full md:px-4">
         <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md hover:bg-purple transition-colors duration-300 group">
-          <router-link to="/guide/ContentGuide" class="flex items-center justify-center w-full">
-            Je consulte la documentation
+          <router-link to="/guides/particuliers" class="flex items-center justify-center w-full">
+            Documentation pour PSP
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
               <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
-            </svg>  
+            </svg>
+          </router-link>
+        </button>
+
+        <button class="bg-purple text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md hover:bg-purple-fonce transition-colors duration-300 group">
+          <router-link to="/guides/professionnels" class="flex items-center justify-center w-full">
+            Documentation pour Professionnels
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
+              <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
+            </svg>
           </router-link>
         </button>
 

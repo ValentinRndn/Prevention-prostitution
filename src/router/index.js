@@ -12,6 +12,7 @@ import Blog from '../views/Blog.vue';
 import Particulier from '../views/cartographie/Particulier.vue';
 import Professionel from '../views/cartographie/Professionel.vue';
 import ContentGuide from '../views/Guide/ContentGuide.vue';
+import ProfessionalGuide from '../views/Guide/ProfessionalGuide.vue';
 import BlogDetail from '../components/Blog/BlogDetail.vue';
 import Login from '../views/back/Login.vue';
 import StructureBack from '../views/back/Structure.vue';
@@ -44,11 +45,12 @@ import { useHead } from '@vueuse/head';
             }
         },
         {
-            path: '/map',
+            path: '/carte',
             name: 'Map',
             component: Map,
             meta: {
               title: 'Prévention Prostitution Normandie | Cartographie',
+              canonical: 'https://preventionprostitutionnormandie.com/carte',
               metaTags: [
                 {
                   name: 'description',
@@ -59,11 +61,23 @@ import { useHead } from '@vueuse/head';
                   content: 'Prévention Prostitution Normandie | Cartographie'
                 },
                 {
+                  property: 'og:url',
+                  content: 'https://preventionprostitutionnormandie.com/carte'
+                },
+                {
+                  property: 'og:type',
+                  content: 'website'
+                },
+                {
                   name: 'keywords',
                   content: 'prostitution, prévention, normandie, accès aux droits, réduction des risques, aide, accompagnement, témoins, professionnels, PSP, cartes, structures, services'
                 }
               ]
             }
+        },
+        {
+            path: '/map',
+            redirect: '/carte'
         },
         {
             path: '/guide',
@@ -268,12 +282,12 @@ import { useHead } from '@vueuse/head';
             }
         },
         {
-            path: '/guide/contentGuide',
+            path: '/guides/particuliers',
             name: 'ContentGuide',
             component: ContentGuide,
             meta: {
               title: 'Guides et Documentation PSP | Prévention Prostitution Normandie',
-              canonical: 'https://preventionprostitutionnormandie.com/guide/contentGuide',
+              canonical: 'https://preventionprostitutionnormandie.com/guides/particuliers',
               metaTags: [
                 {
                   name: 'description',
@@ -289,7 +303,7 @@ import { useHead } from '@vueuse/head';
                 },
                 {
                   property: 'og:url',
-                  content: 'https://preventionprostitutionnormandie.com/guide/contentGuide'
+                  content: 'https://preventionprostitutionnormandie.com/guides/particuliers'
                 },
                 {
                   property: 'og:type',
@@ -313,6 +327,61 @@ import { useHead } from '@vueuse/head';
                 }
               ]
             }
+        },
+        {
+            path: '/guide/contentGuide',
+            redirect: '/guides/particuliers'
+        },
+        {
+            path: '/guides/professionnels',
+            name: 'ProfessionalGuide',
+            component: ProfessionalGuide,
+            meta: {
+              title: 'Guides Professionnels | Documentation PSP Normandie',
+              canonical: 'https://preventionprostitutionnormandie.com/guides/professionnels',
+              metaTags: [
+                {
+                  name: 'description',
+                  content: "Guides et documentation pour professionnels accompagnant les personnes en situation de prostitution. Ressources pour le secteur médico-social, juridique et associatif en Normandie."
+                },
+                {
+                  property: 'og:title',
+                  content: 'Guides Professionnels PSP Normandie'
+                },
+                {
+                  property: 'og:description',
+                  content: "Documentation pour professionnels accompagnant les PSP en Normandie."
+                },
+                {
+                  property: 'og:url',
+                  content: 'https://preventionprostitutionnormandie.com/guides/professionnels'
+                },
+                {
+                  property: 'og:type',
+                  content: 'website'
+                },
+                {
+                  name: 'twitter:card',
+                  content: 'summary_large_image'
+                },
+                {
+                  name: 'twitter:title',
+                  content: 'Guides Professionnels PSP'
+                },
+                {
+                  name: 'twitter:description',
+                  content: "Documentation professionnelle pour l'accompagnement des PSP."
+                },
+                {
+                  name: 'keywords',
+                  content: 'guides professionnels prostitution, documentation psp professionnels, formation accompagnement, outils médico-sociaux normandie'
+                }
+              ]
+            }
+        },
+        {
+            path: '/guide/professionalGuide',
+            redirect: '/guides/professionnels'
         },
         {
             path: '/legalNotices',

@@ -2,9 +2,10 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors'); // Import du middleware cors
 const dotenv = require('dotenv');
+const path = require('path');
 const connectDB = require('./config/db'); // Connexion à MongoDB
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, '.env') });
 connectDB(); // Connexion à MongoDB
 
 const app = express();
@@ -47,6 +48,7 @@ app.use('/api/guides', require('./routes/guideRoute')); // Route des guides
 app.use('/api/statistics', require('./routes/statisticRoute')); // Route des statistiques
 app.use('/api/structures', require('./routes/structureRoute')); // Route des structures
 app.use('/api/form', require('./routes/formRoutes'));
+app.use('/api/analytics', require('./routes/analytics')); // Route des analytics GA4
 
 app.use('/uploads', express.static('uploads'));
 

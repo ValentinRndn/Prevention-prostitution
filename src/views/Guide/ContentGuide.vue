@@ -1,8 +1,8 @@
 <template>
 <div>
-    <GuideContent :categories="['service-prostitution', 'service-prostitution-mineur', 'service-repit-lieu-accueil']" />
+    <GuideContent :categories="['particulier-info-generale', 'particulier-eure', 'particulier-calvados', 'particulier-seine-maritime', 'particulier-manche', 'particulier-orne', 'particulier-repit-lieu-accueil']" />
   </div>
-  
+
 </template>
 
 <script>

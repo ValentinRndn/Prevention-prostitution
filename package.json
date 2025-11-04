@@ -7,12 +7,19 @@
     "test": "mocha ./src/tests/**/*.test.js",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "pm2:stop": "pm2 stop papsp-backend",
+    "pm2:restart": "pm2 restart papsp-backend",
+    "pm2:logs": "pm2 logs papsp-backend",
+    "pm2:status": "pm2 list",
+    "pm2:monit": "pm2 monit"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^6.0.1",
     "@vueuse/head": "^2.0.0",
     "axios": "^1.6.8",
+    "chart.js": "^4.5.1",
     "dompurify": "^3.3.0",
     "dotenv": "^16.4.5",
     "install": "^0.13.0",
@@ -22,6 +29,7 @@
     "npm": "^10.8.1",
     "tinymce": "^7.1.2",
     "vue": "^3.4.15",
+    "vue-chartjs": "^5.3.3",
     "vue-leaflet": "^0.1.0",
     "vue-matomo": "^4.2.0",
     "vue-router": "^4.2.5"
