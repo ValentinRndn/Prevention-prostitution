@@ -1,13 +1,13 @@
 <template>
   <aside class="mobile-nav relative">
     <!-- Barre de navigation fixe -->
-    <div 
-      class="nav-header flex items-center justify-between px-6 py-4 transition-all duration-300"
+    <div
+      class="nav-header flex items-center justify-between px-4 py-2 transition-all duration-300"
       :class="{'bg-purple-fonce shadow-lg': menuOpen, 'bg-white': !menuOpen}"
     >
       <router-link to="/">
-        <img v-if="!menuOpen" src="../assets/logo_typo.png" alt="Logo blanc" class="object-cover w-[200px]">
-        <img v-else src="../assets/logo_typo_blanc.png" alt="Logo blanc" class="object-cover w-[200px]">
+        <img v-if="!menuOpen" src="../assets/logo_typo.png" alt="Logo blanc" class="object-cover w-[150px]">
+        <img v-else src="../assets/logo_typo_blanc.png" alt="Logo blanc" class="object-cover w-[150px]">
       </router-link>
 
       <!-- Bouton hamburger avec animation -->
@@ -34,16 +34,16 @@
     </div>
 
     <!-- Espace sous la navbar fixe -->
-    <div class="h-[68px]"></div>
+    <div class="h-[75px]"></div>
 
     <!-- Overlay du menu -->
     <transition name="fade-slide">
-      <div v-if="menuOpen" class="menu-overlay fixed inset-0 bg-purple-fonce z-10 pt-[68px]">
+      <div v-if="menuOpen" class="menu-overlay fixed inset-0 bg-purple-fonce z-10 pt-[75px]">
         <div class="h-full w-full flex flex-col pt-8 pb-10 px-8">
           <!-- Navigation menu -->
           <nav class="flex-1">
             <ul class="space-y-5 text-center flex flex-col mt-8">
-              <li class="menu-item relative py-2" :class="{'active-menu': currentRoute === '/carte' || currentRoute === '/map'}">
+              <li class="menu-item relative py-2" :class="{'active-menu': currentRoute === '/carte' || currentRoute === '/map' || currentRoute.startsWith('/cartographie')}">
                 <router-link
                   to="/carte"
                   class="text-white text-xl font-cgothic inline-block"
@@ -52,10 +52,10 @@
                   CARTOGRAPHIE
                 </router-link>
               </li>
-              
-              <li class="menu-item relative py-2" :class="{'active-menu': currentRoute === '/guide'}">
-                <router-link 
-                  to="/guide" 
+
+              <li class="menu-item relative py-2" :class="{'active-menu': currentRoute === '/guide' || currentRoute.startsWith('/guides/')}">
+                <router-link
+                  to="/guide"
                   class="text-white text-xl font-cgothic inline-block"
                   @click="toggleMenu"
                 >

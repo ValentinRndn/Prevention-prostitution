@@ -1,5 +1,5 @@
 <template>
-  <aside class="flex items-center justify-around text-xl gap-5 my-4 mx-12 sm:hidden 2xl:text-sm">
+  <aside class="flex items-center justify-around text-xl gap-5 my-4 mx-12 max-sm:hidden 2xl:text-sm">
     <router-link to="/">
       <img src="../assets/logo_typo.png" alt="Logo black" class="w-[200px]" />
     </router-link>
@@ -8,13 +8,13 @@
     >
       <li
         class="menu-item w-fit text-center relative"
-        :class="{ 'selectedMenu': currentPage === '/carte' || currentPage === '/map' }"
+        :class="{ 'selectedMenu': currentPage === '/carte' || currentPage === '/map' || currentPage.startsWith('/cartographie') }"
       >
         <router-link to="/carte">JE RECHERCHE UN ÉTABLISSEMENT</router-link>
       </li>
       <li
         class="menu-item w-fit text-center relative"
-        :class="{ 'selectedMenu': currentPage === '/guide' }"
+        :class="{ 'selectedMenu': currentPage === '/guide' || currentPage.startsWith('/guides/') }"
       >
         <router-link to="/guide">JE CONSULTE LA DOCUMENTATION</router-link>
       </li>

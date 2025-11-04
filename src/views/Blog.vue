@@ -32,7 +32,7 @@
     </div>
 
     <div class="bg-alveoles h-auto z-0 bg-cover relative mx-4 mt-6">
-      <div v-if="lastArticle" class="programme flex justify-center items-center max-w-[1000px] gap-10 md:flex-col mx-auto bg-white p-4 shadow-xl rounded-3xl">
+      <div v-if="lastArticle" class="programme flex justify-center items-center max-w-[1000px] gap-10 max-md:flex-col mx-auto bg-white p-4 shadow-xl rounded-3xl">
         <div class="image-programme w-1/2">
           <img :src="`../backend/${lastArticle.image}`" alt="article image" class="rounded-t-[25px] h-[300px] w-full object-cover" />
         </div>
@@ -54,7 +54,7 @@
       </div>
 
       <!-- Articles Grid -->
-      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-12 justify-center items-center mt-6 mx-auto max-w-[1350px]">
+      <div class="grid grid-cols-4 max-md:grid-cols-2 max-lg:grid-cols-4 gap-12 justify-center items-center mt-6 mx-auto max-w-[1350px]">
         <div v-for="article in paginatedArticles" :key="article._id" class="card w-[300px] h-[375px] object-cover rounded-[25px] overflow-hidden p-4 shadow-xl border border-solid border-slate-300 relative bg-white">
           <img :src="`../backend/${article.image}`" alt="article image" class="rounded-t-[25px] h-[180px] w-full object-cover" />
           <p class="text-3xl font-bold font-c-gothic text-post-grey">{{ article.title }}</p>

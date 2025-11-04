@@ -1,18 +1,18 @@
 <template>
-  <div class="dashboard flex bg-back-grey">
-    <div class="components">
+  <div class="dashboard flex bg-back-grey max-md:block">
+    <div class="components max-md:contents">
       <HorizontalBar />
       <AdminBar />
     </div>
 
-    <div class="dashboard-container p-6 xl:p-8 mt-16">
+    <div class="dashboard-container flex-1 p-6 mt-16 max-md:p-4 max-md:mt-14 max-md:w-full">
       <!-- Header avec refresh -->
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-800">Tableau de bord Analytics</h1>
+      <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:gap-4 max-md:items-start">
+        <h1 class="text-3xl font-bold text-gray-800 max-md:text-2xl">Tableau de bord Analytics</h1>
         <button
           @click="refreshData"
           :disabled="loading"
-          class="flex items-center gap-2 px-4 py-2 bg-purple-fonce text-white rounded-md hover:bg-purple-800 transition-colors disabled:opacity-50"
+          class="flex items-center gap-2 px-4 py-2 bg-purple-fonce text-white rounded-md hover:bg-purple-800 transition-colors disabled:opacity-50 max-md:w-full max-md:justify-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Cartes statistiques principales -->
-      <div class="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-6 mb-8">
+      <div class="grid grid-cols-4 gap-6 mb-8 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4">
         <StatCard
           title="Visiteurs en temps réel"
           :value="realtimeUsers"
@@ -70,7 +70,7 @@
       </div>
 
       <!-- Graphiques -->
-      <div class="grid grid-cols-3 max-lg:grid-cols-1 gap-6 mb-8">
+      <div class="grid grid-cols-3 gap-6 mb-8 max-lg:grid-cols-1 max-md:gap-4">
         <div class="col-span-2 max-lg:col-span-1">
           <TrafficChart :data="trafficData" />
         </div>
@@ -80,7 +80,7 @@
       </div>
 
       <!-- Consentement cookies + Top pages -->
-      <div class="grid grid-cols-3 max-lg:grid-cols-1 gap-6 mb-8">
+      <div class="grid grid-cols-3 gap-6 mb-8 max-lg:grid-cols-1 max-md:gap-4">
         <!-- Consentement cookies -->
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h3 class="text-lg font-bold text-gray-800 mb-4">Consentement Cookies</h3>
@@ -307,13 +307,6 @@ export default {
 
 .dashboard-container {
   flex: 1 1 0;
-  padding: 2rem;
   overflow-y: auto;
-}
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding-left: 6rem;
-  }
 }
 </style>

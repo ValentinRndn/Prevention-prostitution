@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="relative sm:hidden">
+    <div class="relative max-sm:hidden">
       <img :src="`../../backend/${article.image}`" alt="Article Image" class="w-full h-[500px] object-cover">
       <div class="absolute bottom-1/2 left-0 right-0 text-center text-white text-5xl font-bold font-cgothic">
         <div>{{ article.title }}</div>

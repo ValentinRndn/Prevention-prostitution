@@ -2,9 +2,9 @@
   <div class="app">
     <div v-if="!shouldHideNavbar">
       <!-- Navbar pour les écrans larges -->
-      <NavigationBar class="block md:hidden"></NavigationBar>
+      <NavigationBar class="block max-md:hidden"></NavigationBar>
       <!-- NavbarMobile pour les écrans petits -->
-      <NavigationBarMobile class="hidden md:block"></NavigationBarMobile>
+      <NavigationBarMobile class="hidden max-md:block"></NavigationBarMobile>
     </div>
 
     <router-view @route-changed="onRouteChanged" />

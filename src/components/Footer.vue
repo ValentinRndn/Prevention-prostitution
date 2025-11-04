@@ -3,14 +3,14 @@
 
 
       <!-- Bandeau blanc avec les logos -->
-      <div class="bg-white py-10 w-full flex justify-center items-center gap-24 shadow-md md:flex-col">
+      <div class="bg-white py-10 w-full flex justify-center items-center gap-24 shadow-md max-md:flex-col">
         <img src="../assets/welcome/logo_agrasc.jpg" alt="Logo AGRASC - Agence de Gestion et de Recouvrement des Avoirs Saisis et Confisqués" class="h-28 object-cover" loading="lazy" />
         <img src="../assets/prefecture-de-region-normandie_logo.png" alt="Logo Préfecture de Région Normandie" class="h-28  object-cover" loading="lazy" />
       </div>
 
 
 
-      <div class="footer-bottom-container flex justify-evenly w-full my-12 md:flex-col md:justify-center md:items-center md:text-center">
+      <div class="footer-bottom-container flex justify-evenly w-full my-12 max-md:flex-col max-md:justify-center max-md:items-center max-md:text-center">
       <div class="left-footer space-y-2 mb-4">
   <p class="">
     Pilotage : Accueil Service & PAPSP de Caen
@@ -31,7 +31,7 @@
 </div>
 
 </div>
-<p class="font-semibold absolute bottom-0 left-1/2 transform -translate-x-1/2 sm:left-0 sm:-translate-x-0 sm:w-full sm:text-center">
+<p class="font-semibold absolute bottom-0 left-1/2 transform -translate-x-1/2 max-sm:left-0 max-sm:-translate-x-0 max-sm:w-full max-sm:text-center">
   © {{ currentYear }} AGRASC – Tous droits réservés
 </p>
   </footer>

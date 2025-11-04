@@ -1,15 +1,15 @@
 <template>
-  <div class="dashboard flex bg-back-grey font-poppins">
-    <div class="components">
+  <div class="dashboard flex bg-back-grey font-poppins max-md:block">
+    <div class="components max-md:contents">
       <HorizontalBar />
       <AdminBar />
     </div>
-    <div class="content w-full overflow-y-auto">
+    <div class="content w-full overflow-y-auto max-md:w-full">
       <div class="dashboard-container">
-        <div class="update-keys mt-16">
-          <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:items-stretch max-md:gap-4">
-            <h1 class="text-3xl font-bold text-gray-800">Gestion des structures</h1>
-            <button @click="openModal" class="flex items-center justify-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200">
+        <div class="update-keys mt-16 max-md:mt-14 px-6 max-md:px-4">
+          <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:items-start max-md:gap-4">
+            <h1 class="text-3xl font-bold text-gray-800 max-md:text-2xl">Gestion des structures</h1>
+            <button @click="openModal" class="flex items-center justify-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200 max-md:w-full">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/>
               </svg>
@@ -39,7 +39,7 @@
 
             <div class="divide-y divide-gray-200">
               <div v-for="structure in paginatedStructures()" :key="structure.id" class="p-6 hover:bg-gray-50 transition-colors">
-                <div class="flex items-start justify-between gap-4 max-lg:flex-col">
+                <div class="flex items-start justify-between gap-4 max-md:flex-col">
                   <div class="flex items-start gap-4 flex-1 min-w-0">
                     <div class="flex items-center justify-center w-12 h-12 rounded-full bg-[#fef7ed] flex-shrink-0 mt-1">
                       <svg class="w-6 h-6 text-[#f1b04c]" fill="currentColor" viewBox="0 0 20 20">
@@ -59,11 +59,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="flex gap-3 flex-shrink-0">
-                    <button @click="openEditModal(structure)" class="px-4 py-2 text-sm font-medium text-[#f1b04c] hover:bg-[#fef7ed] rounded-md transition-colors">
+                  <div class="flex gap-3 flex-shrink-0 max-md:w-full">
+                    <button @click="openEditModal(structure)" class="px-4 py-2 text-sm font-medium text-[#f1b04c] hover:bg-[#fef7ed] rounded-md transition-colors max-md:flex-1">
                       Modifier
                     </button>
-                    <button @click="deleteStructure(structure.id)" class="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors">
+                    <button @click="deleteStructure(structure.id)" class="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors max-md:flex-1">
                       Supprimer
                     </button>
                   </div>

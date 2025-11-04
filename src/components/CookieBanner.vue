@@ -131,6 +131,15 @@
 
       // === GOOGLE TAG MANAGER ===
       initializeAnalytics() {
+        const currentPath = window.location.pathname;
+        console.log("Google Tag Manager: Tentative d'initialisation sur", currentPath);
+
+        // Ne pas tracker les pages du backoffice
+        if (currentPath.startsWith('/backoffice')) {
+          console.log("Google Tag Manager: Désactivé pour le backoffice");
+          return;
+        }
+
         // Vérifier si GTM est déjà chargé
         if (window.dataLayer) {
           console.log("Google Tag Manager: Déjà chargé, activation du tracking");
@@ -143,6 +152,8 @@
           });
           return;
         }
+
+        console.log("Google Tag Manager: Chargement du script GTM...");
 
         // Charger Google Tag Manager
         const GTM_ID = 'GTM-TG55LTR2';
@@ -218,9 +229,56 @@
         // Pas de publicité sur ce site pour l'instant
         console.log("Publicités: Désactivées (pas de pub sur le site)");
       },
+
+      handleRouteChange() {
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent) {
+          const settings = JSON.parse(consent);
+          if (settings.performance) {
+            const currentPath = window.location.pathname;
+
+            // Si on est sur le backoffice, s'assurer que le tracking est désactivé
+            if (currentPath.startsWith('/backoffice')) {
+              this.disableAnalytics();
+            }
+            // Sinon, s'assurer que le tracking est activé
+            else if (window.dataLayer) {
+              // Ne réactiver que si dataLayer existe déjà
+              window.dataLayer.push({
+                'event': 'cookie_consent_granted',
+                'consent': {
+                  'analytics_storage': 'granted',
+                  'ad_storage': 'denied'
+                }
+              });
+            }
+          }
+        }
+      },
     },
     mounted() {
       this.checkCookieConsent();
+
+      // Surveiller les changements de route pour activer/désactiver GTM
+      // Utiliser un observer sur l'historique plutôt que le router
+      const originalPushState = window.history.pushState;
+      const originalReplaceState = window.history.replaceState;
+      const self = this;
+
+      window.history.pushState = function(...args) {
+        originalPushState.apply(this, args);
+        self.handleRouteChange();
+      };
+
+      window.history.replaceState = function(...args) {
+        originalReplaceState.apply(this, args);
+        self.handleRouteChange();
+      };
+
+      // Écouter également les événements popstate
+      window.addEventListener('popstate', () => {
+        self.handleRouteChange();
+      });
     },
   };
   </script>

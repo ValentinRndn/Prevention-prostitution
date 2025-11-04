@@ -51,11 +51,17 @@ export default {
         'login-txt': '0.60rem',
       },
       screens: {
-        'sm': {'max': '639px'}, // jusqu'à 640px
-        'md': {'max': '767px'}, // jusqu'à 768px
-        'lg': {'max': '1023px'}, // jusqu'à 1024px
-        'xl': {'max': '1279px'}, // jusqu'à 1280px
-        '2xl': {'max': '1535px'}, // jusqu'à 1536px
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+        // Max-width breakpoints for responsive design
+        'max-sm': {'max': '639px'},
+        'max-md': {'max': '767px'},
+        'max-lg': {'max': '1023px'},
+        'max-xl': {'max': '1279px'},
+        'max-2xl': {'max': '1535px'},
       },
     },
   },

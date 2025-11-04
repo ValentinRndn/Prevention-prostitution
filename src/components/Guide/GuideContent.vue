@@ -17,7 +17,7 @@
 
     <!-- Conteneur des documents -->
     <div
-      class="documents-container mt-14 mx-10 flex flex-wrap gap-5 justify-center sm:justify-center"
+      class="documents-container mt-14 mx-10 flex flex-wrap gap-5 justify-center max-sm:justify-center"
     >
       <div
         v-for="doc in documents"

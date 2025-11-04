@@ -1,24 +1,24 @@
 <template>
   <div class="not-found-container min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-100 px-4">
     <!-- Error Code -->
-    <div class="error-code text-purple-fonce font-cgothic font-bold text-9xl md:text-8xl sm:text-7xl mb-4 animate-pulse">
+    <div class="error-code text-purple-fonce font-cgothic font-bold text-9xl max-md:text-8xl max-sm:text-7xl mb-4 animate-pulse">
       404
     </div>
 
     <!-- Main Message -->
-    <h1 class="text-4xl md:text-3xl sm:text-2xl font-bold text-gray-800 font-cgothic text-center mb-4">
+    <h1 class="text-4xl max-md:text-3xl max-sm:text-2xl font-bold text-gray-800 font-cgothic text-center mb-4">
       Page non trouvée
     </h1>
 
     <!-- Description -->
-    <p class="text-lg md:text-base sm:text-sm text-gray-600 font-jost-sans text-center max-w-2xl mb-8">
+    <p class="text-lg max-md:text-base max-sm:text-sm text-gray-600 font-jost-sans text-center max-w-2xl mb-8">
       Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
       Nous vous invitons à retourner à l'accueil ou à utiliser les liens ci-dessous pour naviguer sur notre site.
     </p>
 
     <!-- Illustration -->
     <div class="illustration mb-8">
-      <svg class="w-64 h-64 md:w-48 md:h-48 sm:w-40 sm:h-40" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="w-64 h-64 max-md:w-48 max-md:h-48 max-sm:w-40 max-sm:h-40" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Map/Location Icon -->
         <circle cx="250" cy="250" r="200" fill="#f1b04c" opacity="0.1"/>
         <path d="M250 150C211.34 150 180 181.34 180 220C180 270 250 350 250 350C250 350 320 270 320 220C320 181.34 288.66 150 250 150Z"

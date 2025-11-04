@@ -1,14 +1,14 @@
 <template>
     <div class="map-bg-container flex min-h-[80vh] bg-cover bg-no-repeat bg-gray-200">
-        <div class="w-[50vw] flex justify-center items-center xl:w-full xl:map-bg-mobile xl:bg-cover">
+        <div class="w-[50vw] flex justify-center items-center max-xl:w-full max-xl:map-bg-mobile max-xl:bg-cover">
             <!-- Nouveau contenu pour présenter la cartographie -->
-            <div class="bg-white/90 rounded-xl p-8 max-w-[600px] shadow-lg m-8 xl:m-4">
+            <div class="bg-white/90 rounded-xl p-8 max-w-[600px] shadow-lg m-8 max-xl:m-4">
                 <h1 class="text-3xl font-bold text-purple-fonce mb-6 font-cgothic">Cartographie des Ressources en Normandie</h1>
                 <p class="text-gray-700 text-lg leading-relaxed mb-6">
                     Notre cartographie interactive vous permet de localiser facilement les structures d'aide et d'accompagnement disponibles en Normandie selon vos besoins spécifiques.
                 </p>
                 
-                <div class="grid grid-cols-2 xl:grid-cols-1 gap-4 mb-8">
+                <div class="grid grid-cols-2 max-xl:grid-cols-1 gap-4 mb-8">
                     <div class="bg-purple-fonce/10 p-4 rounded-lg">
                         <div class="flex items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-fonce mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

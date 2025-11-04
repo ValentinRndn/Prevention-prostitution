@@ -1,7 +1,7 @@
 <template>
     <div class="flex w-[100vw] h-[100vh]">
-        <div class="w-[50vw] flex justify-center items-center md:w-full m-4">
-            <div class="flex flex-col w-[400px] h-[200px] justify-center font-cgothic md:w-full  ">
+        <div class="w-[50vw] flex justify-center items-center max-md:w-full m-4">
+            <div class="flex flex-col w-[400px] h-[200px] justify-center font-cgothic max-md:w-full  ">
                 <h1 class="form-control font-cgothic font-bold text-login-grey text-3xl ">Connexion </h1>
                 <label for="username" class="bg-gray-200 mt-4 rounded-t-md text-login-txt pl-3 pt-2 text-login-grey">EMAIL</label>
                 <input type="text" id="username" v-model="email" class="form-control bg-gray-200 rounded-b-md px-2 pb-5 outline-none focus:ring-0 text-login-grey" required>
@@ -14,7 +14,7 @@
             </div>
             
         </div>
-        <img src="../../assets/alveoles2.png" alt="alveoles" class="h-[100vh] w-[60vw] object-cover md:hidden" />
+        <img src="../../assets/alveoles2.png" alt="alveoles" class="h-[100vh] w-[60vw] object-cover max-md:hidden" />
     </div>
 </template>
 

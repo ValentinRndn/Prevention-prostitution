@@ -1,15 +1,15 @@
 <template>
-  <div class="dashboard flex bg-back-grey font-poppins">
-    <div class="components">
+  <div class="dashboard flex bg-back-grey font-poppins max-md:block">
+    <div class="components max-md:contents">
       <HorizontalBar />
       <AdminBar />
     </div>
-    <div class="content w-full overflow-y-auto">
+    <div class="content w-full overflow-y-auto max-md:w-full">
       <div class="dashboard-container">
-        <div class="update-keys mt-16">
-          <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:items-stretch max-md:gap-4">
-            <h1 class="text-3xl font-bold text-gray-800">Gestion des documents</h1>
-            <button @click="openModal" class="flex items-center justify-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200">
+        <div class="update-keys mt-16 max-md:mt-14 px-6 max-md:px-4">
+          <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:items-start max-md:gap-4">
+            <h1 class="text-3xl font-bold text-gray-800 max-md:text-2xl">Gestion des documents</h1>
+            <button @click="openModal" class="flex items-center justify-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200 max-md:w-full">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/>
               </svg>
@@ -51,11 +51,11 @@
                       <p class="text-sm text-gray-600 mt-1">{{ formatCategoryLabel(doc.category) }}</p>
                     </div>
                   </div>
-                  <div class="flex gap-3">
-                    <button @click="openEditModal(doc)" class="px-4 py-2 text-sm font-medium text-[#f1b04c] hover:bg-[#fef7ed] rounded-md transition-colors">
+                  <div class="flex gap-3 max-md:w-full">
+                    <button @click="openEditModal(doc)" class="px-4 py-2 text-sm font-medium text-[#f1b04c] hover:bg-[#fef7ed] rounded-md transition-colors max-md:flex-1">
                       Modifier
                     </button>
-                    <button @click="deleteGuide(doc._id)" class="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors">
+                    <button @click="deleteGuide(doc._id)" class="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors max-md:flex-1">
                       Supprimer
                     </button>
                   </div>
@@ -77,7 +77,7 @@
           </div>
 
           <!-- Pagination -->
-          <div v-if="totalPages() > 1" class="pagination mt-6 flex justify-center items-center gap-2">
+          <div v-if="totalPages() > 1" class="pagination mt-6 flex justify-center items-center gap-2 flex-wrap max-md:gap-1">
             <button
               @click="changePage(currentPage - 1)"
               :disabled="currentPage === 1"
@@ -436,12 +436,5 @@ export default {
 <style>
 .dashboard-container {
   flex: 1 1 0;
-  padding: 2rem;
-}
-
-@media(max-width: 768px) {
-  .dashboard-container {
-    padding-left: 6rem;
-  }
 }
 </style>

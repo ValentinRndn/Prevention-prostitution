@@ -3,7 +3,7 @@
     <!-- Entête avec titre et introduction -->
     <div class="header-section py-12 px-6">
       <div class="max-w-5xl mx-auto">
-        <h1 class="text-4xl md:text-3xl font-bold text-grey mb-6 font-cgothic text-center">
+        <h1 class="text-4xl max-md:text-3xl font-bold text-grey mb-6 font-cgothic text-center">
           Aide aux Personnes en Situation de Prostitution : Trouver un Soutien en Normandie
         </h1>
         <p class="text-gray-700 text-lg leading-relaxed mb-8 text-center">
@@ -34,23 +34,23 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[1000px]  items-stretch md:flex-col " v-if="cookieAccepted">
+      <div class="map-section flex h-[1000px]  items-stretch max-md:flex-col " v-if="cookieAccepted">
         <div 
   :class="[
-    'categories-container bg-grey h-full text-white md:text-black px-6 flex flex-col justify-start  md:bg-white  transition-all duration-300 p-4 md:h-fit',
+    'categories-container bg-grey h-full text-white max-md:text-black px-6 flex flex-col justify-start  max-md:bg-white  transition-all duration-300 p-4 max-md:h-fit',
     windowWidth <= 767 ? (categoryVisible ? 'h-full overflow-y-auto' : 'h-0') : 'h-full'
   ]"
 >
   <h1 
     v-if="windowWidth > 767 || categoryVisible" 
-    class=" text-2xl font-bold mb-6 font-cgothic text-white md:hidden"
+    class=" text-2xl font-bold mb-6 font-cgothic text-white max-md:hidden"
   >
     JE SOUHAITE :
   </h1>
 
   <!-- Bouton pour afficher/masquer les catégories sur mobile -->
   <span 
-    class="hidden md:flex md:items-center cursor-pointer mb-4 md:w-fit font-semibold text-xl"
+    class="hidden max-md:flex max-md:items-center cursor-pointer mb-4 max-md:w-fit font-semibold text-xl"
     @click="toggleVisibility"
   >
     {{ selectedCategories.length ? `${selectedCategories.length} catégories sélectionnées` : 'Catégories' }}
@@ -90,7 +90,7 @@
     <div 
       v-for="(category, index) in categories" 
       :key="index" 
-      class="flex gap-3 items-center p-2 rounded-md transition-all duration-300 hover:bg-gray-500 md:hover:bg-gray-100"
+      class="flex gap-3 items-center p-2 rounded-md transition-all duration-300 hover:bg-gray-500 max-md:hover:bg-gray-100"
     >
       <input 
         :id="category.key" 
@@ -110,12 +110,12 @@
   <!-- Légende visible seulement en mode desktop -->
   <div 
     v-if="categoryVisible || windowWidth > 767" 
-    class="mt-auto text-white md:text-black text-sm opacity-80 pt-4 pb-2"
+    class="mt-auto text-white max-md:text-black text-sm opacity-80 pt-4 pb-2"
   >
     <p>Sélectionnez une ou plusieurs catégories pour afficher les structures correspondantes sur la carte.</p>
   </div>
 </div>
-        <div id="map" class="h-full w-full md:h-[80vh] relative">
+        <div id="map" class="h-full w-full max-md:h-[80vh] relative">
           <!-- Overlay de chargement -->
           <div v-if="isLoading" class="absolute inset-0 bg-white/80 flex items-center justify-center z-50" style="z-index: 9999">
             <div class="loading-spinner"></div>

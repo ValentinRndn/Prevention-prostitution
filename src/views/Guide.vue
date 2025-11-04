@@ -1,20 +1,20 @@
 <template>
     <div class="flex flex-col">
-      <div class="bg-banner-contact w-full h-[350px] bg-cover relative sm:hidden">
+      <div class="bg-banner-contact w-full h-[350px] bg-cover relative max-sm:hidden">
         <div class="absolute bottom-0 left-0 right-0 text-center">
-          <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">DOCUMENTATION</div>
+          <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic max-sm:px-8 max-sm:text-4xl">DOCUMENTATION</div>
         </div>
       </div>
   
-      <div class="header-banner bg-banner-contact-mobile w-full h-[350px] bg-cover relative hidden sm:block">
+      <div class="header-banner bg-banner-contact-mobile w-full h-[350px] bg-cover relative hidden max-sm:block">
         <div class="absolute bottom-0 left-0 right-0 text-center">
-          <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic sm:px-8 sm:text-4xl">DOCUMENTATION</div>
+          <div class="bg-white inline-block text-purple-fonce text-5xl py-6 px-24 rounded-t-2xl font-bold font-cgothic max-sm:px-8 max-sm:text-4xl">DOCUMENTATION</div>
         </div>
       </div>
       
       <!-- Nouvelle section introduisant le guide -->
-      <div class="mt-12 py-12 px-6 max-w-5xl mx-auto text-center md:text-left md:mt-2">
-        <h1 class="text-4xl md:text-3xl font-bold text-grey mb-6 font-cgothic">
+      <div class="mt-12 py-12 px-6 max-w-5xl mx-auto text-center max-md:text-left max-md:mt-2">
+        <h1 class="text-4xl max-md:text-3xl font-bold text-grey mb-6 font-cgothic">
           Guide d'Accompagnement des Personnes en Situation de Prostitution en Normandie
         </h1>
         <h2 class="text-2xl font-semibold text-purple-fonce mb-4">
@@ -26,8 +26,8 @@
       </div>
       
       <!-- Section des boutons (originale) -->
-      <div class="flex flex-col justify-center font-cgothic gap-4 w-[400px] mx-auto mb-16 md:w-full md:px-4">
-        <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md hover:bg-purple transition-colors duration-300 group">
+      <div class="flex flex-col justify-center font-cgothic gap-4 w-[400px] mx-auto mb-16 max-md:w-full max-md:px-4">
+        <button class="bg-purple-fonce text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md max-md:shadow-md hover:bg-purple transition-colors duration-300 group">
           <router-link to="/guides/particuliers" class="flex items-center justify-center w-full">
             Documentation pour PSP
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
@@ -36,7 +36,7 @@
           </router-link>
         </button>
 
-        <button class="bg-purple text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md md:shadow-md hover:bg-purple-fonce transition-colors duration-300 group">
+        <button class="bg-purple text-white flex items-center justify-center gap-2 font-jost-sans font-semibold text-xl py-6 rounded-md max-md:shadow-md hover:bg-purple-fonce transition-colors duration-300 group">
           <router-link to="/guides/professionnels" class="flex items-center justify-center w-full">
             Documentation pour Professionnels
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="ml-2 transition-transform duration-300 transform group-hover:translate-x-2">
@@ -51,22 +51,22 @@
       <div class="bg-gray-50 py-16 px-4">
         <div class="max-w-6xl mx-auto">
           <!-- Section 1: Pourquoi consulter ce guide -->
-          <div class="grid grid-cols-2 md:grid-cols-1 gap-8 mb-20">
-            <div class="md:col-span-1">
-              <div class="sticky top-10">
+          <div class="grid grid-cols-2 max-md:grid-cols-1 gap-8 mb-20">
+            <div class="max-md:col-span-1">
+              <div class="sticky top-10 max-md:static">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 font-cgothic">Pourquoi consulter ce guide ?</h2>
                 <p class="text-gray-600 mb-4">
                   Les Personnes en Situation de Prostitution rencontrent souvent des difficultés multiples : précarité, violences, isolement, problèmes de santé et obstacles à l'accès aux droits.
                 </p>
-                <div class="hidden md:block">
+                <div class="hidden max-md:block">
                   <div class="mt-8 bg-purple-fonce h-1 w-20 rounded-full"></div>
                 </div>
               </div>
             </div>
   
-            <div class="md:col-span-2">
+            <div class="max-md:col-span-1">
               <div class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-purple-fonce">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-2 max-md:grid-cols-1 gap-6">
                   <div class="card-item">
                     <div class="p-4 bg-purple-fonce/10 rounded-lg flex items-center justify-center mb-4">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-purple-fonce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,7 +119,7 @@
               <div class="h-1 w-24 bg-purple-fonce mx-auto rounded-full"></div>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-1 gap-8">
+            <div class="grid grid-cols-2 max-md:grid-cols-1 gap-8">
               <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                 <div class="p-6 border-l-4 border-purple-fonce">
                   <h3 class="font-bold text-xl mb-3 text-gray-800 flex items-center">
@@ -176,7 +176,7 @@
             
             <h2 class="text-3xl font-bold text-gray-800 mb-8 font-cgothic">Qui peut utiliser ce guide ?</h2>
             
-            <div class="grid grid-cols-3 md:grid-cols-1 gap-8">
+            <div class="grid grid-cols-3 max-md:grid-cols-1 gap-8">
               <div class="bg-gradient-to-br from-purple-fonce/5 to-purple/5 rounded-xl p-6 hover:shadow-md transition-shadow duration-300">
                 <div class="mb-5 flex justify-center">
                   <div class="w-16 h-16 bg-purple-fonce rounded-full flex items-center justify-center">

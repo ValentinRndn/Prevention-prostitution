@@ -1,21 +1,21 @@
 <template>
-  <div class="relative bg-landing w-full h-[80vh] bg-center bg-cover bg-no-repeat mb-24 rounded-bl-[25%] overflow-hidden md:h-[60vh] md:mb-12 xl:h-[90vh]">
+  <div class="relative bg-landing w-full h-[80vh] bg-center bg-cover bg-no-repeat mb-24 rounded-bl-[25%] overflow-hidden max-md:h-[70vh] max-md:mb-12 xl:h-[90vh]">
     <!-- Overlay -->
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 z-1"></div>
 
     <!-- Content -->
-    <div class="relative z-1 flex flex-col items-center justify-center h-full px-4 text-center md:px-6 lg:px-8 py-4">
+    <div class="relative z-1 flex flex-col items-center justify-center h-full px-4 text-center max-md:px-6 max-lg:px-8 py-4 max-md:py-12">
       <!-- Heading -->
-      <h1 class="text-white font-cgothic font-bold text-4xl md:text-3xl sm:text-2xl drop-shadow-md mb-4 max-w-[80%] md:max-w-4xl ">
+      <h1 class="text-white font-cgothic font-bold text-4xl max-md:text-3xl max-sm:text-2xl drop-shadow-md mb-4 max-w-[80%] max-md:max-w-4xl ">
         Personnes en Situation de Prostitution : Accès aux Droits, Soins et Accompagnement en Normandie
             </h1>
       <!-- Paragraph -->
-      <p class="text-white text-lg md:text-base sm:text-sm lg:text-lg xl:text-xl leading-relaxed mb-8 max-w-4xl sm:max-w-full">
+      <p class="text-white text-lg max-md:text-base max-sm:text-sm max-lg:text-lg xl:text-xl leading-relaxed mb-8 max-md:mb-12 max-w-4xl max-sm:max-w-full">
         La prévention et l'accompagnement des Personnes en Situation de Prostitution (PSP) en Normandie sont des enjeux majeurs pour favoriser leur accès aux droits, aux soins et aux dispositifs de soutien. Que vous soyez directement concerné(e), témoin d'une situation ou un professionnel souhaitant aider, il existe des solutions adaptées pour garantir une prise en charge globale et réduire les risques liés à la prostitution.      </p>
       <!-- Button -->
       <router-link
         to="/guide"
-        class="inline-flex items-center bg-purple-fonce text-white font-semibold text-lg sm:text-base px-6 py-3 rounded-lg shadow-lg hover:bg-purple transition duration-300 group"
+        class="inline-flex items-center bg-purple-fonce text-white font-semibold text-lg max-sm:text-base px-6 py-3 rounded-lg shadow-lg hover:bg-purple transition duration-300 group max-md:mb-8"
       >
         <span>JE ME RENSEIGNE</span>
         <svg
@@ -35,11 +35,11 @@
   </div>
 
   <!-- Contenu principal -->
-  <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl">
+  <div class="container mx-auto px-4 max-md:px-6 max-lg:px-8 max-w-6xl">
 
 
     <section class="mb-16 bg-gray-50 p-8 rounded-lg shadow-sm">
-      <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6">
+      <h2 class="text-3xl max-md:text-2xl font-semibold text-purple-fonce mb-6">
         Comprendre la Situation des Personnes en Situation de Prostitution
       </h2>
       <p class="text-gray-800 text-lg leading-relaxed">
@@ -48,14 +48,14 @@
     </section>
 
     <section class="mb-16">
-  <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6 text-center">
+  <h2 class="text-3xl max-md:text-2xl font-semibold text-purple-fonce mb-6 text-center">
     Quels Dispositifs d'Aide pour les Personnes en Situation de Prostitution ?
   </h2>
   <p class="text-gray-800 text-lg leading-relaxed mb-8 text-center">
     En Normandie, plusieurs dispositifs et associations sont mobilisés pour offrir des solutions adaptées :
   </p>
   
-  <div class="grid grid-cols-3 md:grid-cols-1 gap-6">
+  <div class="grid grid-cols-3 max-md:grid-cols-1 gap-6">
     <!-- Carte 1 -->
     <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div class="bg-purple-fonce/10 p-6 flex justify-center">
@@ -103,7 +103,7 @@
 </section>
 
     <section class="mb-16 bg-gray-50 p-8 rounded-lg shadow-sm">
-      <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6">
+      <h2 class="text-3xl max-md:text-2xl font-semibold text-purple-fonce mb-6">
         Réduction des Risques et Prévention
       </h2>
       <p class="text-gray-800 text-lg leading-relaxed mb-6">
@@ -126,7 +126,7 @@
     </section>
 
     <section class="mb-16">
-      <h2 class="text-3xl md:text-2xl font-semibold text-purple-fonce mb-6 text-center">
+      <h2 class="text-3xl max-md:text-2xl font-semibold text-purple-fonce mb-6 text-center">
         Comment Contacter un Dispositif d'Aide en Normandie ?
       </h2>
       <p class="text-gray-800 text-lg leading-relaxed mb-6 text-center">

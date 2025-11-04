@@ -1,5 +1,5 @@
 <template>
-  <aside :class="{ 'is-expanded': is_expanded }" class="flex flex-col w-[calc(2rem+32px)] min-h-[100vh] overflow-hidden p-4 bg-purple-fonce ease-out duration-200 mt-12">
+  <aside :class="{ 'is-expanded': is_expanded }" class="flex flex-col w-[calc(2rem+32px)] min-h-[100vh] overflow-hidden p-4 bg-purple-fonce ease-out duration-200 mt-12 max-md:hidden">
 
     <div class="navigation my-0 -mx-4 z-10">
       <router-link :class="['button border-t border-white', { 'text-purple bg-purple': currentPage === '/backoffice/dashboard' }]" to="/backoffice/dashboard">
