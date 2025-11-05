@@ -6,7 +6,7 @@
     </div>
     <div class="content w-full overflow-y-auto max-md:w-full">
       <div class="dashboard-container">
-        <div class="update-keys mt-16 max-md:mt-14 px-6 max-md:px-4">
+        <div class="update-keys mt-20 max-md:mt-16 px-6 max-md:px-4">
           <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:items-start max-md:gap-4">
             <h1 class="text-3xl font-bold text-gray-800 max-md:text-2xl">Gestion des structures</h1>
             <button @click="openModal" class="flex items-center justify-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200 max-md:w-full">
@@ -366,6 +366,10 @@ export default {
             key: "category-24",
             label: 'Une association agréée "Parcours Sortie de Prostitution"',
           },
+          {
+            key: "category-26",
+            label: "Répit - Lieu d'accueil",
+          },
         ],
         "Personne en situation de prostitution": [
           { key: "category-0", label: "Rencontrer un médecin" },
@@ -390,8 +394,8 @@ export default {
               "Trouver du matériel de consommation de drogue à moindre risque",
           },
           { key: "category-11", label: "Déposer plainte" },
-          { key: "category-25", label: '  Trouver une association agréée "Parcours Sortie de Prostitution' }
-
+          { key: "category-25", label: 'Trouver une association agréée "Parcours Sortie de Prostitution"' },
+          { key: "category-27", label: "Répit - Lieu d'accueil" }
         ],
       },
       showNotificationPopup: false,

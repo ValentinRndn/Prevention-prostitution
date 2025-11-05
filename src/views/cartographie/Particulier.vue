@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[1000px]  items-stretch max-md:flex-col " v-if="cookieAccepted">
+      <div class="map-section flex h-[1100px]  items-stretch max-md:flex-col " v-if="cookieAccepted">
         <div 
   :class="[
     'categories-container bg-grey h-full text-white max-md:text-black px-6 flex flex-col justify-start  max-md:bg-white  transition-all duration-300 p-4 max-md:h-fit',
@@ -290,6 +290,7 @@ const iconColors = {
   "category-10": "#FFD700", // gold
   "category-11": "#008080",  // teal
   "category-25": "#FF6347", // tomato
+  "category-27": "#DC143C", // crimson
 };
 
 function createIcon(color) {
@@ -354,7 +355,8 @@ export default {
         { key: "category-9", label: "Trouver des préservatifs" },
         { key: "category-10", label: "Trouver du matériel de consommation de drogue à moindre risque" },
         { key: "category-11", label: "Déposer plainte" },
-        { key : "category-25", label: 'Trouver une association agréée "Parcours Sortie de Prostitution'}
+        { key : "category-25", label: 'Trouver une association agréée "Parcours Sortie de Prostitution'},
+        { key: "category-27", label: "Répit - Lieu d'accueil" }
       ],
       selectedCategories: [],
       structures: [],
@@ -765,7 +767,8 @@ input[type="checkbox"] {
 #category-9 { accent-color: #9ACD32; }
 #category-10 { accent-color: #FFD700; }
 #category-11 { accent-color: #008080; }
-#category-25 { accent-color: #FF6347; } 
+#category-25 { accent-color: #FF6347; }
+#category-27 { accent-color: #DC143C; } 
 
 @media (max-width: 768px) {
   .structure-popup {

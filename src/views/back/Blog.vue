@@ -4,9 +4,9 @@
       <HorizontalBar />
       <AdminBar />
     </div>
-    <div class="content w-full">
+    <div class="content w-full overflow-y-auto max-md:w-full">
       <div class="dashboard-container">
-        <div class="update-keys mt-16">
+        <div class="update-keys mt-20 max-md:mt-16 px-6 max-md:px-4">
           <div class="button-container flex gap-5">
             <button @click="openModal" class="add-button bg-purple-fonce text-white py-4 px-6 rounded-md shadow-xl font-poppins font-bold text-center hover:scale-105 duration-200">AJOUTER UN NOUVEL ARTICLE</button>
           </div>

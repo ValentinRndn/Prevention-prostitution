@@ -6,7 +6,7 @@
     </div>
     <div class="content w-full overflow-y-auto max-md:w-full">
       <div class="dashboard-container">
-        <div class="update-keys mt-16 max-md:mt-14 px-6 max-md:px-4">
+        <div class="update-keys mt-20 max-md:mt-16 px-6 max-md:px-4">
           <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:gap-4 max-md:items-start">
             <h1 class="text-3xl font-bold text-gray-800 max-md:text-2xl">Gestion des utilisateurs</h1>
             <button @click="openModal" class="flex items-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200 max-md:w-full max-md:justify-center">

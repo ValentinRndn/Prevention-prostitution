@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="map-section flex h-[1000px]  items-stretch max-md:flex-col " v-if="cookieAccepted">
+      <div class="map-section flex h-[1100px]  items-stretch max-md:flex-col " v-if="cookieAccepted">
         <div 
             :class="[
               'categories-container bg-grey h-full text-white max-md:text-black px-6 flex flex-col justify-start  max-md:bg-white  transition-all duration-300 p-4 max-md:h-fit',
@@ -320,6 +320,7 @@ const iconColors = {
   "category-22": "#FFD700", // gold
   "category-23": "#008080",  // teal
   "category-24": "#FF6347", // tomato
+  "category-26": "#DC143C", // crimson
 };
 
 function createIcon(color) {
@@ -385,7 +386,7 @@ export default {
         { key: "category-22", label: "Une structure de prévention et réduction des risques pour les usagers de drogues" },
         { key: "category-23", label: "Un commissariat" },
         { key: "category-24", label: 'Une association agréée "Parcours Sortie de Prostitution" '},
-
+        { key: "category-26", label: "Répit - Lieu d'accueil" }
       ],
       selectedCategories: [],
       structures: [],
@@ -777,6 +778,7 @@ input[type="checkbox"] {
 #category-22 { accent-color: #FFD700; }
 #category-23 { accent-color: #008080; }
 #category-24 { accent-color: #FF6347; }
+#category-26 { accent-color: #DC143C; }
 
 @media (max-width: 768px) {
   .structure-popup {

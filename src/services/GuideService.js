@@ -23,29 +23,40 @@ export const getGuideByCategory = (categorie) => {
 };
 
 export const createGuide = async (formData) => {
+  const token = localStorage.getItem('token');
+  console.log('Token pour createGuide:', token ? 'Présent' : 'Absent');
+
   try {
     const response = await axios.post(`${apiUrl}/api/guides/createGuide`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        Authorization: `Bearer ${token}`
       }
     });
     return response.data;
   } catch (error) {
     console.error('Error creating file:', error);
+    console.error('Error response:', error.response?.data);
     throw error;
   }
 };
 
 export const updateGuide = async (id, formData) => {
+  const token = localStorage.getItem('token');
+  console.log('Token pour updateGuide:', token ? 'Présent' : 'Absent');
+  console.log('ID du guide:', id);
+  console.log('FormData keys:', Array.from(formData.keys()));
+
   try {
     const response = await axios.put(`${apiUrl}/api/guides/updateGuide/${id}`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        Authorization: `Bearer ${token}`
       }
     });
     return response.data;
   } catch (error) {
     console.error('Error updating file:', error);
+    console.error('Error response:', error.response?.data);
+    console.error('Error status:', error.response?.status);
     throw error;
   }
 }

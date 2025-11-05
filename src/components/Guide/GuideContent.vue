@@ -71,31 +71,36 @@ export default {
   methods: {
     formatCategory(category) {
       const categoryNames = {
-        // Anciennes catégories
+        // Anciennes catégories (pour compatibilité)
         'general': 'Tous les guides',
         'service-prostitution': 'Service Prostitution',
         'service-prostitution-mineur': 'Service Prostitution Mineur',
-        'service-repit-lieu-accueil': 'Répit - Lieu d\'accueil',
         'professionnel-prostitution': 'Professionnel Prostitution',
         'professionnel-prostitution-mineur': 'Professionnel Prostitution Mineur',
 
-        // Nouvelles catégories Particuliers
+        // Anciennes catégories Particuliers
         'particulier-info-generale': 'Info générale',
         'particulier-eure': 'Eure',
         'particulier-calvados': 'Calvados',
         'particulier-seine-maritime': 'Seine-Maritime',
         'particulier-manche': 'Manche',
         'particulier-orne': 'Orne',
-        'particulier-repit-lieu-accueil': 'Répit - Lieu d\'accueil',
 
-        // Nouvelles catégories Professionnels
+        // Anciennes catégories Professionnels
         'professionnel-info-generale': 'Info générale',
         'professionnel-eure': 'Eure',
         'professionnel-calvados': 'Calvados',
         'professionnel-seine-maritime': 'Seine-Maritime',
         'professionnel-manche': 'Manche',
         'professionnel-orne': 'Orne',
-        'professionnel-repit-lieu-accueil': 'Répit - Lieu d\'accueil'
+
+        // Nouvelles catégories simplifiées
+        'info-generale': 'Info générale',
+        'eure': 'Eure',
+        'calvados': 'Calvados',
+        'seine-maritime': 'Seine-Maritime',
+        'manche': 'Manche',
+        'orne': 'Orne'
       };
       return categoryNames[category] || category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
     },

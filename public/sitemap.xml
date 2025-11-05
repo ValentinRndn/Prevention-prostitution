@@ -44,17 +44,9 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Guides Particuliers (nouvelle URL SEO-friendly) -->
+  <!-- Documentation -->
   <url>
-    <loc>https://preventionprostitutionnormandie.com/guides/particuliers</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Guides Professionnels (nouvelle URL SEO-friendly) -->
-  <url>
-    <loc>https://preventionprostitutionnormandie.com/guides/professionnels</loc>
+    <loc>https://preventionprostitutionnormandie.com/documentation</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

@@ -6,7 +6,7 @@
     </div>
     <div class="content w-full overflow-y-auto max-md:w-full">
       <div class="dashboard-container">
-        <div class="update-keys mt-16 max-md:mt-14 px-6 max-md:px-4">
+        <div class="update-keys mt-20 max-md:mt-16 px-6 max-md:px-4">
           <div class="flex justify-between items-center mb-6 max-md:flex-col max-md:items-start max-md:gap-4">
             <h1 class="text-3xl font-bold text-gray-800 max-md:text-2xl">Gestion des documents</h1>
             <button @click="openModal" class="flex items-center justify-center gap-2 px-6 py-3 bg-[#f1b04c] hover:bg-[#d4a159] text-white font-medium rounded-lg shadow-md transition-all duration-200 max-md:w-full">
@@ -152,40 +152,36 @@
             <textarea v-model="newGuide.description" id="description" placeholder="Décrivez brièvement le contenu du document..." required></textarea>
           </div>
           <div class="mb-4">
-            <label for="category">Catégorie</label>
+            <label for="category">Département</label>
             <select
               v-model="newGuide.category"
               id="category"
               required
             >
-              <option value="" disabled>Sélectionnez une catégorie</option>
-              <optgroup label="Documentation Particuliers (PSP)">
-                <option value="particulier-info-generale">Information générale (National & Normandie)</option>
-                <option value="particulier-eure">Eure (27)</option>
-                <option value="particulier-calvados">Calvados (14)</option>
-                <option value="particulier-seine-maritime">Seine-Maritime (76)</option>
-                <option value="particulier-manche">Manche (50)</option>
-                <option value="particulier-orne">Orne (61)</option>
-                <option value="particulier-repit-lieu-accueil">Répit - Lieu d'accueil</option>
-              </optgroup>
-              <optgroup label="Documentation Professionnels">
-                <option value="professionnel-info-generale">Information générale (National & Normandie)</option>
-                <option value="professionnel-eure">Eure (27)</option>
-                <option value="professionnel-calvados">Calvados (14)</option>
-                <option value="professionnel-seine-maritime">Seine-Maritime (76)</option>
-                <option value="professionnel-manche">Manche (50)</option>
-                <option value="professionnel-orne">Orne (61)</option>
-                <option value="professionnel-repit-lieu-accueil">Répit - Lieu d'accueil</option>
-              </optgroup>
+              <option value="" disabled>Sélectionnez un département</option>
+              <option value="info-generale">Information générale (National & Normandie)</option>
+              <option value="eure">Eure (27)</option>
+              <option value="calvados">Calvados (14)</option>
+              <option value="seine-maritime">Seine-Maritime (76)</option>
+              <option value="manche">Manche (50)</option>
+              <option value="orne">Orne (61)</option>
             </select>
           </div>
           <div class="mb-4">
             <label for="image">Image de couverture</label>
+            <div v-if="isEditing && newGuide.existingImage && !image" class="text-sm text-gray-600 mb-2">
+              Fichier actuel : {{ newGuide.existingImage.split('/').pop() }}
+            </div>
             <input @change="onFileChange" type="file" id="image" accept="image/*">
+            <p class="text-xs text-gray-500 mt-1">{{ isEditing ? 'Laissez vide pour conserver l\'image actuelle' : '' }}</p>
           </div>
           <div class="mb-4">
             <label for="pdf">Fichier PDF</label>
+            <div v-if="isEditing && newGuide.existingPdf && !pdf" class="text-sm text-gray-600 mb-2">
+              Fichier actuel : {{ newGuide.existingPdf.split('/').pop() }}
+            </div>
             <input @change="onFileChange" type="file" id="pdf" accept=".pdf">
+            <p class="text-xs text-gray-500 mt-1">{{ isEditing ? 'Laissez vide pour conserver le PDF actuel' : '' }}</p>
           </div>
           <button type="submit">
             {{ isEditing ? 'Enregistrer les modifications' : 'Créer le document' }}
@@ -240,29 +236,31 @@ export default {
       documentsPerPage: 8,
       showNotificationPopup: false,
       categoryLabels: {
-        // Anciennes catégories (pour compatibilité)
+        // Anciennes catégories (pour compatibilité avec les documents existants)
         'service-prostitution': 'Service Prostitution',
         'service-prostitution-mineur': 'Service Prostitution Mineur',
         'professionnel-prostitution': 'Professionnel Prostitution',
         'professionnel-prostitution-mineur': 'Professionnel Prostitution Mineur',
-
-        // Nouvelles catégories Particuliers
         'particulier-info-generale': 'Info générale (National & Normandie)',
         'particulier-eure': 'Eure (27)',
         'particulier-calvados': 'Calvados (14)',
         'particulier-seine-maritime': 'Seine-Maritime (76)',
         'particulier-manche': 'Manche (50)',
         'particulier-orne': 'Orne (61)',
-        'particulier-repit-lieu-accueil': 'Répit - Lieu d\'accueil',
-
-        // Nouvelles catégories Professionnels
         'professionnel-info-generale': 'Info générale (National & Normandie)',
         'professionnel-eure': 'Eure (27)',
         'professionnel-calvados': 'Calvados (14)',
         'professionnel-seine-maritime': 'Seine-Maritime (76)',
         'professionnel-manche': 'Manche (50)',
         'professionnel-orne': 'Orne (61)',
-        'professionnel-repit-lieu-accueil': 'Répit - Lieu d\'accueil',
+
+        // Nouvelles catégories simplifiées
+        'info-generale': 'Information générale (National & Normandie)',
+        'eure': 'Eure (27)',
+        'calvados': 'Calvados (14)',
+        'seine-maritime': 'Seine-Maritime (76)',
+        'manche': 'Manche (50)',
+        'orne': 'Orne (61)',
       },
     };
   },
@@ -280,7 +278,12 @@ export default {
         title: doc.title,
         description: doc.description,
         category: doc.category,
+        existingImage: doc.image,
+        existingPdf: doc.pdf
       };
+      // Réinitialiser les fichiers sélectionnés
+      this.image = null;
+      this.pdf = null;
     },
     closeModal() {
       this.isModalVisible = false;
@@ -335,6 +338,8 @@ export default {
           formData.append('title', this.newGuide.title);
           formData.append('description', this.newGuide.description);
           formData.append('category', this.newGuide.category);
+
+          // N'envoyer les fichiers que s'ils ont été modifiés
           if (this.image) {
             formData.append('image', this.image);
           }

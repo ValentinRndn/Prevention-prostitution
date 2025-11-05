@@ -3,10 +3,12 @@ const jwt = require('jsonwebtoken');
 module.exports = function (req, res, next) {
   // Récupérer l'en-tête Authorization
   const authHeader = req.header('Authorization');
+  console.log('Auth middleware - Authorization header:', authHeader);
 
   // Si l'en-tête Authorization n'existe pas
   if (!authHeader) {
-    return res.status(401).json({ 
+    console.log('Auth middleware - No authorization header found');
+    return res.status(401).json({
       message: 'No token, authorization denied',
       code: 'NO_TOKEN'
     });

@@ -7,11 +7,12 @@
       <HorizontalBar />
       <AdminBar />
     </div>
-    <div class="content w-full h-full">
+    <div class="content w-full overflow-y-auto max-md:w-full">
       <LastUpdate v-if="lastUpdate !== null" :lastUpdateDate="lastUpdate"></LastUpdate>
     <!-- Contenu du tableau de bord -->
-    <div class="dashboard-container ">
-      <div class="update-keys flex flex-col gap-5 w-1/3 bg-white p-4  rounded-md shadow-xl font-poppins justify-center max-md:items-center max-md:w-full max-md:h-4/6">
+    <div class="dashboard-container">
+      <div class="mt-20 max-md:mt-16 px-6 max-md:px-4">
+        <div class="update-keys flex flex-col gap-5 w-1/3 bg-white p-4 rounded-md shadow-xl font-poppins justify-center max-md:items-center max-md:w-full max-md:h-4/6">
         <h3 class="font-bold border-b border-b-solid border-light-grey pb-5 pt-2">Mise à jour données</h3>
 
         <div class="update-field flex w-full border-b border-b-solid border-light-grey pb-5 max-md:flex-col max-md:items-center">
@@ -33,6 +34,7 @@
         <!-- Autres champs d'entrée -->
 
         <button @click="saveStats" class="update-button bg-purple-fonce text-white p-2 rounded-md shadow-xl ml-auto font-poppins font-bold text-center max-md:mr-auto hover:scale-105 duration-200">SAUVEGARDER</button>
+        </div>
       </div>
     </div>
   </div>
